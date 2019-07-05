@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.TabledynamicMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.Tabledynamic">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="berth_name" jdbcType="VARCHAR" property="berthName" />
+    <result column="berth_ID" jdbcType="VARCHAR" property="berthId" />
+    <result column="berth_max_CY" jdbcType="VARCHAR" property="berthMaxCy" />
+    <result column="berth_residual_CY" jdbcType="VARCHAR" property="berthResidualCy" />
+    <result column="RB_name" jdbcType="VARCHAR" property="rbName" />
+    <result column="RB_ID" jdbcType="VARCHAR" property="rbId" />
+    <result column="RB_max_CY" jdbcType="VARCHAR" property="rbMaxCy" />
+    <result column="RB_residual_CY" jdbcType="VARCHAR" property="rbResidualCy" />
+    <result column="charger_name" jdbcType="VARCHAR" property="chargerName" />
+    <result column="charger_ID" jdbcType="VARCHAR" property="chargerId" />
+    <result column="charger_max_CY" jdbcType="VARCHAR" property="chargerMaxCy" />
+    <result column="charger_residual_CY" jdbcType="VARCHAR" property="chargerResidualCy" />
+    <result column="datetime" jdbcType="TIMESTAMP" property="datetime" />
+  </resultMap>
+</mapper>
