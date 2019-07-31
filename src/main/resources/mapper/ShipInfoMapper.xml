@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.ShipInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.ShipInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Ship_MMSI" jdbcType="INTEGER" property="shipMmsi" />
+    <result column="Ship_call" jdbcType="VARCHAR" property="shipCall" />
+    <result column="Ship_class" jdbcType="VARCHAR" property="shipClass" />
+    <result column="Ship_state" jdbcType="VARCHAR" property="shipState" />
+    <result column="Ship_longitude" jdbcType="DECIMAL" property="shipLongitude" />
+    <result column="Ship_latitude" jdbcType="DECIMAL" property="shipLatitude" />
+    <result column="Ship_length" jdbcType="VARCHAR" property="shipLength" />
+    <result column="Ship_width" jdbcType="VARCHAR" property="shipWidth" />
+    <result column="Ship_heading" jdbcType="VARCHAR" property="shipHeading" />
+    <result column="Ship_speed" jdbcType="VARCHAR" property="shipSpeed" />
+    <result column="Ship_draught" jdbcType="VARCHAR" property="shipDraught" />
+    <result column="Ship_load" jdbcType="VARCHAR" property="shipLoad" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+    <result column="Channel_division_ID" jdbcType="VARCHAR" property="channelDivisionId" />
+  </resultMap>
+
+  <!--手写sql部分-->
+
+  <update id="updateShipInfoBetweenId" parameterType="com.company.project.model.ShipInfo">
+
+update ship_info t1 inner join (select * from simulate_ship_info where id between #{id1} and #{id2}) t2 on t1.Ship_MMSI =t2.Ship_MMSI set t1.Ship_state=t2.Ship_state,t1.Ship_longitude=t2.Ship_longitude,t1.Ship_latitude=t2.Ship_latitude,t1.Ship_heading=t2.Ship_heading,t1.Ship_speed=t2.Ship_speed,t1.Ship_draught = t2.Ship_draught,t1.Ship_load=t2.Ship_load,t1.Channel_division_ID=t2.Channel_division_ID;
+    </update>
+</mapper>

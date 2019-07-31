@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.SimulateDynamicPortMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.SimulateDynamicPort">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="Service_ID" jdbcType="VARCHAR" property="serviceId" />
+    <result column="Service_longitude" jdbcType="DECIMAL" property="serviceLongitude" />
+    <result column="Service_latitude" jdbcType="DECIMAL" property="serviceLatitude" />
+    <result column="Berth_name" jdbcType="VARCHAR" property="berthName" />
+    <result column="Berth_ID" jdbcType="VARCHAR" property="berthId" />
+    <result column="Berth_max_cy" jdbcType="VARCHAR" property="berthMaxCy" />
+    <result column="Berth_surplus_cy" jdbcType="VARCHAR" property="berthSurplusCy" />
+    <result column="Gas_name" jdbcType="VARCHAR" property="gasName" />
+    <result column="Gas_ID" jdbcType="VARCHAR" property="gasId" />
+    <result column="Charger_name" jdbcType="VARCHAR" property="chargerName" />
+    <result column="Charger_ID" jdbcType="VARCHAR" property="chargerId" />
+    <result column="Charger_max_cy" jdbcType="VARCHAR" property="chargerMaxCy" />
+    <result column="Charger_surplus_cy" jdbcType="VARCHAR" property="chargerSurplusCy" />
+    <result column="Recycling_name" jdbcType="VARCHAR" property="recyclingName" />
+    <result column="Recycling_ID" jdbcType="VARCHAR" property="recyclingId" />
+    <result column="Recycling_max_cy" jdbcType="VARCHAR" property="recyclingMaxCy" />
+    <result column="Recycling_surplus_cy" jdbcType="VARCHAR" property="recyclingSurplusCy" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+  </resultMap>
+</mapper>
