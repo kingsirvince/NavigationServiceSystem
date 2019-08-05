@@ -1,5 +1,6 @@
 package com.company.project.schedule;
 
+import com.company.project.service.ReadExcelService;
 import com.company.project.service.ShipInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 public class ScheduleShipInfo {
     @Autowired
     private ShipInfoService shipInfoService;
+    private ReadExcelService readExcelService;
     /**
      * id1Initial 一次更新的第一个数；id2Initial 一次更新的最后一个数
      * num 一次更新的数量； amount 模拟数据总个数； i 第几次更新
@@ -46,6 +48,7 @@ public class ScheduleShipInfo {
         System.out.println("ScheduleShipInfo: " + LocalDateTime.now()+"  id1: " + id1+", id2: " + id2);
 //        System.out.println("id1: " + id1+", id2: " + id2 );
        shipInfoService.updateShipInfoBetweenId(id1,id2);
+
 
     }
 }
