@@ -28,4 +28,9 @@
 
 update ship_info t1 inner join (select * from simulate_ship_info where id between #{id1} and #{id2}) t2 on t1.Ship_MMSI =t2.Ship_MMSI set t1.Ship_state=t2.Ship_state,t1.Ship_longitude=t2.Ship_longitude,t1.Ship_latitude=t2.Ship_latitude,t1.Ship_heading=t2.Ship_heading,t1.Ship_speed=t2.Ship_speed,t1.Ship_draught = t2.Ship_draught,t1.Ship_load=t2.Ship_load,t1.Channel_division_ID=t2.Channel_division_ID;
     </update>
+
+ <!-- <select id="nearbyShip" parameterType="com.company.project.model.ShipInfo" resultType="com.company.project.model.ShipInfo">
+
+select * from ship_info where Channel_division_ID=#{nearbyChannelDivisionID1} or Channel_division_ID=#{nearbyChannelDivisionID2} or Channel_division_ID=#{nearbyChannelDivisionID3} or Channel_division_ID=#{nearbyChannelDivisionID4} or Channel_division_ID=#{nearbyChannelDivisionID5};
+</select>-->
 </mapper>

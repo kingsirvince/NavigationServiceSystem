@@ -1,6 +1,7 @@
 package com.company.project.service;
-import com.company.project.model.ShipInfo;
+
 import com.company.project.core.Service;
+import com.company.project.model.ShipInfo;
 
 
 /**
@@ -9,4 +10,6 @@ import com.company.project.core.Service;
 public interface ShipInfoService extends Service<ShipInfo> {
 
     Integer updateShipInfoBetweenId(Integer id1,Integer id2);
+
+//    List<ShipInfo> nearbyShip(Integer MMSI);
 }
