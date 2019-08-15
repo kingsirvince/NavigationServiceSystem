@@ -1,24 +1,19 @@
 package com.company.project.schedule;
 
-import com.company.project.service.DynamicPortService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 @Component
 @Configuration      //1.主要用于标记配置类，兼备Component的效果。
 @EnableScheduling   // 2.开启定时任务
 public class ScheduleDynamicPort {
-    @Autowired
+    /*@Autowired
     private DynamicPortService dynamicPortService;
-    /**
+    *//**
      * id1Initial 一次更新的第一个数；id2Initial 一次更新的最后一个数
      * num 一次更新的数量； amount 模拟数据总个数； i 第几次更新
-     */
+     *//*
     int id1Initial=1;
     int id2Initial=17;
 
@@ -46,5 +41,5 @@ public class ScheduleDynamicPort {
         System.out.println("ScheduleDynamicPort: " + LocalDateTime.now()+"  id1: " + id1+", id2: " + id2 );
         dynamicPortService.updateDynamicPortBetweenId(id1,id2);
 
-    }
+    }*/
 }

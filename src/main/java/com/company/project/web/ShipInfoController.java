@@ -2,11 +2,11 @@ package com.company.project.web;
 
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
+import com.company.project.model.Coordinate;
 import com.company.project.model.ShipInfo;
 import com.company.project.service.ShipInfoService;
 import com.company.project.service.ShipUploadService;
 import com.company.project.util.ChannelDivisionIDUtil;
-import com.company.project.util.MapperUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,7 @@ import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -68,9 +69,32 @@ public class ShipInfoController {
         return ResultGenerator.genSuccessResult();
     }
 
-
-
     @PostMapping("/nearbyShip")
+    public Result nearbyShip(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude){
+        Coordinate coordinate =new Coordinate(longitude,latitude);
+        String channelDivisionID = ChannelDivisionIDUtil.getChannelDivisionID(coordinate);
+        System.out.println("%%%%%%%%% 当前船舶 航道划分："+channelDivisionID+"%%%%%%%%%");
+
+        String[] nearbyChannelDivisionID = ChannelDivisionIDUtil.getNearbyChannelDivisionID(channelDivisionID);
+
+
+
+        for (int i=0;i<nearbyChannelDivisionID.length;i++){
+            System.out.println("$$$$$$$$$$$$$$$$$$$--ShipInfo 周围航道划分【数组】："+nearbyChannelDivisionID[i]);}
+
+        Condition condition = new Condition(ShipInfo.class);
+        Example.Criteria criteria = condition.createCriteria();
+        criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[0]);
+        criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[1]);
+        criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[2]);
+        criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[3]);
+        criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[4]);
+
+        List<ShipInfo> list = shipInfoService.findByCondition(condition);
+        return ResultGenerator.genSuccessResult(list);
+    }
+
+/*    @PostMapping("/nearbyShip")
     public Result nearbyShip(@RequestParam Integer MMSI){
 
         String channelDivisionID = MapperUtil.getShipUploadCDID(MMSI);
@@ -93,6 +117,6 @@ public class ShipInfoController {
 
         List<ShipInfo> list = shipInfoService.findByCondition(condition);
         return ResultGenerator.genSuccessResult(list);
-    }
+    }*/
 
 }

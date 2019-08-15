@@ -5,8 +5,10 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="Ship_MMSI" jdbcType="INTEGER" property="shipMmsi" />
+<!--    <id column="ID" jdbcType="INTEGER" property="id" />-->
+<!--    <result column="Ship_MMSI" jdbcType="INTEGER" property="shipMmsi" />-->
+    <id column="Ship_MMSI" jdbcType="INTEGER" property="shipMmsi" />
+    <result column="ID" jdbcType="INTEGER" property="id" />
     <result column="Ship_call" jdbcType="VARCHAR" property="shipCall" />
     <result column="Ship_class" jdbcType="VARCHAR" property="shipClass" />
     <result column="Ship_state" jdbcType="VARCHAR" property="shipState" />
@@ -26,4 +28,8 @@
 
 select Channel_division_ID from ship_upload where Ship_MMSI=#{MMSI} ;
 </select>
+  <update id="updateShipUpload" parameterType="com.company.project.model.ShipUpload">
+
+update ship_upload  set Ship_call=#{shipCall},Ship_class=#{shipClass},Ship_state=#{shipState},Ship_longitude=#{shipLatitude},Ship_latitude=#{shipLatitude},Ship_length=#{shipLength},Ship_width=#{shipWidth},Ship_heading=#{shipHeading},Ship_speed=#{shipSpeed},Ship_draught = #{shipDraught},Ship_load=#{shipLoad},Ship_max_load=#{shipMaxLoad},Channel_division_ID=#{channelDivisionId}  where Ship_MMSI =#{shipMmsi};
+    </update>
 </mapper>

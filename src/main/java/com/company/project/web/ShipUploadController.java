@@ -30,7 +30,8 @@ public class ShipUploadController {
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer shipMmsi) {
+        Integer id = shipMmsi;
         shipUploadService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
@@ -42,7 +43,8 @@ public class ShipUploadController {
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer shipMmsi) {
+        Integer id = shipMmsi;
         ShipUpload shipUpload = shipUploadService.findById(id);
         return ResultGenerator.genSuccessResult(shipUpload);
     }
@@ -61,25 +63,4 @@ public class ShipUploadController {
         return ResultGenerator.genSuccessResult(channelDivisionID);
     }
 
-    /*
-    *//**
-     * 按2个条件查询  (例如：航道划分=10010，时间=2019-06-27 16:50:50）
-     *      * sql: select * from tableship where fieldName=value and fieldName1=value2
-     * @param fieldName     字段名1 fieldName=channelDivisionId ,  value=10010
-     * @param value
-     * @param fieldName1    字段名2 fieldName1=datatime, value2=2019-06-27 16:50:50
-     * @param value1
-     * @return
-     *//*
-    @PostMapping("/findByCondition2")
-    public Result findByCondition2(@RequestParam String fieldName, @RequestParam Object value,
-                                   @RequestParam String fieldName1, @RequestParam Object value1) {
-
-        Condition condition = new Condition(ShipUpload.class);
-        Example.Criteria criteria = condition.createCriteria();
-        criteria.andEqualTo(fieldName, value);
-        criteria.andEqualTo(fieldName1, value1);
-        List<ShipUpload> list = shipUploadService.findByCondition(condition);
-        return ResultGenerator.genSuccessResult(list);
-    }*/
 }

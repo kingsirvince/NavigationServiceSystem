@@ -1,16 +1,17 @@
 package com.company.project.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "ship_upload")
 public class ShipUpload {
-    @Id
+
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Id
     @Column(name = "Ship_MMSI")
     private Integer shipMmsi;
 
@@ -43,6 +44,17 @@ public class ShipUpload {
 
     @Column(name = "Ship_draught")
     private String shipDraught;
+
+    @Column(name = "Ship_max_load")
+    private String shipMaxLoad;
+
+    public String getShipMaxLoad() {
+        return shipMaxLoad;
+    }
+
+    public void setShipMaxLoad(String shipMaxLoad) {
+        this.shipMaxLoad = shipMaxLoad;
+    }
 
     @Column(name = "Ship_load")
     private String shipLoad;

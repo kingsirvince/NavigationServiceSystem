@@ -44,6 +44,18 @@ public class ShipInfo {
     @Column(name = "Ship_draught")
     private String shipDraught;
 
+    @Column(name = "Ship_max_load")
+    private String shipMaxLoad;
+
+    public String getShipMaxLoad() {
+        return shipMaxLoad;
+    }
+
+    public void setShipMaxLoad(String shipMaxLoad) {
+        this.shipMaxLoad = shipMaxLoad;
+    }
+
+
     @Column(name = "Ship_load")
     private String shipLoad;
 

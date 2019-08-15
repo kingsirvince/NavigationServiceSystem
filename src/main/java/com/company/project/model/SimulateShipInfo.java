@@ -1,8 +1,8 @@
 package com.company.project.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "simulate_ship_info")
 public class SimulateShipInfo {
@@ -43,6 +43,17 @@ public class SimulateShipInfo {
 
     @Column(name = "Ship_draught")
     private String shipDraught;
+
+    @Column(name = "Ship_max_load")
+    private String shipMaxLoad;
+
+    public String getShipMaxLoad() {
+        return shipMaxLoad;
+    }
+
+    public void setShipMaxLoad(String shipMaxLoad) {
+        this.shipMaxLoad = shipMaxLoad;
+    }
 
     @Column(name = "Ship_load")
     private String shipLoad;

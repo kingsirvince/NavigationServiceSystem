@@ -92,6 +92,7 @@ public class ChannelDivisionIDUtil {
 
         if (channelDivisionID.isEmpty()){
             channelDivisionID = "NoMatch";
+            System.out.println("*********航道划分无匹配，超出范围 channelDivisionID = \"NoMatch\"*********");
         }
         return channelDivisionID;
     }
@@ -101,18 +102,25 @@ public class ChannelDivisionIDUtil {
 
         String[] arrayNearbyCDID = new String[5];
         String a = channelDivisionID;
-        String aSubLast = a.substring(9);           //string截取，表示从第9位开始截取，到最后，从0计数
-        String aSubBefore = a.substring(0, 9);      //表示从第0位开始截取，到第9位
-        int num1 = Integer.parseInt(aSubLast) + 1;  //string转int
-        int num2 = Integer.parseInt(aSubLast) - 1;
-        String strNum1= String.format("%04d",num1);  //int转字符串自动补零,"%04d": 0表示前面补得是0,4表示总共4位，d表示是整形
-        String strNum2= String.format("%04d",num2);
-        String aCombo1 = aSubBefore + strNum1;
-        String aCombo2 = aSubBefore + strNum2;
-        System.out.println("*********附近航道划分拼接后：" + aCombo1 + " , " + aCombo2 + "*********");
+        String aCombo1 = "";
+        String aCombo2 = "";
+
+        try {
+            String aSubLast = a.substring(9);           //string截取，表示从第9位开始截取，到最后，从0计数
+            String aSubBefore = a.substring(0, 9);      //表示从第0位开始截取，到第9位
+            int num1 = Integer.parseInt(aSubLast) + 1;  //string转int
+            int num2 = Integer.parseInt(aSubLast) - 1;
+            String strNum1 = String.format("%04d", num1);  //int转字符串自动补零,"%04d": 0表示前面补得是0,4表示总共4位，d表示是整形
+            String strNum2 = String.format("%04d", num2);
+            aCombo1 = aSubBefore + strNum1;
+            aCombo2 = aSubBefore + strNum2;
+        }catch (StringIndexOutOfBoundsException ex) {
+            System.out.println("*********无法计算周边航道划分：航道划分无匹配，超出范围 NoMatch*********");
+        }
+            System.out.println("*********附近航道划分拼接后：" + aCombo1 + " , " + aCombo2 + "*********");
 
 
-        arrayNearbyCDID[0] = a;
+            arrayNearbyCDID[0] = a;
 
             if (a.equals("JXCH026HD0001")) {
                 arrayNearbyCDID[1] = "JXCH026HD0002";
@@ -159,8 +167,10 @@ public class ChannelDivisionIDUtil {
                 arrayNearbyCDID[1] = aCombo1;
                 arrayNearbyCDID[2] = aCombo2;
             }
-            for (int i=0;i<arrayNearbyCDID.length;i++){
-        System.out.println("*********周围航道划分："+arrayNearbyCDID[i]);}
+            for (int i = 0; i < arrayNearbyCDID.length; i++) {
+                System.out.println("*********周围航道划分：" + arrayNearbyCDID[i]);
+            }
+
         return arrayNearbyCDID;
     }
 }
