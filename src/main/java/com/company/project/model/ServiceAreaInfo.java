@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "dynamic_port")
-public class DynamicPort {
+@Table(name = "service_area_info")
+public class ServiceAreaInfo {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +32,10 @@ public class DynamicPort {
     private String berthId;
 
     @Column(name = "Berth_max_cy")
-    private String berthMaxCy;
+    private Integer berthMaxCy;
 
     @Column(name = "Berth_surplus_cy")
-    private String berthSurplusCy;
+    private Integer berthSurplusCy;
 
     @Column(name = "Gas_name")
     private String gasName;
@@ -50,10 +50,10 @@ public class DynamicPort {
     private String chargerId;
 
     @Column(name = "Charger_max_cy")
-    private String chargerMaxCy;
+    private Integer chargerMaxCy;
 
     @Column(name = "Charger_surplus_cy")
-    private String chargerSurplusCy;
+    private Integer chargerSurplusCy;
 
     @Column(name = "Recycling_name")
     private String recyclingName;
@@ -62,10 +62,10 @@ public class DynamicPort {
     private String recyclingId;
 
     @Column(name = "Recycling_max_cy")
-    private String recyclingMaxCy;
+    private Integer recyclingMaxCy;
 
     @Column(name = "Recycling_surplus_cy")
-    private String recyclingSurplusCy;
+    private Integer recyclingSurplusCy;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "Datetime")
     private Date datetime;
@@ -171,28 +171,28 @@ public class DynamicPort {
     /**
      * @return Berth_max_cy
      */
-    public String getBerthMaxCy() {
+    public Integer getBerthMaxCy() {
         return berthMaxCy;
     }
 
     /**
      * @param berthMaxCy
      */
-    public void setBerthMaxCy(String berthMaxCy) {
+    public void setBerthMaxCy(Integer berthMaxCy) {
         this.berthMaxCy = berthMaxCy;
     }
 
     /**
      * @return Berth_surplus_cy
      */
-    public String getBerthSurplusCy() {
+    public Integer getBerthSurplusCy() {
         return berthSurplusCy;
     }
 
     /**
      * @param berthSurplusCy
      */
-    public void setBerthSurplusCy(String berthSurplusCy) {
+    public void setBerthSurplusCy(Integer berthSurplusCy) {
         this.berthSurplusCy = berthSurplusCy;
     }
 
@@ -255,28 +255,28 @@ public class DynamicPort {
     /**
      * @return Charger_max_cy
      */
-    public String getChargerMaxCy() {
+    public Integer getChargerMaxCy() {
         return chargerMaxCy;
     }
 
     /**
      * @param chargerMaxCy
      */
-    public void setChargerMaxCy(String chargerMaxCy) {
+    public void setChargerMaxCy(Integer chargerMaxCy) {
         this.chargerMaxCy = chargerMaxCy;
     }
 
     /**
      * @return Charger_surplus_cy
      */
-    public String getChargerSurplusCy() {
+    public Integer getChargerSurplusCy() {
         return chargerSurplusCy;
     }
 
     /**
      * @param chargerSurplusCy
      */
-    public void setChargerSurplusCy(String chargerSurplusCy) {
+    public void setChargerSurplusCy(Integer chargerSurplusCy) {
         this.chargerSurplusCy = chargerSurplusCy;
     }
 
@@ -311,28 +311,28 @@ public class DynamicPort {
     /**
      * @return Recycling_max_cy
      */
-    public String getRecyclingMaxCy() {
+    public Integer getRecyclingMaxCy() {
         return recyclingMaxCy;
     }
 
     /**
      * @param recyclingMaxCy
      */
-    public void setRecyclingMaxCy(String recyclingMaxCy) {
+    public void setRecyclingMaxCy(Integer recyclingMaxCy) {
         this.recyclingMaxCy = recyclingMaxCy;
     }
 
     /**
      * @return Recycling_surplus_cy
      */
-    public String getRecyclingSurplusCy() {
+    public Integer getRecyclingSurplusCy() {
         return recyclingSurplusCy;
     }
 
     /**
      * @param recyclingSurplusCy
      */
-    public void setRecyclingSurplusCy(String recyclingSurplusCy) {
+    public void setRecyclingSurplusCy(Integer recyclingSurplusCy) {
         this.recyclingSurplusCy = recyclingSurplusCy;
     }
 

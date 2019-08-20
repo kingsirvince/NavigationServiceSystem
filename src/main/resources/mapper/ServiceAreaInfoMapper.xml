@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.ServiceAreaInfoMapper">
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.ServiceAreaInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="Service_ID" jdbcType="VARCHAR" property="serviceId" />
+    <result column="Service_longitude" jdbcType="DECIMAL" property="serviceLongitude" />
+    <result column="Service_latitude" jdbcType="DECIMAL" property="serviceLatitude" />
+    <result column="Berth_name" jdbcType="VARCHAR" property="berthName" />
+    <result column="Berth_ID" jdbcType="VARCHAR" property="berthId" />
+    <result column="Berth_max_cy" jdbcType="INTEGER" property="berthMaxCy" />
+    <result column="Berth_surplus_cy" jdbcType="INTEGER" property="berthSurplusCy" />
+    <result column="Gas_name" jdbcType="VARCHAR" property="gasName" />
+    <result column="Gas_ID" jdbcType="VARCHAR" property="gasId" />
+    <result column="Charger_name" jdbcType="VARCHAR" property="chargerName" />
+    <result column="Charger_ID" jdbcType="VARCHAR" property="chargerId" />
+    <result column="Charger_max_cy" jdbcType="INTEGER" property="chargerMaxCy" />
+    <result column="Charger_surplus_cy" jdbcType="INTEGER" property="chargerSurplusCy" />
+    <result column="Recycling_name" jdbcType="VARCHAR" property="recyclingName" />
+    <result column="Recycling_ID" jdbcType="VARCHAR" property="recyclingId" />
+    <result column="Recycling_max_cy" jdbcType="INTEGER" property="recyclingMaxCy" />
+    <result column="Recycling_surplus_cy" jdbcType="INTEGER" property="recyclingSurplusCy" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+
+    <!--distance 增加的距离显示-->
+    <result column="distance" property="distance"/>
+  </resultMap>
+
+  <!--手写sql部分-->
+
+  <update id="updateServiceAreaInfoBetweenId" parameterType="com.company.project.model.ServiceAreaInfo">
+
+update service_area_info t1 inner join (select * from simulate_dynamic_port where id between #{id1} and #{id2}) t2 on t1.Service_ID =t2.Service_ID set t1.Berth_surplus_cy=t2.Berth_surplus_cy,t1.Charger_surplus_cy=t2.Charger_surplus_cy,t1.Recycling_surplus_cy=t2.Recycling_surplus_cy
+    </update>
+  <select id="singleQuery" resultType="com.company.project.model.ServiceAreaInfo">
+  select #{fieldName1} from service_area_info where #{fieldName}=#{value}
+  </select>
+
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+     SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Service_latitude * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Service_latitude * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Service_longitude * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    service_area_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+</mapper>

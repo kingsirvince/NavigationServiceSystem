@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "simulate_ship_info")
-public class SimulateShipInfo {
+@Table(name = "ship_history")
+public class ShipHistory {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,14 +48,6 @@ public class SimulateShipInfo {
 
     @Column(name = "Ship_max_load")
     private String shipMaxLoad;
-
-    public String getShipMaxLoad() {
-        return shipMaxLoad;
-    }
-
-    public void setShipMaxLoad(String shipMaxLoad) {
-        this.shipMaxLoad = shipMaxLoad;
-    }
 
     @Column(name = "Ship_load")
     private String shipLoad;
@@ -232,6 +224,20 @@ public class SimulateShipInfo {
      */
     public void setShipDraught(String shipDraught) {
         this.shipDraught = shipDraught;
+    }
+
+    /**
+     * @return Ship_max_load
+     */
+    public String getShipMaxLoad() {
+        return shipMaxLoad;
+    }
+
+    /**
+     * @param shipMaxLoad
+     */
+    public void setShipMaxLoad(String shipMaxLoad) {
+        this.shipMaxLoad = shipMaxLoad;
     }
 
     /**

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.DockInfoMapper">
+<!--  使用带有distance的模型DockInfoDistance-->
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.DockInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Dock_name" jdbcType="VARCHAR" property="dockName" />
+    <result column="Dock_ID" jdbcType="VARCHAR" property="dockId" />
+    <result column="Dock_scale" jdbcType="VARCHAR" property="dockScale" />
+    <result column="Dock_max_tonnage" jdbcType="VARCHAR" property="dockMaxTonnage" />
+    <result column="Dock_longitude" jdbcType="DECIMAL" property="dockLongitude" />
+    <result column="Dock_latitude" jdbcType="DECIMAL" property="dockLatitude" />
+    <result column="Berth_name" jdbcType="VARCHAR" property="berthName" />
+    <result column="Berth_ID" jdbcType="VARCHAR" property="berthId" />
+    <result column="Berth_max_cy" jdbcType="INTEGER" property="berthMaxCy" />
+    <result column="Berth_surplus_cy" jdbcType="INTEGER" property="berthSurplusCy" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+<!--    加上distance变量-->
+    <result column="distance" property="distance" />
+  </resultMap>
+
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+ SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Dock_latitude * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Dock_latitude * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Dock_longitude * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    dock_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+</mapper>

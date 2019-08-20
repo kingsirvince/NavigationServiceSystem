@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.WeatherInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.WeatherInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Region_ID" jdbcType="VARCHAR" property="regionId" />
+    <result column="Weather_today" jdbcType="VARCHAR" property="weatherToday" />
+    <result column="Today_temperature_max" jdbcType="REAL" property="todayTemperatureMax" />
+    <result column="Today_temperature_min" jdbcType="REAL" property="todayTemperatureMin" />
+    <result column="Humidity" jdbcType="INTEGER" property="humidity" />
+    <result column="Wind_direction" jdbcType="VARCHAR" property="windDirection" />
+    <result column="Wind_speed" jdbcType="VARCHAR" property="windSpeed" />
+    <result column="Weather_tomorrow" jdbcType="VARCHAR" property="weatherTomorrow" />
+    <result column="Tomorrow_temperature_max" jdbcType="REAL" property="tomorrowTemperatureMax" />
+    <result column="Tomorrow_temperature_min" jdbcType="REAL" property="tomorrowTemperatureMin" />
+    <result column="Weather_after" jdbcType="VARCHAR" property="weatherAfter" />
+    <result column="After_temperature_max" jdbcType="REAL" property="afterTemperatureMax" />
+    <result column="After_temperature_min" jdbcType="REAL" property="afterTemperatureMin" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+  </resultMap>
+</mapper>

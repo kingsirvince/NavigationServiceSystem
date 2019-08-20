@@ -94,6 +94,7 @@ public class ShipInfoController {
         return ResultGenerator.genSuccessResult(list);
     }
 
+
 /*    @PostMapping("/nearbyShip")
     public Result nearbyShip(@RequestParam Integer MMSI){
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.FloodgateInfoMapper">
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.FloodgateInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Floodgate_name" jdbcType="VARCHAR" property="floodgateName" />
+    <result column="Floodgate_ID" jdbcType="VARCHAR" property="floodgateId" />
+    <result column="Floodgate_longitude_A" jdbcType="DECIMAL" property="floodgateLongitudeA" />
+    <result column="Floodgate_latitude_A" jdbcType="DECIMAL" property="floodgateLatitudeA" />
+    <result column="Floodgate_longitude_B" jdbcType="DECIMAL" property="floodgateLongitudeB" />
+    <result column="Floodgate_latitude_B" jdbcType="DECIMAL" property="floodgateLatitudeB" />
+    <result column="Floodgate_longitude_C" jdbcType="DECIMAL" property="floodgateLongitudeC" />
+    <result column="Floodgate_latitude_C" jdbcType="DECIMAL" property="floodgateLatitudeC" />
+    <result column="Floodgate_longitude_left" jdbcType="DECIMAL" property="floodgateLongitudeLeft" />
+    <result column="Floodgate_latitude_left" jdbcType="DECIMAL" property="floodgateLatitudeLeft" />
+    <result column="Floodgate_longitude_right" jdbcType="DECIMAL" property="floodgateLongitudeRight" />
+    <result column="Floodgate_latitude_right" jdbcType="DECIMAL" property="floodgateLatitudeRight" />
+    <result column="Floodgate_max_limit_height" jdbcType="VARCHAR" property="floodgateMaxLimitHeight" />
+    <result column="Floodgate_limit_height" jdbcType="VARCHAR" property="floodgateLimitHeight" />
+    <result column="Floodgate_limit_width" jdbcType="VARCHAR" property="floodgateLimitWidth" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+
+    <!--    加上distance变量-->
+    <result column="distance" property="distance" />
+  </resultMap>
+
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+ SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Floodgate_latitude_B * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Floodgate_latitude_B * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Floodgate_longitude_B * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    floodgate_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+
+</mapper>

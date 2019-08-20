@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.NoticeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.NoticeInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Notice_name" jdbcType="VARCHAR" property="noticeName" />
+    <result column="Notice_class" jdbcType="VARCHAR" property="noticeClass" />
+    <result column="Notice_longitude" jdbcType="DECIMAL" property="noticeLongitude" />
+    <result column="Notice_latitude" jdbcType="DECIMAL" property="noticeLatitude" />
+    <result column="Channel_division_ID" jdbcType="VARCHAR" property="channelDivisionId" />
+    <result column="Notice_content" jdbcType="VARCHAR" property="noticeContent" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+  </resultMap>
+</mapper>

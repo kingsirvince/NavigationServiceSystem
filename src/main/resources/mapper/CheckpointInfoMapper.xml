@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.CheckpointInfoMapper">
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.CheckpointInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Checkpoint_name" jdbcType="VARCHAR" property="checkpointName" />
+    <result column="Checkpoint_ID" jdbcType="VARCHAR" property="checkpointId" />
+    <result column="Checkpoint_longitude" jdbcType="DECIMAL" property="checkpointLongitude" />
+    <result column="Checkpoint_latitude" jdbcType="DECIMAL" property="checkpointLatitude" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+    <!--    加上distance变量-->
+    <result column="distance" property="distance" />
+  </resultMap>
+
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+ SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Checkpoint_latitude * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Checkpoint_latitude * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Checkpoint_longitude * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    checkpoint_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+
+</mapper>

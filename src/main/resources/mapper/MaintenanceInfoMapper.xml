@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.MaintenanceInfoMapper">
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.MaintenanceInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Maintenance_name" jdbcType="VARCHAR" property="maintenanceName" />
+    <result column="Maintenance_ID" jdbcType="VARCHAR" property="maintenanceId" />
+    <result column="Maintenance_longitude" jdbcType="DECIMAL" property="maintenanceLongitude" />
+    <result column="Maintenance_latitude" jdbcType="DECIMAL" property="maintenanceLatitude" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+<!--distance 增加的距离显示-->
+    <result column="distance" property="distance"/>
+  </resultMap>
+
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+     SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Maintenance_latitude * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Maintenance_latitude * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Maintenance_longitude * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    maintenance_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+</mapper>

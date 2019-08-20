@@ -1,5 +1,7 @@
 package com.company.project.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -59,6 +61,7 @@ public class ShipInfo {
     @Column(name = "Ship_load")
     private String shipLoad;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "Datetime")
     private Date datetime;
 

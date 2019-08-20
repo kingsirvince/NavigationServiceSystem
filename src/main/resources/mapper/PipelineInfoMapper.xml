@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.PipelineInfoMapper">
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.PipelineInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Pipeline_name" jdbcType="VARCHAR" property="pipelineName" />
+    <result column="Pipeline_ID" jdbcType="VARCHAR" property="pipelineId" />
+    <result column="Pipeline_longitude_A" jdbcType="DECIMAL" property="pipelineLongitudeA" />
+    <result column="Pipeline_latitude_A" jdbcType="DECIMAL" property="pipelineLatitudeA" />
+    <result column="Pipeline_longitude_B" jdbcType="DECIMAL" property="pipelineLongitudeB" />
+    <result column="Pipeline_latitude_B" jdbcType="DECIMAL" property="pipelineLatitudeB" />
+    <result column="Pipeline_max_limit_height" jdbcType="VARCHAR" property="pipelineMaxLimitHeight" />
+    <result column="Pipeline_limit_height" jdbcType="VARCHAR" property="pipelineLimitHeight" />
+    <result column="Pipeline_limit_width" jdbcType="VARCHAR" property="pipelineLimitWidth" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+
+    <result column="distance" property="distance"/>
+  </resultMap>
+
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+     SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Pipeline_latitude_A * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Pipeline_latitude_A * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Pipeline_longitude_A * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    pipeline_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+</mapper>

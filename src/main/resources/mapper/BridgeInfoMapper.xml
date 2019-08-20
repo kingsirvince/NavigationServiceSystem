@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.BridgeInfoMapper">
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.BridgeInfoDistance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Bridge_name" jdbcType="VARCHAR" property="bridgeName" />
+    <result column="Bridge_ID" jdbcType="VARCHAR" property="bridgeId" />
+    <result column="Longitude_A" jdbcType="DECIMAL" property="longitudeA" />
+    <result column="Latitude_A" jdbcType="DECIMAL" property="latitudeA" />
+    <result column="Longitude_B" jdbcType="DECIMAL" property="longitudeB" />
+    <result column="Latitude_B" jdbcType="DECIMAL" property="latitudeB" />
+    <result column="Longitude_C" jdbcType="DECIMAL" property="longitudeC" />
+    <result column="Latitude_C" jdbcType="DECIMAL" property="latitudeC" />
+    <result column="Pier_longitude_left" jdbcType="DECIMAL" property="pierLongitudeLeft" />
+    <result column="Pier_latitude_left" jdbcType="DECIMAL" property="pierLatitudeLeft" />
+    <result column="Pier_longitude_right" jdbcType="DECIMAL" property="pierLongitudeRight" />
+    <result column="Pier_latitude_right" jdbcType="DECIMAL" property="pierLatitudeRight" />
+    <result column="Bridge_max_limit_height" jdbcType="VARCHAR" property="bridgeMaxLimitHeight" />
+    <result column="Bridge_limit_height" jdbcType="VARCHAR" property="bridgeLimitHeight" />
+    <result column="Bridge_limit_width" jdbcType="VARCHAR" property="bridgeLimitWidth" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+    <!--    加上distance变量-->
+    <result column="distance" property="distance" />
+  </resultMap>
+  <select id="sortByDistance" resultMap="DistanceResultMap">
+ SELECT
+    *,
+    ROUND(
+    6378.138 * 2 * ASIN(
+    SQRT(
+    POW(
+    SIN(
+    (
+    #{lat} * PI() / 180 - Latitude_B * PI() / 180
+    ) / 2
+    ),
+    2
+    ) + COS(#{lat} * PI() / 180) * COS(Latitude_B * PI() / 180) * POW(
+    SIN(
+    (
+    #{long} * PI() / 180 - Longitude_B * PI() / 180
+    ) / 2
+    ),
+    2
+    )
+    )
+    ) * 1000
+    ) AS distance
+    FROM
+    bridge_info
+    ORDER BY
+    distance ASC
+    limit #{num}
+  </select>
+
+</mapper>

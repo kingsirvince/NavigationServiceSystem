@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.CallUploadMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.CallUpload">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Call_name" jdbcType="VARCHAR" property="callName" />
+    <result column="Call_class" jdbcType="VARCHAR" property="callClass" />
+    <result column="Call_grade" jdbcType="VARCHAR" property="callGrade" />
+    <result column="Call_longitude" jdbcType="DECIMAL" property="callLongitude" />
+    <result column="Call_latitude" jdbcType="DECIMAL" property="callLatitude" />
+    <result column="Channel_division_ID" jdbcType="VARCHAR" property="channelDivisionId" />
+    <result column="Call_mmsi" jdbcType="INTEGER" property="callMmsi" />
+    <result column="Call_content" jdbcType="VARCHAR" property="callContent" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+  </resultMap>
+</mapper>

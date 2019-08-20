@@ -1,8 +1,10 @@
 package com.company.project.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "simulate_dynamic_port")
 public class SimulateDynamicPort {
@@ -64,7 +66,7 @@ public class SimulateDynamicPort {
 
     @Column(name = "Recycling_surplus_cy")
     private String recyclingSurplusCy;
-
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "Datetime")
     private Date datetime;
 
