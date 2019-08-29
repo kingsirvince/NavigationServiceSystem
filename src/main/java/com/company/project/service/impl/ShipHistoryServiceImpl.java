@@ -19,4 +19,8 @@ public class ShipHistoryServiceImpl extends AbstractService<ShipHistory> impleme
     @Resource
     private ShipHistoryMapper shipHistoryMapper;
 
+    @Override
+    public Integer uploadToHistory() {
+        return shipHistoryMapper.uploadToHistory();
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -19,4 +20,8 @@ public class CallInfoServiceImpl extends AbstractService<CallInfo> implements Ca
     @Resource
     private CallInfoMapper callInfoMapper;
 
+    @Override
+    public List<CallInfo> getLatest() {
+        return callInfoMapper.getLatest();
+    }
 }

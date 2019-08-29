@@ -25,6 +25,11 @@
     <!--    加上distance变量-->
     <result column="distance" property="distance" />
   </resultMap>
+
+    <resultMap id="HeightResultMap" type="com.company.project.model.BridgeInfo">
+        <result column="Bridge_limit_height" jdbcType="VARCHAR" property="bridgeLimitHeight" />
+    </resultMap>
+
   <select id="sortByDistance" resultMap="DistanceResultMap">
  SELECT
     *,
@@ -55,5 +60,14 @@
     distance ASC
     limit #{num}
   </select>
+
+    <update id="updateLimitHeight" parameterType="com.company.project.model.BridgeInfo">
+    update bridge_info set Bridge_limit_height = (Bridge_max_limit_height -#{subtrahend}  ) ;
+
+    </update>
+
+    <select id="getByRowField"  resultType="java.lang.Double" parameterType="java.lang.String">
+        select ${field} from bridge_info where ${row} = #{rowValue};
+    </select>
 
 </mapper>

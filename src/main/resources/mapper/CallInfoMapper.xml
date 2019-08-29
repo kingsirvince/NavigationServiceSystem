@@ -16,4 +16,8 @@
     <result column="Call_content" jdbcType="VARCHAR" property="callContent" />
     <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
   </resultMap>
+  
+  <select id="getLatest" resultMap="BaseResultMap">
+    select * from call_info order by id DESC limit 1
+  </select>
 </mapper>

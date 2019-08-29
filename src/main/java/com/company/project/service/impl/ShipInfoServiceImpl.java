@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -19,11 +21,19 @@ public class ShipInfoServiceImpl extends AbstractService<ShipInfo> implements Sh
     @Resource
     private ShipInfoMapper shipInfoMapper;
 
+    @Override
+    public List<ShipInfo> getVicinity(BigDecimal minlng, BigDecimal maxlng, BigDecimal minlat, BigDecimal maxlat) {
+        return shipInfoMapper.getVicinity(minlng, maxlng, minlat, maxlat);
+    }
 
     @Override
-    public Integer updateShipInfoBetweenId(Integer id1, Integer id2) {
-        return shipInfoMapper.updateShipInfoBetweenId(id1, id2);
+    public Integer updateToShipInfo() {
+        return shipInfoMapper.updateToShipInfo();
     }
+    //    @Override
+//    public Integer updateShipInfoBetweenId(Integer id1, Integer id2) {
+//        return shipInfoMapper.updateShipInfoBetweenId(id1, id2);
+//    }
 }
 
 //失败方案：只能返回model中值，不能得到mysql中的所有值

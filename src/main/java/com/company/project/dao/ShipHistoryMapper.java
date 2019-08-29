@@ -4,4 +4,5 @@ import com.company.project.core.Mapper;
 import com.company.project.model.ShipHistory;
 
 public interface ShipHistoryMapper extends Mapper<ShipHistory> {
+    Integer uploadToHistory();
 }

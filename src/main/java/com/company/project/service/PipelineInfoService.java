@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface PipelineInfoService extends Service<PipelineInfo> {
     List<PipelineInfoDistance> sortByDistance(BigDecimal longitude, BigDecimal latitude, Integer num);
+    Integer updateLimitHeight( Double subtrahend);
+    Double getByRowField(String field, String row, String rowValue);
 }

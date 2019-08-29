@@ -28,6 +28,18 @@ public class PipelineInfoController {
     private PipelineInfoService pipelineInfoService;
 
     /**
+     * 查询某列某行的单值  （模拟限高）
+     * @param field   列名 Pipeline_limit_height
+     * @param row      行名 Pipeline_name
+     * @param rowValue 值 乍嘉苏跨河管线01
+     * @return
+     */
+    @PostMapping("/getByRowField")
+    public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue) {
+        Double s = pipelineInfoService.getByRowField(field, row, rowValue);
+        return ResultGenerator.genSuccessResult(s);
+    }
+    /**
      * 按条件查询   (例如查询“梧桐作业区“）
      * @param fieldName  代表字段名（Model中的成员变量，DockInfo）   fieldName=dockName
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区

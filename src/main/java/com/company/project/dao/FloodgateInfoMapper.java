@@ -11,4 +11,6 @@ import java.util.List;
 public interface FloodgateInfoMapper extends Mapper<FloodgateInfo> {
 
     List<FloodgateInfoDistance> sortByDistance(@Param("long")BigDecimal longitude, @Param("lat")BigDecimal latitude, @Param("num")Integer num);
+    Integer updateLimitHeight(@Param("subtrahend") Double subtrahend);
+    Double getByRowField(@Param("field")String field, @Param("row")String row,@Param("rowValue")String rowValue);
 }

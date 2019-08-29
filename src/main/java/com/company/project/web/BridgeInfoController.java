@@ -26,6 +26,20 @@ import java.util.List;
 public class BridgeInfoController {
     @Resource
     private BridgeInfoService bridgeInfoService;
+
+    /**
+     * 查询某列某行的单值  （模拟限高）
+     * @param field   列名 Bridge_limit_height
+     * @param row      行名 Bridge_name
+     * @param rowValue 值 太子塘桥
+     * @return
+     */
+    @PostMapping("/getByRowField")
+    public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue) {
+       Double s = bridgeInfoService.getByRowField(field, row, rowValue);
+        return ResultGenerator.genSuccessResult(s);
+    }
+
     /**
      * 按条件查询   (例如查询“梧桐作业区“）
      * @param fieldName  代表字段名（Model中的成员变量，DockInfo）   fieldName=dockName

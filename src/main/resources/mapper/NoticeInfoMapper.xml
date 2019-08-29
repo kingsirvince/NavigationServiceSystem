@@ -14,4 +14,8 @@
     <result column="Notice_content" jdbcType="VARCHAR" property="noticeContent" />
     <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
   </resultMap>
+
+  <select id="getLatest" resultMap="BaseResultMap">
+    select * from notice_info order by id DESC limit 1
+  </select>
 </mapper>

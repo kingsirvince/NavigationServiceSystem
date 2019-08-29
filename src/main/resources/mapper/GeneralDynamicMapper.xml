@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.GeneralDynamicMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.GeneralDynamic">
+
+    <result column="Position_name" jdbcType="VARCHAR" property="positionName" />
+    <result column="Position_ID" jdbcType="VARCHAR" property="positionId" />
+    <result column="Longitude" jdbcType="DECIMAL" property="longitude" />
+    <result column="Latitude" jdbcType="DECIMAL" property="latitude" />
+    <result column="Max" jdbcType="VARCHAR" property="max" />
+    <result column="Surplus" jdbcType="VARCHAR" property="surplus" />
+  </resultMap>
+
+  <resultMap id="DistanceResultMap" type="com.company.project.model.distance.GeneralDynamicDistance">
+
+    <result column="Position_name" jdbcType="VARCHAR" property="positionName" />
+    <result column="Position_ID" jdbcType="VARCHAR" property="positionId" />
+    <result column="Longitude" jdbcType="DECIMAL" property="longitude" />
+    <result column="Latitude" jdbcType="DECIMAL" property="latitude" />
+    <result column="Max" jdbcType="VARCHAR" property="max" />
+    <result column="Surplus" jdbcType="VARCHAR" property="surplus" />
+
+    <result column="distance" property="distance"/>
+  </resultMap>
+<!--查询所有锚泊区-->
+  <select id="getBerth" resultMap="BaseResultMap">
+    select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude ,Berth_max_cy AS Max, Berth_surplus_cy AS Surplus from  service_area_info
+UNION
+select Dock_name As Position_name,Dock_ID as Position_ID,Dock_longitude As Longitude,
+Dock_latitude AS Latitude,Berth_max_cy AS Max, Berth_surplus_cy AS Surplus from  dock_info
+  </select>
+<!--查询锚泊区按距离排序-->
+  <select id="berthSortByDistance" resultMap="DistanceResultMap">
+  SELECT
+  *,
+  ROUND(
+  6378.138 * 2 * ASIN(
+  SQRT(
+  POW(
+  SIN(
+  (
+  #{lat} * PI() / 180 - Latitude * PI() / 180
+  ) / 2
+  ),
+  2
+  ) + COS(#{lat} * PI() / 180) * COS(Latitude * PI() / 180) * POW(
+  SIN(
+  (
+  #{long} * PI() / 180 - Longitude * PI() / 180
+  ) / 2
+  ),
+  2
+  )
+  )
+  ) * 1000
+  ) AS distance
+  FROM
+  (select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude ,Berth_max_cy AS Max, Berth_surplus_cy AS Surplus from  service_area_info
+UNION
+select Dock_name As Position_name,Dock_ID as Position_ID,Dock_longitude As Longitude,
+Dock_latitude AS Latitude,Berth_max_cy AS Max, Berth_surplus_cy AS Surplus from  dock_info) general_dynamic
+  ORDER BY
+  distance ASC
+  limit #{num}
+</select>
+
+  <!--查询所有充电站-->
+  <select id="getCharger" resultMap="BaseResultMap">
+    select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude ,Charger_max_cy AS Max, Charger_surplus_cy AS Surplus from  service_area_info
+
+  </select>
+
+  <!--查询充电站按距离排序-->
+  <select id="chargerSortByDistance" resultMap="DistanceResultMap">
+  SELECT
+  *,
+  ROUND(
+  6378.138 * 2 * ASIN(
+  SQRT(
+  POW(
+  SIN(
+  (
+  #{lat} * PI() / 180 - Latitude * PI() / 180
+  ) / 2
+  ),
+  2
+  ) + COS(#{lat} * PI() / 180) * COS(Latitude * PI() / 180) * POW(
+  SIN(
+  (
+  #{long} * PI() / 180 - Longitude * PI() / 180
+  ) / 2
+  ),
+  2
+  )
+  )
+  ) * 1000
+  ) AS distance
+  FROM
+  (select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude ,Charger_max_cy AS Max, Charger_surplus_cy AS Surplus from  service_area_info) general_dynamic
+  ORDER BY
+  distance ASC
+  limit #{num}
+</select>
+
+  <!--查询所有回收站-->
+  <select id="getRecycling" resultMap="BaseResultMap">
+    select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude ,Recycling_max_cy AS Max, Recycling_surplus_cy AS Surplus from  service_area_info
+
+  </select>
+
+  <!--查询充电站按距离排序-->
+  <select id="recyclingSortByDistance" resultMap="DistanceResultMap">
+  SELECT
+  *,
+  ROUND(
+  6378.138 * 2 * ASIN(
+  SQRT(
+  POW(
+  SIN(
+  (
+  #{lat} * PI() / 180 - Latitude * PI() / 180
+  ) / 2
+  ),
+  2
+  ) + COS(#{lat} * PI() / 180) * COS(Latitude * PI() / 180) * POW(
+  SIN(
+  (
+  #{long} * PI() / 180 - Longitude * PI() / 180
+  ) / 2
+  ),
+  2
+  )
+  )
+  ) * 1000
+  ) AS distance
+  FROM
+  (select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude ,Recycling_max_cy AS Max, Recycling_surplus_cy AS Surplus from  service_area_info) general_dynamic
+  ORDER BY
+  distance ASC
+  limit #{num}
+</select>
+
+  <!--查询所有加油站-->
+  <select id="getGas" resultMap="BaseResultMap">
+    select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude  from  service_area_info
+
+  </select>
+
+  <!--查询充电站按距离排序-->
+  <select id="gasSortByDistance" resultMap="DistanceResultMap">
+  SELECT
+  *,
+  ROUND(
+  6378.138 * 2 * ASIN(
+  SQRT(
+  POW(
+  SIN(
+  (
+  #{lat} * PI() / 180 - Latitude * PI() / 180
+  ) / 2
+  ),
+  2
+  ) + COS(#{lat} * PI() / 180) * COS(Latitude * PI() / 180) * POW(
+  SIN(
+  (
+  #{long} * PI() / 180 - Longitude * PI() / 180
+  ) / 2
+  ),
+  2
+  )
+  )
+  ) * 1000
+  ) AS distance
+  FROM
+  (select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
+Service_latitude AS Latitude  from  service_area_info) general_dynamic
+  ORDER BY
+  distance ASC
+  limit #{num}
+</select>
+
+
+
+</mapper>

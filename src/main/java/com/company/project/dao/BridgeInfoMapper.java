@@ -10,4 +10,8 @@ import java.util.List;
 
 public interface BridgeInfoMapper extends Mapper<BridgeInfo> {
     List<BridgeInfoDistance> sortByDistance(@Param("long") BigDecimal longitude, @Param("lat")BigDecimal Latitude, @Param("num")Integer num);
+
+    Integer updateLimitHeight(@Param("subtrahend") Double subtrahend);
+
+    Double getByRowField(@Param("field")String field, @Param("row")String row,@Param("rowValue")String rowValue);
 }

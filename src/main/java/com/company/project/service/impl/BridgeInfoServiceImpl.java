@@ -28,4 +28,14 @@ public class BridgeInfoServiceImpl extends AbstractService<BridgeInfo> implement
         return bridgeInfoMapper.sortByDistance(longitude, Latitude, num);
     }
 
+    @Override
+    public Integer updateLimitHeight(Double subtrahend) {
+        return bridgeInfoMapper.updateLimitHeight(subtrahend);
+    }
+
+    @Override
+    public Double getByRowField(String field, String row, String rowValue) {
+        System.out.println(field);
+        return bridgeInfoMapper.getByRowField(field, row, rowValue);
+    }
 }

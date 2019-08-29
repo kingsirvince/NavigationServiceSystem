@@ -2,12 +2,14 @@ package com.company.project.service.impl;
 
 import com.company.project.dao.SimulateShipInfoMapper;
 import com.company.project.model.SimulateShipInfo;
+import com.company.project.model.other.SimulateShipInfoIdLongLat;
 import com.company.project.service.SimulateShipInfoService;
 import com.company.project.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -19,4 +21,27 @@ public class SimulateShipInfoServiceImpl extends AbstractService<SimulateShipInf
     @Resource
     private SimulateShipInfoMapper simulateShipInfoMapper;
 
+    @Override
+    public Integer simulateCH02601(Integer mmsi, Integer idPoint) {
+        return simulateShipInfoMapper.simulateCH02601(mmsi,idPoint);
+    }
+
+    @Override
+    public List<SimulateShipInfoIdLongLat> getIdLongLat() {
+        return simulateShipInfoMapper.getIdLongLat();
+    }
+
+    @Override
+    public List<Double> getLong() {
+        return simulateShipInfoMapper.getLong();
+    }
+
+    @Override
+    public List<Double> getLat() {
+        return simulateShipInfoMapper.getLat();
+    }
+    /* @Override
+    public Integer updateCH02601(Integer divisor, Integer remainder , Integer subtract) {
+        return simulateShipInfoMapper.updateCH02601(divisor, remainder,subtract);
+    }*/
 }

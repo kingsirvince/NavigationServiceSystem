@@ -26,4 +26,14 @@ public class FloodgateInfoServiceImpl extends AbstractService<FloodgateInfo> imp
     public List<FloodgateInfoDistance> sortByDistance(BigDecimal longitude, BigDecimal latitude, Integer num) {
         return floodgateInfoMapper.sortByDistance(longitude, latitude, num);
     }
+
+    @Override
+    public Integer updateLimitHeight(Double subtrahend) {
+        return floodgateInfoMapper.updateLimitHeight(subtrahend);
+    }
+
+    @Override
+    public Double getByRowField(String field, String row, String rowValue) {
+        return floodgateInfoMapper.getByRowField(field, row, rowValue);
+    }
 }

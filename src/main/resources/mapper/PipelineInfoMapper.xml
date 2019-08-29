@@ -50,4 +50,12 @@
     distance ASC
     limit #{num}
   </select>
+
+  <update id="updateLimitHeight" parameterType="com.company.project.model.PipelineInfo">
+        update pipeline_info   set Pipeline_limit_height = (Pipeline_max_limit_height -#{subtrahend} ) ;
+    </update>
+
+  <select id="getByRowField"  resultType="java.lang.Double" parameterType="java.lang.String">
+        select ${field} from pipeline_info where ${row} = #{rowValue};
+    </select>
 </mapper>

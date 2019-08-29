@@ -26,4 +26,14 @@ public class PipelineInfoServiceImpl extends AbstractService<PipelineInfo> imple
     public List<PipelineInfoDistance> sortByDistance(BigDecimal longitude, BigDecimal latitude, Integer num) {
         return pipelineInfoMapper.sortByDistance(longitude, latitude, num);
     }
+
+    @Override
+    public Integer updateLimitHeight(Double subtrahend) {
+        return pipelineInfoMapper.updateLimitHeight(subtrahend);
+    }
+
+    @Override
+    public Double getByRowField(String field, String row, String rowValue) {
+        return pipelineInfoMapper.getByRowField(field, row, rowValue);
+    }
 }

@@ -25,6 +25,12 @@ public class CallInfoController {
     @Resource
     private CallInfoService callInfoService;
 
+    @PostMapping("/getLatest")
+    public Result getLatest() {
+        List<CallInfo> list = callInfoService.getLatest();
+        return ResultGenerator.genSuccessResult(list);
+    }
+
     /**
      * 按条件查询   (例如查询“梧桐作业区“）
      * @param fieldName  代表字段名（Model中的成员变量，DockInfo）   fieldName=dockName

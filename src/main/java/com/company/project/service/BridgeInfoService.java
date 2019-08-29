@@ -14,4 +14,6 @@ import java.util.List;
 public interface BridgeInfoService extends Service<BridgeInfo> {
 
     List<BridgeInfoDistance> sortByDistance(BigDecimal longitude, BigDecimal Latitude, Integer num);
+    Integer updateLimitHeight( Double subtrahend);
+   Double getByRowField(String field, String row, String rowValue);
 }

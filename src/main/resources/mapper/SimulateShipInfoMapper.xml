@@ -21,4 +21,41 @@
     <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
     <result column="Channel_division_ID" jdbcType="VARCHAR" property="channelDivisionId" />
   </resultMap>
+
+  <resultMap id="IdLongLatResultMap" type="com.company.project.model.other.SimulateShipInfoIdLongLat">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Ship_longitude" jdbcType="DECIMAL" property="shipLongitude" />
+    <result column="Ship_latitude" jdbcType="DECIMAL" property="shipLatitude" />
+  </resultMap>
+
+<!--将idPoint行的经纬度，更新给mmsi的模拟船舶-->
+<update id="simulateCH02601" parameterType="com.company.project.model.SimulateShipInfo">
+  UPDATE  simulate_ship_info s
+LEFT JOIN
+        channel_point  c
+ON      s.Ship_MMSI = #{mmsi}
+SET     s.Ship_longitude = c.CH02601_long , s.Ship_latitude = c.CH02601_lat
+WHERE   c.id = #{idPoint}
+</update>
+  <!--将经纬度取出计算方向-->
+  <select id="getIdLongLat" resultMap="IdLongLatResultMap">
+    select ID,Ship_longitude,Ship_latitude from `simulate_ship_info`
+  </select>
+  <!--将经度取出计算方向-->
+  <select id="getLong" resultType="java.lang.Double">
+    select Ship_longitude from `simulate_ship_info`
+  </select>
+  <!--将纬度取出计算方向-->
+  <select id="getLat" resultType="java.lang.Double">
+    select Ship_latitude from `simulate_ship_info`
+  </select>
+
+<!--将所有轨迹点14400/720，得到20个点，然后每次加num的间隔频率。查询结果加自增序列i。更新模拟船舶的id=c.i 20条配20条-->
+<!--  <update id="updateCH02601" parameterType="com.company.project.model.SimulateShipInfo">
+UPDATE simulate_ship_info s
+LEFT JOIN (
+select (@i:=@i+1) i ,id,CH02601_long,CH02601_lat  from channel_point  , (SELECT @i:=0) AS i where id%#{divisor}=#{remainder}  ) c
+on s.id = (c.i-#{subtract} ) set s.Ship_longitude=c.CH02601_long , s.Ship_latitude=c.CH02601_lat;
+</update>-->
+
 </mapper>

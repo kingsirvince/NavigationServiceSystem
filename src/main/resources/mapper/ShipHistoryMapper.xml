@@ -22,4 +22,11 @@
     <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
     <result column="Channel_division_ID" jdbcType="VARCHAR" property="channelDivisionId" />
   </resultMap>
+<insert id="uploadToHistory" parameterType="com.company.project.model.ShipHistory">
+   insert into ship_history (Ship_MMSI,Ship_call,Ship_class,Ship_state,Ship_longitude,Ship_latitude,Ship_heading,Ship_load)
+  select Ship_MMSI,Ship_call,Ship_class,Ship_state,Ship_longitude,Ship_latitude,Ship_heading,Ship_load
+  from ship_upload order by id DESC limit 1;
+</insert>
+
+
 </mapper>

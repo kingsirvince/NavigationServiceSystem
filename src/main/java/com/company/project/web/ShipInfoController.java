@@ -63,13 +63,39 @@ public class ShipInfoController {
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 
-    @PostMapping("/updateShipInfoBetweenId")
+    /**
+     * 查询附近多少公里的位置，
+     * @param radii  范围 几公里，单位公里
+     * @param longitude   自身经度
+     * @param latitude   自身纬度
+     * @return
+     */
+
+    @PostMapping("/nearbyShip")
+    public Result getVicinity(@RequestParam(defaultValue = "1") double radii, double longitude, double latitude) {
+        double r = 6371;//地球半径千米
+        double dis = radii;
+        double dlng =  2*Math.asin(Math.sin(dis/(2*r))/Math.cos(latitude*Math.PI/180));
+        dlng = dlng*180/Math.PI;//角度转为弧度
+        double dlat = dis/r;
+        dlat = dlat*180/Math.PI;
+        double minlat =latitude-dlat;
+        double maxlat = latitude+dlat;
+        double minlng = longitude -dlng;
+        double maxlng = longitude + dlng;
+
+        List<ShipInfo> list = shipInfoService.getVicinity(BigDecimal.valueOf(minlng), BigDecimal.valueOf(maxlng), BigDecimal.valueOf(minlat), BigDecimal.valueOf(maxlat));
+        return ResultGenerator.genSuccessResult(list);
+    }
+
+
+/*    @PostMapping("/updateShipInfoBetweenId")
     public Result updateShipInfoBetweenId(@RequestParam Integer id1, @RequestParam Integer id2) {
         shipInfoService.updateShipInfoBetweenId(id1, id2);
         return ResultGenerator.genSuccessResult();
-    }
+    }*/
 
-    @PostMapping("/nearbyShip")
+    @PostMapping("/nearbyShipOld")
     public Result nearbyShip(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude){
         Coordinate coordinate =new Coordinate(longitude,latitude);
         String channelDivisionID = ChannelDivisionIDUtil.getChannelDivisionID(coordinate);
@@ -89,6 +115,7 @@ public class ShipInfoController {
         criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[2]);
         criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[3]);
         criteria.orEqualTo("channelDivisionId", nearbyChannelDivisionID[4]);
+
 
         List<ShipInfo> list = shipInfoService.findByCondition(condition);
         return ResultGenerator.genSuccessResult(list);

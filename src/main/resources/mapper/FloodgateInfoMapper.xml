@@ -58,4 +58,11 @@
     limit #{num}
   </select>
 
+    <update id="updateLimitHeight" parameterType="com.company.project.model.FloodgateInfo">
+        update floodgate_info set Floodgate_limit_height = (Floodgate_max_limit_height -#{subtrahend} ) ;
+    </update>
+
+    <select id="getByRowField"  resultType="java.lang.Double" parameterType="java.lang.String">
+        select ${field} from floodgate_info where ${row} = #{rowValue};
+    </select>
 </mapper>

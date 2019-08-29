@@ -22,6 +22,9 @@ public class SimulateShipInfoController {
     @Resource
     private SimulateShipInfoService simulateShipInfoService;
 
+
+
+
     @PostMapping("/add")
     public Result add(SimulateShipInfo simulateShipInfo) {
         simulateShipInfoService.save(simulateShipInfo);

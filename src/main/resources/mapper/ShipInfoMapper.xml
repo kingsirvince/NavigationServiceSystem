@@ -24,10 +24,26 @@
 
   <!--手写sql部分-->
 
-  <update id="updateShipInfoBetweenId" parameterType="com.company.project.model.ShipInfo">
 
-update ship_info t1 inner join (select * from simulate_ship_info where id between #{id1} and #{id2}) t2 on t1.Ship_MMSI =t2.Ship_MMSI set t1.Ship_state=t2.Ship_state,t1.Ship_longitude=t2.Ship_longitude,t1.Ship_latitude=t2.Ship_latitude,t1.Ship_heading=t2.Ship_heading,t1.Ship_speed=t2.Ship_speed,t1.Ship_draught = t2.Ship_draught,t1.Ship_max_load=t2.Ship_max_load,t1.Ship_load=t2.Ship_load,t1.Channel_division_ID=t2.Channel_division_ID;
-    </update>
+  <!--查询附近多少公里的位置，-->
+  <select id="getVicinity" resultMap="BaseResultMap">
+    select
+    *
+    from ship_info
+    where Ship_longitude &gt;= #{minlng} and Ship_longitude &lt;= #{maxlng} and Ship_latitude &gt;= #{minlat} and Ship_latitude &lt;= #{maxlat}
+  </select>
+
+<!--  <update id="updateShipInfoBetweenId" parameterType="com.company.project.model.ShipInfo">-->
+
+<!--update ship_info t1 inner join (select * from simulate_ship_info where id between #{id1} and #{id2}) t2 on t1.Ship_MMSI =t2.Ship_MMSI set t1.Ship_state=t2.Ship_state,t1.Ship_longitude=t2.Ship_longitude,t1.Ship_latitude=t2.Ship_latitude,t1.Ship_heading=t2.Ship_heading,t1.Ship_speed=t2.Ship_speed,t1.Ship_draught = t2.Ship_draught,t1.Ship_max_load=t2.Ship_max_load,t1.Ship_load=t2.Ship_load,t1.Channel_division_ID=t2.Channel_division_ID;-->
+<!--    </update>-->
+
+  <update id="updateToShipInfo" parameterType="com.company.project.model.ShipInfo">
+    UPDATE ship_info s
+    LEFT JOIN simulate_ship_info c
+    ON   s.id = c.id
+    SET s.Ship_longitude=c.Ship_longitude , s.Ship_latitude=c.Ship_latitude,s.Ship_heading=c.Ship_heading
+  </update>
 
  <!-- <select id="nearbyShip" parameterType="com.company.project.model.ShipInfo" resultType="com.company.project.model.ShipInfo">
 
