@@ -4,6 +4,7 @@ import com.company.project.service.SimulateShipInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Random;
 
@@ -12,15 +13,27 @@ import java.util.Random;
  * random函数
  */
 @Component
-public class SimulateShipUtil {
+public class SimulateShipUtil{
 
     @Autowired
-    SimulateShipInfoService simulateShipInfoService;
+    public SimulateShipInfoService simulateShipInfoService;
+
+    public static SimulateShipUtil simulateShipUtil;
+
+    @PostConstruct
+    public void init() {
+        simulateShipUtil=this;
+        simulateShipUtil.simulateShipInfoService=this.simulateShipInfoService;
+
+    }
 
     //    int shipNum;
 //int randomInt = ran.nextInt(100);
 //double d = ran.nextDouble();  0~1;
     Random ran = new Random();
+
+
+
 
     //
     public int[] getIdInit(int shipNum, int amount) {
@@ -42,6 +55,10 @@ public class SimulateShipUtil {
         return speed;
     }
 
+    /**
+     * 将经度从mysql返回的list中，提取到数组getLong中
+     * @return
+     */
     public Double[] getLongArray() {
         List<Double> listLong = simulateShipInfoService.getLong();
 
@@ -58,4 +75,40 @@ public class SimulateShipUtil {
         listLat.toArray(getLat);
         return getLat;
     }
+
+
+    /**
+     *算角度
+     * @param lat_a 纬度1
+     * @param lng_a 经度1
+     * @param lat_b 纬度2
+     * @param lng_b 经度2
+     * @return
+     */
+    public   double getAngle( double lng_a,double lat_a, double lng_b,double lat_b ) {
+
+        double y = Math.sin(lng_b - lng_a) * Math.cos(lat_b);
+        double x = Math.cos(lat_a) * Math.sin(lat_b) - Math.sin(lat_a) * Math.cos(lat_b) * Math.cos(lng_b - lng_a);
+        double brng = Math.atan2(y, x);
+
+        brng = Math.toDegrees(brng);
+        if (brng < 0)
+            brng = brng + 360;
+        return brng;
+
+    }
+
+    /**
+     * 算速度
+     */
+    public double getSpeed( double lng_a,double lat_a, double lng_b,double lat_b) {
+        double x = Math.pow((lng_b - lng_a),2);
+        double y = Math.pow((lat_b - lat_a), 2);
+        double speed= Math.sqrt(x+y)*111322.2222*3600/1000/1.825;
+        return speed;
+    }
+
+/* ————————————————
+        版权声明：本文为CSDN博主「月光日光」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
+        原文链接：https://blog.csdn.net/xiaobai091220106/article/details/50879414*/
 }

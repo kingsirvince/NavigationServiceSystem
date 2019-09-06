@@ -9,7 +9,7 @@
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="Dock_name" jdbcType="VARCHAR" property="dockName" />
     <result column="Dock_ID" jdbcType="VARCHAR" property="dockId" />
-    <result column="Dock_scale" jdbcType="VARCHAR" property="dockScale" />
+
     <result column="Dock_max_tonnage" jdbcType="VARCHAR" property="dockMaxTonnage" />
     <result column="Dock_longitude" jdbcType="DECIMAL" property="dockLongitude" />
     <result column="Dock_latitude" jdbcType="DECIMAL" property="dockLatitude" />

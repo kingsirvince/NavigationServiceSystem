@@ -72,7 +72,7 @@ public class ShipInfoController {
      */
 
     @PostMapping("/nearbyShip")
-    public Result getVicinity(@RequestParam(defaultValue = "1") double radii, double longitude, double latitude) {
+    public Result getVicinity(@RequestParam(defaultValue = "2") double radii, double longitude, double latitude) {
         double r = 6371;//地球半径千米
         double dis = radii;
         double dlng =  2*Math.asin(Math.sin(dis/(2*r))/Math.cos(latitude*Math.PI/180));

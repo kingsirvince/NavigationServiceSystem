@@ -55,6 +55,13 @@ public class ServiceAreaInfoDistance {
     @Column(name = "Gas_ID")
     private String gasId;
 
+
+    @Column(name = "Gas_max_cy")
+    private String gasMaxCy;
+
+    @Column(name = "Gas_surplus_cy")
+    private String gasSurplusCy;
+
     @Column(name = "Charger_name")
     private String chargerName;
 
@@ -360,5 +367,21 @@ public class ServiceAreaInfoDistance {
      */
     public void setDatetime(Date datetime) {
         this.datetime = datetime;
+    }
+
+    public String getGasMaxCy() {
+        return gasMaxCy;
+    }
+
+    public void setGasMaxCy(String gasMaxCy) {
+        this.gasMaxCy = gasMaxCy;
+    }
+
+    public String getGasSurplusCy() {
+        return gasSurplusCy;
+    }
+
+    public void setGasSurplusCy(String gasSurplusCy) {
+        this.gasSurplusCy = gasSurplusCy;
     }
 }

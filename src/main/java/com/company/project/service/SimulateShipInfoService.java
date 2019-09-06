@@ -12,10 +12,13 @@ import java.util.List;
  */
 public interface SimulateShipInfoService extends Service<SimulateShipInfo> {
     Integer simulateCH02601(Integer mmsi,Integer idPoint);
+    Integer simulateShipUpdatePosition(String shipTrack,Integer mmsi,Integer idPoint);
     List<SimulateShipInfoIdLongLat> getIdLongLat();
 
     List<Double> getLong();
     List<Double> getLat();
+    Integer rowCount();
+    Integer updateAngleSpeed(String angleString,String speedString ,Integer id);
 
 //    Integer updateCH02601(Integer divisor, Integer remainder,Integer subtract);
 

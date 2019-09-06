@@ -1,10 +1,10 @@
 package com.company.project.service.impl;
 
+import com.company.project.core.AbstractService;
 import com.company.project.dao.SimulateShipInfoMapper;
 import com.company.project.model.SimulateShipInfo;
 import com.company.project.model.other.SimulateShipInfoIdLongLat;
 import com.company.project.service.SimulateShipInfoService;
-import com.company.project.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +27,11 @@ public class SimulateShipInfoServiceImpl extends AbstractService<SimulateShipInf
     }
 
     @Override
+    public Integer simulateShipUpdatePosition(String shipTrack, Integer mmsi, Integer idPoint) {
+        return simulateShipInfoMapper.simulateShipUpdatePosition(shipTrack, mmsi, idPoint);
+    }
+
+    @Override
     public List<SimulateShipInfoIdLongLat> getIdLongLat() {
         return simulateShipInfoMapper.getIdLongLat();
     }
@@ -40,6 +45,17 @@ public class SimulateShipInfoServiceImpl extends AbstractService<SimulateShipInf
     public List<Double> getLat() {
         return simulateShipInfoMapper.getLat();
     }
+
+    @Override
+    public Integer rowCount() {
+        return simulateShipInfoMapper.rowCount();
+    }
+
+    @Override
+    public Integer updateAngleSpeed(String angleString,String speedString ,Integer id) {
+        return simulateShipInfoMapper.updateAngleSpeed(angleString,speedString, id);
+    }
+
     /* @Override
     public Integer updateCH02601(Integer divisor, Integer remainder , Integer subtract) {
         return simulateShipInfoMapper.updateCH02601(divisor, remainder,subtract);

@@ -43,6 +43,12 @@ public class ServiceAreaInfo {
     @Column(name = "Gas_ID")
     private String gasId;
 
+    @Column(name = "Gas_max_cy")
+    private String gasMaxCy;
+
+    @Column(name = "Gas_surplus_cy")
+    private String gasSurplusCy;
+
     @Column(name = "Charger_name")
     private String chargerName;
 
@@ -222,6 +228,22 @@ public class ServiceAreaInfo {
      */
     public void setGasId(String gasId) {
         this.gasId = gasId;
+    }
+
+    public String getGasMaxCy() {
+        return gasMaxCy;
+    }
+
+    public void setGasMaxCy(String gasMaxCy) {
+        this.gasMaxCy = gasMaxCy;
+    }
+
+    public String getGasSurplusCy() {
+        return gasSurplusCy;
+    }
+
+    public void setGasSurplusCy(String gasSurplusCy) {
+        this.gasSurplusCy = gasSurplusCy;
     }
 
     /**

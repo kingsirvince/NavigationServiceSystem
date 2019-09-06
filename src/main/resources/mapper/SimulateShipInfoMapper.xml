@@ -37,6 +37,15 @@ ON      s.Ship_MMSI = #{mmsi}
 SET     s.Ship_longitude = c.CH02601_long , s.Ship_latitude = c.CH02601_lat
 WHERE   c.id = #{idPoint}
 </update>
+  <!--基础方法，将idPoint行的经纬度，更新给mmsi的模拟船舶-->
+  <update id="simulateShipUpdatePosition" parameterType="com.company.project.model.SimulateShipInfo">
+  UPDATE  simulate_ship_info s
+LEFT JOIN
+        ${ShipTrack}  c
+ON      s.Ship_MMSI = #{mmsi}
+SET     s.Ship_longitude = c.longitude , s.Ship_latitude = c.latitude
+WHERE   c.id = #{idPoint}
+</update>
   <!--将经纬度取出计算方向-->
   <select id="getIdLongLat" resultMap="IdLongLatResultMap">
     select ID,Ship_longitude,Ship_latitude from `simulate_ship_info`
@@ -49,6 +58,16 @@ WHERE   c.id = #{idPoint}
   <select id="getLat" resultType="java.lang.Double">
     select Ship_latitude from `simulate_ship_info`
   </select>
+  
+  <!--快速查询行总数-->
+  <select id="rowCount" resultType="java.lang.Integer">
+    select ifnull(max(id),0)-ifnull(min(id),0)+1 as rows from `simulate_ship_info`
+  </select>
+
+    <!--更新船舶方向,不同类型的parameterType，就用@Param解决，不用写parameterType了-->
+    <update id="updateAngleSpeed" >
+        update simulate_ship_info  set Ship_heading = #{angleString}, Ship_speed= #{speedString} where id = #{id}
+    </update>
 
 <!--将所有轨迹点14400/720，得到20个点，然后每次加num的间隔频率。查询结果加自增序列i。更新模拟船舶的id=c.i 20条配20条-->
 <!--  <update id="updateCH02601" parameterType="com.company.project.model.SimulateShipInfo">

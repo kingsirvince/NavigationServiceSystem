@@ -113,7 +113,7 @@ Service_latitude AS Latitude ,Recycling_max_cy AS Max, Recycling_surplus_cy AS S
 
   </select>
 
-  <!--查询充电站按距离排序-->
+  <!--查询回收站按距离排序-->
   <select id="recyclingSortByDistance" resultMap="DistanceResultMap">
   SELECT
   *,
@@ -153,7 +153,7 @@ Service_latitude AS Latitude  from  service_area_info
 
   </select>
 
-  <!--查询充电站按距离排序-->
+  <!--查询加油站按距离排序-->
   <select id="gasSortByDistance" resultMap="DistanceResultMap">
   SELECT
   *,
@@ -180,7 +180,7 @@ Service_latitude AS Latitude  from  service_area_info
   ) AS distance
   FROM
   (select Service_name As Position_name,Service_ID as Position_ID,Service_longitude As Longitude,
-Service_latitude AS Latitude  from  service_area_info) general_dynamic
+Service_latitude AS Latitude  ,Gas_max_cy AS Max, Gas_surplus_cy AS Surplus from  service_area_info) general_dynamic
   ORDER BY
   distance ASC
   limit #{num}

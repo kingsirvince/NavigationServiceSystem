@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-import static java.lang.Math.abs;
-
 /**
  * 模拟船舶方向
  * 定时得到第一组和第二组经纬度，sleep等待
@@ -28,25 +26,57 @@ public class ScheduleShipDirection {
     @Autowired
     private SimulateShipUtil simulateShipUtil;
 
+    Integer rowCountSimulateShipInfo = 400;
     Double[] getLongArray1;
     Double[] getLongArray2;
     Double[] getLatArray1;
     Double[] getLatArray2;
-
+    Double[] angle = new Double[rowCountSimulateShipInfo];
+    Double[] angleFirst = new Double[rowCountSimulateShipInfo];
+    Double[] speed = new Double[rowCountSimulateShipInfo];
+    Double[] speedFirst = new Double[rowCountSimulateShipInfo];
     Double precision = 0.0000001;
 
-    @Scheduled(cron = "0/10 * * * * ?")
-    private Double[] getLongArray1() {
+    @Scheduled(cron = "1,31 * * * * ?")
+    private void getLongLatArray1() {
+        System.out.println("@@@ 一 组 ：    ____________________________________________________________________________________________Time： 开始 " + LocalDateTime.now());
+
         getLongArray1 = simulateShipUtil.getLongArray();
+        getLatArray1 = simulateShipUtil.getLatArray();
+        for (Double a : getLongArray1) {
+//            System.out.println("一组Long： " + a);
+        }
+//        System.out.println("一组 ： "+ getLongArray1[0] + LocalDateTime.now());
+        System.out.println("@@@ 一 组 ： 0： " + getLongArray1[0] + "   last： " + getLongArray1[getLongArray1.length - 1] + "   _______________________Time：  结束 " + LocalDateTime.now());
+    }
+
+    @Scheduled(cron = "21,51 * * * * ?")
+    private void getLongLatArray2() {
+        System.out.println("￥￥￥ 二 组 ： _·_·__·__·__·__·__·__·_·_·__·__·__·__·__·__·__·_·__·__·__·__·__·__·__·_·__·__·__·__·__·__·_Time： 开始 " + LocalDateTime.now());
+
+        getLongArray2 = simulateShipUtil.getLongArray();
+        getLatArray2 = simulateShipUtil.getLatArray();
+        for (Double a : getLongArray2) {
+//           System.out.println("二组Long:  " + a);
+        }
+//        System.out.println("二组 ： "+ getLongArray2[0] + LocalDateTime.now());
+        System.out.println("￥￥￥ 二 组 ： 0： " + getLongArray1[0] + "   last： " + getLongArray1[getLongArray1.length - 1] + "   _·_·__·__·__·__·__·__·_Time： 结束 " + LocalDateTime.now());
+    }
+
+
+/*    @Scheduled(cron = "0/10 * * * * ?")
+    private Double[]  getLongLatArray1() {
+        getLongArray1 = simulateShipUtil.getLongArray();
+        getLatArray1 = simulateShipUtil.getLatArray();
         for (Double a : getLongArray1) {
 //            System.out.println("一组Long： " + a);
         }
         System.out.println("一组 ： "+ getLongArray1[0] + LocalDateTime.now());
-        return getLongArray1;
-    }
-    @Scheduled(cron = "0/10 * * * * ?")
+        return getLongArray1 ;
+    }*/
+/*    @Scheduled(cron = "0/10 * * * * ?")
     private Double[] getLatArray1() {
-        getLatArray1 = simulateShipUtil.getLatArray();
+
         for (Double a : getLatArray1) {
 //            System.out.println("一组Lat： " + a);
         }
@@ -72,104 +102,32 @@ public class ScheduleShipDirection {
         }
         System.out.println("二组 ： "+ getLatArray2[0] + LocalDateTime.now());
         return getLatArray2;
-    }
-//可验证差值 lat对不对，后面在加上计算方向
-    @Scheduled(cron = "9/10 * * * * ?")
-    public void test01(){
-        Double[] subtractionLong = new Double[getLongArray1.length];
-        for (int i=0; i < getLongArray1.length; i++) {
-            subtractionLong[i] = getLongArray2[i] - getLongArray1[i];
-            //消除意外的0.0，不更新的点位
-            if(abs(subtractionLong[i]) <precision){
-                subtractionLong[i] = subtractionLong[0];
-            }
-            System.out.println("subtractionLong:  "+subtractionLong[i]);
-        }
-        System.out.println("差值Long ：  " + subtractionLong[1] + LocalDateTime.now());
-
-
-        Double[] subtractionLat = new Double[getLatArray1.length];
-        for (int i=0; i < getLatArray1.length; i++) {
-            subtractionLat[i] = getLatArray2[i] - getLatArray1[i];
-            if(abs(subtractionLong[i]) <precision){
-                subtractionLat[i] = subtractionLat[0];
-            }
-            System.out.println("subtractionLat:  "+subtractionLat[i]);
-        }
-        System.out.println("差值Lat ：  " + subtractionLat[1] + LocalDateTime.now());
-    }
-
-
-
-}
-
-
-//        Double[] getLatArray=simulateShipUtil.getLatArray();
-//        for (Double a : getLatArray) {
-//            System.out.println("一组Lat： " + a);
-//        }
-//
-////延时6s
-//        try
-//        {
-//            Thread.sleep(8000);
-//        }
-//        catch (InterruptedException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        Double[] getLongArray2=simulateShipUtil.getLongArray();
-//        for (Double a : getLongArray2) {
-//            System.out.println("二组Long： " + a);
-//        }
-//        Double[] getLatArray2=simulateShipUtil.getLatArray();
-//        for (Double a : getLatArray2) {
-//            System.out.println("二组Lat： " + a);
-//        }
-
-
-/*       List<Double> listLong= simulateShipInfoService.getLong();
-       List<Double> listLat= simulateShipInfoService.getLat();
-       //list赋值给数组   list.toArray
-        Double[] getLong = new Double[listLong.size()];
-        listLong.toArray(getLong);
-        for (Double a:getLong){
-            System.out.println("第一组Long： " + a);
-        }
-
-        Double[] getLat = new Double[listLat.size()];
-        listLat.toArray(getLat);
-        for (Double a:getLat){
-            System.out.println("第一组Lat： " +a);
-        }*/
-
-//延时6s
-/*        try
-        {
-            Thread.sleep(10000);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }*/
-
-//        后面在取一次值，在做计算方向
-
-/*        List<Double> listLong2= simulateShipInfoService.getLong();
-        List<Double> listLat2= simulateShipInfoService.getLat();
-        //list赋值给数组   list.toArray
-        Double[] getLong2 = new Double[listLong2.size()];
-        listLong2.toArray(getLong2);
-        for (Double a:getLong2){
-            System.out.println("第二组Long： " +a);
-        }
-
-        Double[] getLat2 = new Double[listLat2.size()];
-        listLat2.toArray(getLat2);
-        for (Double a:getLat2){
-            System.out.println("第二组Lat： " +a);
-        }
     }*/
 
+    @Scheduled(cron = "54 * * * * ?")
+    public void getAngleAndUpdate() {
+        for (int i = 0; i < getLongArray1.length; i++) {
+            angleFirst[i] = simulateShipUtil.getAngle(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
+            speedFirst[i] = simulateShipUtil.getSpeed(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
+            if (angleFirst[i] > precision) {
+                angle[i] = angleFirst[i];
+            } else {
+                System.out.println("角度为0了***********");
+            }
+
+            if (speedFirst[i] > precision) {
+                speed[i] = speedFirst[i];
+            } else {
+                System.out.println("速度为0了------------");
+            }
+            String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
+            String speedString = String.format("%.2f", speed[i]);
+            simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
+//            System.out.println("//-@@@@@@id：" + (i+1)+"   //-*******角度："+angleString+"   //------速度："+speedString + "   -------    "+LocalDateTime.now());
+
+        }
+
+    }
+
+}
 

@@ -19,8 +19,7 @@ public class DockInfo {
     @Column(name = "Dock_ID")
     private String dockId;
 
-    @Column(name = "Dock_scale")
-    private String dockScale;
+
 
     @Column(name = "Dock_max_tonnage")
     private String dockMaxTonnage;
@@ -87,20 +86,6 @@ public class DockInfo {
      */
     public void setDockId(String dockId) {
         this.dockId = dockId;
-    }
-
-    /**
-     * @return Dock_scale
-     */
-    public String getDockScale() {
-        return dockScale;
-    }
-
-    /**
-     * @param dockScale
-     */
-    public void setDockScale(String dockScale) {
-        this.dockScale = dockScale;
     }
 
     /**
