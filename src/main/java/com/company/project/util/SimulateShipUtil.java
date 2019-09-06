@@ -20,6 +20,9 @@ public class SimulateShipUtil{
 
     public static SimulateShipUtil simulateShipUtil;
 
+    public SimulateShipUtil() {
+
+    }
     @PostConstruct
     public void init() {
         simulateShipUtil=this;
@@ -30,6 +33,8 @@ public class SimulateShipUtil{
     //    int shipNum;
 //int randomInt = ran.nextInt(100);
 //double d = ran.nextDouble();  0~1;
+
+
     Random ran = new Random();
 
 
@@ -60,7 +65,7 @@ public class SimulateShipUtil{
      * @return
      */
     public Double[] getLongArray() {
-        List<Double> listLong = simulateShipInfoService.getLong();
+        List<Double> listLong = simulateShipUtil.simulateShipInfoService.getLong();
 
         //list赋值给数组   list.toArray
         Double[] getLong = new Double[listLong.size()];
@@ -70,7 +75,7 @@ public class SimulateShipUtil{
 
 
     public Double[] getLatArray() {
-        List<Double> listLat = simulateShipInfoService.getLat();
+        List<Double> listLat = simulateShipUtil.simulateShipInfoService.getLat();
         Double[] getLat = new Double[listLat.size()];
         listLat.toArray(getLat);
         return getLat;

@@ -5,10 +5,7 @@ import com.company.project.util.SimulateShipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
 
 /**
  * 模拟船舶方向
@@ -37,7 +34,7 @@ public class ScheduleShipDirection {
     Double[] speedFirst = new Double[rowCountSimulateShipInfo];
     Double precision = 0.0000001;
 
-    @Scheduled(cron = "1,31 * * * * ?")
+/*    @Scheduled(cron = "1,31 * * * * ?")
     private void getLongLatArray1() {
         System.out.println("@@@ 一 组 ：    ____________________________________________________________________________________________Time： 开始 " + LocalDateTime.now());
 
@@ -63,6 +60,34 @@ public class ScheduleShipDirection {
         System.out.println("￥￥￥ 二 组 ： 0： " + getLongArray1[0] + "   last： " + getLongArray1[getLongArray1.length - 1] + "   _·_·__·__·__·__·__·__·_Time： 结束 " + LocalDateTime.now());
     }
 
+
+
+    @Scheduled(cron = "54 * * * * ?")
+    public void getAngleAndUpdate() {
+        for (int i = 0; i < getLongArray1.length; i++) {
+            angleFirst[i] = simulateShipUtil.getAngle(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
+            speedFirst[i] = simulateShipUtil.getSpeed(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
+            if (angleFirst[i] > precision) {
+                angle[i] = angleFirst[i];
+            } else {
+                System.out.println("角度为0了***********");
+            }
+
+            if (speedFirst[i] > precision) {
+                speed[i] = speedFirst[i];
+            } else {
+                System.out.println("速度为0了------------");
+            }
+            String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
+            String speedString = String.format("%.2f", speed[i]);
+            simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
+//            System.out.println("//-@@@@@@id：" + (i+1)+"   //-*******角度："+angleString+"   //------速度："+speedString + "   -------    "+LocalDateTime.now());
+
+        }
+
+    }*/
+
+}
 
 /*    @Scheduled(cron = "0/10 * * * * ?")
     private Double[]  getLongLatArray1() {
@@ -103,31 +128,3 @@ public class ScheduleShipDirection {
         System.out.println("二组 ： "+ getLatArray2[0] + LocalDateTime.now());
         return getLatArray2;
     }*/
-
-    @Scheduled(cron = "54 * * * * ?")
-    public void getAngleAndUpdate() {
-        for (int i = 0; i < getLongArray1.length; i++) {
-            angleFirst[i] = simulateShipUtil.getAngle(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
-            speedFirst[i] = simulateShipUtil.getSpeed(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
-            if (angleFirst[i] > precision) {
-                angle[i] = angleFirst[i];
-            } else {
-                System.out.println("角度为0了***********");
-            }
-
-            if (speedFirst[i] > precision) {
-                speed[i] = speedFirst[i];
-            } else {
-                System.out.println("速度为0了------------");
-            }
-            String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
-            String speedString = String.format("%.2f", speed[i]);
-            simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
-//            System.out.println("//-@@@@@@id：" + (i+1)+"   //-*******角度："+angleString+"   //------速度："+speedString + "   -------    "+LocalDateTime.now());
-
-        }
-
-    }
-
-}
-

@@ -18,5 +18,7 @@ public interface ShipInfoService extends Service<ShipInfo> {
                                BigDecimal minlat,
                                BigDecimal maxlat);
     Integer updateToShipInfo();
+
+    Integer updateToShipInfoStatic();
 //    List<ShipInfo> nearbyShip(Integer MMSI);
 }

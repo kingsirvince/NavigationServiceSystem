@@ -17,5 +17,7 @@ public interface ShipInfoMapper extends Mapper<ShipInfo> {
 
     Integer updateToShipInfo();
 
+    Integer updateToShipInfoStatic();
+
 //    List<com.company.project.model.ShipInfo> nearbyShip(@Param("nearbyChannelDivisionID1")String nearbyChannelDivisionID1, @Param("nearbyChannelDivisionID2")String nearbyChannelDivisionID2, @Param("nearbyChannelDivisionID3")String nearbyChannelDivisionID3, @Param("nearbyChannelDivisionID4")String nearbyChannelDivisionID4, @Param("nearbyChannelDivisionID5")String nearbyChannelDivisionID5);
 }

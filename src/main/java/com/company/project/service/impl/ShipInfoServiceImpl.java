@@ -30,6 +30,13 @@ public class ShipInfoServiceImpl extends AbstractService<ShipInfo> implements Sh
     public Integer updateToShipInfo() {
         return shipInfoMapper.updateToShipInfo();
     }
+
+    @Override
+    public Integer updateToShipInfoStatic() {
+        return shipInfoMapper.updateToShipInfoStatic();
+    }
+
+
     //    @Override
 //    public Integer updateShipInfoBetweenId(Integer id1, Integer id2) {
 //        return shipInfoMapper.updateShipInfoBetweenId(id1, id2);

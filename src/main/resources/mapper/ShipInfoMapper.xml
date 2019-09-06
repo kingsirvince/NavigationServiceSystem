@@ -34,14 +34,16 @@
   </select>
 
 
-
-<!--从模拟表更新到ship_info-->
+<!--废弃-->
+<!--从模拟表simulate_ship_info更新 经纬度/速度/方向 到ship_info-->
   <update id="updateToShipInfo" parameterType="com.company.project.model.ShipInfo">
     UPDATE ship_info s
     LEFT JOIN simulate_ship_info c
     ON   s.id = c.id
-    SET s.Ship_longitude=c.Ship_longitude , s.Ship_latitude=c.Ship_latitude,s.Ship_heading=c.Ship_heading
+    SET s.Ship_longitude=c.Ship_longitude , s.Ship_latitude=c.Ship_latitude,s.Ship_heading=c.Ship_heading,s.Ship_speed=c.Ship_speed
   </update>
+
+
 
 
   <!--  <update id="updateShipInfoBetweenId" parameterType="com.company.project.model.ShipInfo">-->

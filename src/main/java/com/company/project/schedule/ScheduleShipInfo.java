@@ -5,7 +5,6 @@ import com.company.project.service.ShipInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,11 +15,11 @@ public class ScheduleShipInfo {
     private ShipInfoService shipInfoService;
     private ReadExcelService readExcelService;
 
-    @Scheduled(cron = "0/2 * * * * ?")
+/*    @Scheduled(cron = "0/2 * * * * ?")
     private void updateToShipInfo() {
         shipInfoService.updateToShipInfo();
 
-    }
+    }*/
 
 
     /**

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.ShipInfoStaticMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.ShipInfoStatic">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Ship_MMSI" jdbcType="INTEGER" property="shipMmsi" />
+    <result column="Ship_call" jdbcType="VARCHAR" property="shipCall" />
+    <result column="Ship_class" jdbcType="VARCHAR" property="shipClass" />
+    <result column="Ship_state" jdbcType="VARCHAR" property="shipState" />
+    <result column="Ship_longitude" jdbcType="DECIMAL" property="shipLongitude" />
+    <result column="Ship_latitude" jdbcType="DECIMAL" property="shipLatitude" />
+    <result column="Ship_length" jdbcType="VARCHAR" property="shipLength" />
+    <result column="Ship_width" jdbcType="VARCHAR" property="shipWidth" />
+    <result column="Ship_heading" jdbcType="VARCHAR" property="shipHeading" />
+    <result column="Ship_speed" jdbcType="VARCHAR" property="shipSpeed" />
+    <result column="Ship_draught" jdbcType="VARCHAR" property="shipDraught" />
+    <result column="Ship_max_load" jdbcType="VARCHAR" property="shipMaxLoad" />
+    <result column="Ship_load" jdbcType="VARCHAR" property="shipLoad" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+    <result column="Channel_division_ID" jdbcType="VARCHAR" property="channelDivisionId" />
+  </resultMap>
+
+    <!--从simulate_ship_info把所有记录新增插入到ship_info_static形成静态长表-->
+  <update id="updateToShipInfoStatic" parameterType="com.company.project.model.ShipInfoStatic">
+
+    insert into ship_info_static
+           (ID,Ship_MMSI,Ship_longitude,Ship_latitude,Ship_heading,Ship_speed)
+     select ID,Ship_MMSI,Ship_longitude,Ship_latitude,Ship_heading,Ship_speed
+     from simulate_ship_info;
+  </update>
+</mapper>

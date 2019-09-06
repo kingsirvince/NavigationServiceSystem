@@ -12,17 +12,18 @@ import javax.annotation.PostConstruct;
  */
 @Component
 public class MapperUtil {
-@Autowired
+    @Autowired
     private ShipUploadMapper shipUploadMapper;
+
     public static MapperUtil mapperUtil;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         mapperUtil = this;
         mapperUtil.shipUploadMapper = this.shipUploadMapper;
     }
 
-    public static String getShipUploadCDID(Integer MMSI){
+    public static String getShipUploadCDID(Integer MMSI) {
         return mapperUtil.shipUploadMapper.getChannelDivisionID(MMSI);
     }
 }

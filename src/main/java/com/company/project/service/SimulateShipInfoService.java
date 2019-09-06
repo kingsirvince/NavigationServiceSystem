@@ -20,6 +20,12 @@ public interface SimulateShipInfoService extends Service<SimulateShipInfo> {
     Integer rowCount();
     Integer updateAngleSpeed(String angleString,String speedString ,Integer id);
 
+    int[] getIdInit(int shipNum, int amount);
+    int[] getSpeed(int speedMax, int speedMin, int shipNum);
+    Double[] getLongArray();
+    Double[] getLatArray();
+    double getAngle( double lng_a,double lat_a, double lng_b,double lat_b );
+    double getSpeed( double lng_a,double lat_a, double lng_b,double lat_b);
 //    Integer updateCH02601(Integer divisor, Integer remainder,Integer subtract);
 
 }

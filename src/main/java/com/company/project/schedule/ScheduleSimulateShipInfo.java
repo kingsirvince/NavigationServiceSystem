@@ -1,6 +1,8 @@
 package com.company.project.schedule;
 
 import com.company.project.model.Boat;
+import com.company.project.service.ShipInfoService;
+import com.company.project.service.ShipInfoStaticService;
 import com.company.project.service.SimulateShipInfoService;
 import com.company.project.util.SimulateShipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -19,6 +22,10 @@ import java.util.concurrent.BlockingQueue;
 public class ScheduleSimulateShipInfo {
     @Autowired
     private SimulateShipInfoService simulateShipInfoService;
+    @Autowired
+    private ShipInfoService shipInfoService;
+    @Autowired
+    private ShipInfoStaticService shipInfoStaticService;
     /**
      * new进来这个类，就可以调用里面方法了
      */
@@ -26,14 +33,20 @@ public class ScheduleSimulateShipInfo {
 /*@Autowired
 private SimulateShipUtil simulateShipUtil;*/
 
-/*private static ScheduleSimulateShipInfo scheduleSimulateShipInfo;
+    public static ScheduleSimulateShipInfo scheduleSimulateShipInfo;
+
+    public ScheduleSimulateShipInfo() {
+
+    }
 
     @PostConstruct
     public void init() {
-        scheduleSimulateShipInfo=this;
-        scheduleSimulateShipInfo.simulateShipInfoService=this.simulateShipInfoService;
+        scheduleSimulateShipInfo = this;
+        scheduleSimulateShipInfo.simulateShipInfoService = this.simulateShipInfoService;
+        scheduleSimulateShipInfo.simulateShipUtil = this.simulateShipUtil;
 
-    }*/
+    }
+
 
     int speedMax1 = 8;     //最大速度(跳跃行速）
     int speedMin1 = 3;     //最小速度
@@ -238,19 +251,20 @@ private SimulateShipUtil simulateShipUtil;*/
 
 
     public static BlockingQueue<Boat> queue = new ArrayBlockingQueue<>(10000);
-/*    int[] idInit = {ran.nextInt(amount1),
-            ran.nextInt(amount1),
-            ran.nextInt(amount1),
-            ran.nextInt(amount1),
-            ran.nextInt(amount1)}; //定义每条船舶初始位置*/
-@Scheduled(cron = "0/10 * * * * ?")
-private void task1() {
 
-}
+    /*    int[] idInit = {ran.nextInt(amount1),
+                ran.nextInt(amount1),
+                ran.nextInt(amount1),
+                ran.nextInt(amount1),
+                ran.nextInt(amount1)}; //定义每条船舶初始位置*/
+    @Scheduled(cron = "0/10 * * * * ?")
+    private void task1() {
+
+    }
 
     /**
      * 通用方法simulateShipUpdatePosition
-     * hj01001 hj01002
+     * hj01001 hj01002 ... hj01012
      */
     @Scheduled(cron = "0/10 * * * * ?")
     private void task() {
@@ -264,11 +278,6 @@ private void task1() {
         for(40)
 
 */
-
-
-
-
-
         simulateShipUpdatePosition(shipTrack01_01, shipNum01_01, mmsiInit01_01, idPoint01_01, idInit01_01, speed01_01, i01_01, amount01_01);
         System.out.println("-----~~~~~~~完成 1 ~~~~~------" + LocalDateTime.now());
         simulateShipUpdatePosition(shipTrack02_01, shipNum02_01, mmsiInit02_01, idPoint02_01, idInit02_01, speed02_01, i02_01, amount02_01);
@@ -297,36 +306,54 @@ private void task1() {
         //计算速度和方向
         //读取一组
 //i为奇数  A1赋值  A1-A2
- /*       if (iJudge % 2 != 0) {
+
+        if (iJudge % 2 != 0) {
             System.out.println("@@@ A1 ：    _________________________________________________________________________________________A1 ___Time： 开始 " + LocalDateTime.now());
             try {
                 getLongArray1 = simulateShipUtil.getLongArray();
                 getLatArray1 = simulateShipUtil.getLatArray();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("___________________");
                 System.out.println(e.getMessage());
                 System.out.println("___________________");
             }
             getAngleSpeedAndUpdateA1SubtractA2();
+            System.out.println("```````````将经纬度/速度/方向赋值更新刀模拟表simulate_ship_info········A1-A2······ 1 ····" + LocalDateTime.now());
+
         }
 //i为偶数  A2赋值  A2-A1
         if (iJudge % 2 == 0) {
-            if (iJudge != 0) {
-                System.out.println("￥￥￥ A2 ：    __·_·__·__·__·__·__·__·_·_·__·__·__·__·__·__·__·_·__·__·__·__·__·__·__·_·__·__·__·____A12 ___Time： 开始 " + LocalDateTime.now());
+            if (iJudge == 0) {
+                System.out.println("￥￥￥ A2 ：    __·_·__·__·__·__·__·__·_·_·__·__·__·_&&&&&&&&&&&&_·____A2: iJudge=0 ___Time： 开始 " + LocalDateTime.now());
+                getLongArray2 = simulateShipUtil.getLongArray();
+                getLatArray2 = simulateShipUtil.getLatArray();
+            } else {
+                System.out.println("￥￥￥ A2 ：    __·_·__·__·__·__·__·__·_·_·__·__·__·__·__·__·__·_·__·__·__·__·__·__·__·_·__·__·__·____A2 ___Time： 开始 " + LocalDateTime.now());
                 getLongArray2 = simulateShipUtil.getLongArray();
                 getLatArray2 = simulateShipUtil.getLatArray();
                 getAngleSpeedAndUpdateA2SubtractA1();
+                System.out.println("```````````将经纬度/速度/方向赋值更新刀模拟表simulate_ship_info·········A2-A1····· 1 ····" + LocalDateTime.now());
 
             }
         }
-        iJudge++;*/
+        if (iJudge != 0) {
+
+            shipInfoStaticService.updateToShipInfoStatic();
+        System.out.println("```````````从模拟表simulate_ship_info更新 经纬度/速度/方向 新增到ship_info_static形成静态长表·············· 2 ····" + LocalDateTime.now());
+        }
+
+      /*  shipInfoStaticService.updateToShipInfoStatic();
+        System.out.println("```````````从ship_info_static把固定段uid 的 经纬度/速度/方向 更新到ship_info················ 3 ··" + LocalDateTime.now());
+*/
+
+        iJudge++;
     }
 
     /**
      * 计算速度和方向并更新到表
      * A2-A1  i为偶数
      */
-  /*  private void getAngleSpeedAndUpdateA2SubtractA1() {
+    private void getAngleSpeedAndUpdateA2SubtractA1() {
         for (int i = 0; i < getLongArray1.length; i++) {
             angleFirst[i] = simulateShipUtil.getAngle(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
             speedFirst[i] = simulateShipUtil.getSpeed(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
@@ -344,15 +371,15 @@ private void task1() {
             String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
             String speedString = String.format("%.2f", speed[i]);
             simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
-            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A2-A1 ----    " + LocalDateTime.now());
+//            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A2-A1 ----    " + LocalDateTime.now());
         }
-    }*/
+    }
 
     /**
      * 计算速度和方向并更新到表
      * A1-A2  i为奇数
      */
-   /* private void getAngleSpeedAndUpdateA1SubtractA2() {
+    private void getAngleSpeedAndUpdateA1SubtractA2() {
         for (int i = 0; i < getLongArray1.length; i++) {
             angleFirst[i] = simulateShipUtil.getAngle(getLongArray2[i], getLatArray2[i], getLongArray1[i], getLatArray1[i]);
             speedFirst[i] = simulateShipUtil.getSpeed(getLongArray2[i], getLatArray2[i], getLongArray1[i], getLatArray1[i]);
@@ -370,9 +397,11 @@ private void task1() {
             String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
             String speedString = String.format("%.2f", speed[i]);
             simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
-            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A1-A2 ----    " + LocalDateTime.now());
+//            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A1-A2 ----    " + LocalDateTime.now());
         }
-    }*/
+    }
+
+
 /*
     @Scheduled(cron = "1/10 * * * * ?")
     private void task1() {
