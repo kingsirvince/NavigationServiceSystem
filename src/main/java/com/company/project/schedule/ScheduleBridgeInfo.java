@@ -23,7 +23,7 @@ public class ScheduleBridgeInfo {
     @Autowired
     private PipelineInfoService pipelineInfoService;
 
-    @Scheduled(cron = "0/1 * * * * ?") //每分钟一次
+    @Scheduled(cron = "0 0/1 * * * ?") //每分钟一次
     private void task() {
         Random ran = new Random();
         Double subtrahend = (1 + ran.nextDouble());

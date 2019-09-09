@@ -13,12 +13,13 @@ import java.util.List;
 public interface ShipInfoService extends Service<ShipInfo> {
 
 //    Integer updateShipInfoBetweenId(Integer id1,Integer id2);
+
+    List<ShipInfo> findAllIncludeStaticShip();
     List<ShipInfo> getVicinity(BigDecimal minlng,
                                BigDecimal maxlng,
                                BigDecimal minlat,
                                BigDecimal maxlat);
-    Integer updateToShipInfo();
 
-    Integer updateToShipInfoStatic();
+    Integer updateToShipInfoFromStatic(int uid1,int uid2);
 //    List<ShipInfo> nearbyShip(Integer MMSI);
 }

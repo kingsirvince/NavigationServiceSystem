@@ -22,22 +22,21 @@ public class ShipInfoServiceImpl extends AbstractService<ShipInfo> implements Sh
     private ShipInfoMapper shipInfoMapper;
 
     @Override
+    public List<ShipInfo> findAllIncludeStaticShip() {
+        return shipInfoMapper.findAllIncludeStaticShip();
+    }
+
+    @Override
     public List<ShipInfo> getVicinity(BigDecimal minlng, BigDecimal maxlng, BigDecimal minlat, BigDecimal maxlat) {
         return shipInfoMapper.getVicinity(minlng, maxlng, minlat, maxlat);
     }
 
     @Override
-    public Integer updateToShipInfo() {
-        return shipInfoMapper.updateToShipInfo();
+    public Integer updateToShipInfoFromStatic(int uid1, int uid2) {
+        return shipInfoMapper.updateToShipInfoFromStatic(uid1, uid2);
     }
 
-    @Override
-    public Integer updateToShipInfoStatic() {
-        return shipInfoMapper.updateToShipInfoStatic();
-    }
-
-
-    //    @Override
+//    @Override
 //    public Integer updateShipInfoBetweenId(Integer id1, Integer id2) {
 //        return shipInfoMapper.updateShipInfoBetweenId(id1, id2);
 //    }

@@ -24,6 +24,13 @@
 
   <!--手写sql部分-->
 
+<!--查询所有船，包括静态船-->
+  <select id="findAllIncludeStaticShip" resultMap="BaseResultMap">
+    select * from ship_info
+    UNION
+    select * from ship_part_static
+  </select>
+
 
   <!--查询附近多少公里的位置，-->
   <select id="getVicinity" resultMap="BaseResultMap">
@@ -31,19 +38,33 @@
     *
     from ship_info
     where Ship_longitude &gt;= #{minlng} and Ship_longitude &lt;= #{maxlng} and Ship_latitude &gt;= #{minlat} and Ship_latitude &lt;= #{maxlat}
+    UNION
+    select
+    *
+    from ship_part_static
+    where Ship_longitude &gt;= #{minlng} and Ship_longitude &lt;= #{maxlng} and Ship_latitude &gt;= #{minlat} and Ship_latitude &lt;= #{maxlat}
   </select>
 
 
-<!--废弃-->
-<!--从模拟表simulate_ship_info更新 经纬度/速度/方向 到ship_info-->
-  <update id="updateToShipInfo" parameterType="com.company.project.model.ShipInfo">
+
+  <!--从模拟静态表ship_info_static更新 经纬度/速度/方向 到ship_info-->
+  <update id="updateToShipInfoFromStatic" parameterType="com.company.project.model.ShipInfo">
     UPDATE ship_info s
-    LEFT JOIN simulate_ship_info c
+    INNER JOIN (select ID,Ship_longitude, Ship_latitude,Ship_heading,Ship_speed from ship_info_static where uid between #{uid1} and #{uid2}) c
     ON   s.id = c.id
     SET s.Ship_longitude=c.Ship_longitude , s.Ship_latitude=c.Ship_latitude,s.Ship_heading=c.Ship_heading,s.Ship_speed=c.Ship_speed
   </update>
 
 
+
+<!--废弃-->
+<!--从模拟表simulate_ship_info更新 经纬度/速度/方向 到ship_info-->
+<!--  <update id="updateToShipInfo" parameterType="com.company.project.model.ShipInfo">
+    UPDATE ship_info s
+    LEFT JOIN simulate_ship_info c
+    ON   s.id = c.id
+    SET s.Ship_longitude=c.Ship_longitude , s.Ship_latitude=c.Ship_latitude,s.Ship_heading=c.Ship_heading,s.Ship_speed=c.Ship_speed
+  </update>-->
 
 
   <!--  <update id="updateShipInfoBetweenId" parameterType="com.company.project.model.ShipInfo">-->

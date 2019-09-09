@@ -55,12 +55,24 @@ public class ShipInfoController {
         return ResultGenerator.genSuccessResult(shipInfo);
     }
 
-    @PostMapping("/list")
+/*    @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
         List<ShipInfo> list = shipInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
+    }*/
+
+    /**
+     * 查询所有船（包括静态船）
+     */
+    @PostMapping("/list")
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+        PageHelper.startPage(page, size);
+        List<ShipInfo> list = shipInfoService.findAllIncludeStaticShip();
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
+
     }
 
     /**

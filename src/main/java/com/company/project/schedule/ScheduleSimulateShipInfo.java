@@ -1,6 +1,5 @@
 package com.company.project.schedule;
 
-import com.company.project.model.Boat;
 import com.company.project.service.ShipInfoService;
 import com.company.project.service.ShipInfoStaticService;
 import com.company.project.service.SimulateShipInfoService;
@@ -8,13 +7,9 @@ import com.company.project.util.SimulateShipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 @Component
 @Configuration      //1.主要用于标记配置类，兼备Component的效果。
@@ -250,25 +245,21 @@ private SimulateShipUtil simulateShipUtil;*/
     int iJudge = 0;
 
 
-    public static BlockingQueue<Boat> queue = new ArrayBlockingQueue<>(10000);
+//    public static BlockingQueue<Boat> queue = new ArrayBlockingQueue<>(10000);
 
-    /*    int[] idInit = {ran.nextInt(amount1),
-                ran.nextInt(amount1),
-                ran.nextInt(amount1),
-                ran.nextInt(amount1),
-                ran.nextInt(amount1)}; //定义每条船舶初始位置*/
-    @Scheduled(cron = "0/10 * * * * ?")
-    private void task1() {
-
-    }
 
     /**
      * 通用方法simulateShipUpdatePosition
      * hj01001 hj01002 ... hj01012
      */
-    @Scheduled(cron = "0/10 * * * * ?")
+
+
+    /**
+     *  制作数据用：正常运行屏蔽掉
+     */
+   /* @Scheduled(cron = "0/10 * * * * ?")
     private void task() {
-/*
+*//*      姚滕俊：
         for (40){
 
             计算各参数 经纬度，角度，速度 （判断逻辑2是不是0，不是0的话，把2的值付给1，把2更新成新值）
@@ -277,7 +268,7 @@ private SimulateShipUtil simulateShipUtil;*/
         }
         for(40)
 
-*/
+*//*
         simulateShipUpdatePosition(shipTrack01_01, shipNum01_01, mmsiInit01_01, idPoint01_01, idInit01_01, speed01_01, i01_01, amount01_01);
         System.out.println("-----~~~~~~~完成 1 ~~~~~------" + LocalDateTime.now());
         simulateShipUpdatePosition(shipTrack02_01, shipNum02_01, mmsiInit02_01, idPoint02_01, idInit02_01, speed02_01, i02_01, amount02_01);
@@ -341,13 +332,12 @@ private SimulateShipUtil simulateShipUtil;*/
             shipInfoStaticService.updateToShipInfoStatic();
         System.out.println("```````````从模拟表simulate_ship_info更新 经纬度/速度/方向 新增到ship_info_static形成静态长表·············· 2 ····" + LocalDateTime.now());
         }
-
-      /*  shipInfoStaticService.updateToShipInfoStatic();
-        System.out.println("```````````从ship_info_static把固定段uid 的 经纬度/速度/方向 更新到ship_info················ 3 ··" + LocalDateTime.now());
-*/
-
         iJudge++;
     }
+
+    */
+
+
 
     /**
      * 计算速度和方向并更新到表
@@ -400,95 +390,6 @@ private SimulateShipUtil simulateShipUtil;*/
 //            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A1-A2 ----    " + LocalDateTime.now());
         }
     }
-
-
-/*
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task1() {
-        simulateShipUpdatePosition(shipTrack01_01, shipNum01_01, mmsiInit01_01, idPoint01_01, idInit01_01, speed01_01, i01_01, amount01_01);
-        System.out.println("-----~~~~~~~完成 1 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task2() {
-        simulateShipUpdatePosition(shipTrack02_01, shipNum02_01, mmsiInit02_01, idPoint02_01, idInit02_01, speed02_01, i02_01, amount02_01);
-        System.out.println("-----~~~~~~~完成 2 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task3() {
-        simulateShipUpdatePosition(shipTrack03_01, shipNum03_01, mmsiInit03_01, idPoint03_01, idInit03_01, speed03_01, i03_01, amount03_01);
-        System.out.println("-----~~~~~~~完成 3 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task4() {
-        simulateShipUpdatePosition(shipTrack04_01, shipNum04_01, mmsiInit04_01, idPoint04_01, idInit04_01, speed04_01, i04_01, amount04_01);
-        System.out.println("-----~~~~~~~完成 4 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task5() {
-        simulateShipUpdatePosition(shipTrack05_01, shipNum05_01, mmsiInit05_01, idPoint05_01, idInit05_01, speed05_01, i05_01, amount05_01);
-        System.out.println("-----~~~~~~~完成 5 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task6() {
-        simulateShipUpdatePosition(shipTrack06_01, shipNum06_01, mmsiInit06_01, idPoint06_01, idInit06_01, speed06_01, i06_01, amount06_01);
-        System.out.println("-----~~~~~~~完成 6 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task7() {
-        simulateShipUpdatePosition(shipTrack07_01, shipNum07_01, mmsiInit07_01, idPoint07_01, idInit07_01, speed07_01, i07_01, amount07_01);
-        System.out.println("-----~~~~~~~完成 7 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task8() {
-        simulateShipUpdatePosition(shipTrack08_01, shipNum08_01, mmsiInit08_01, idPoint08_01, idInit08_01, speed08_01, i08_01, amount08_01);
-        System.out.println("-----~~~~~~~完成 8 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task9() {
-        simulateShipUpdatePosition(shipTrack09_01, shipNum09_01, mmsiInit09_01, idPoint09_01, idInit09_01, speed09_01, i09_01, amount09_01);
-        System.out.println("-----~~~~~~~完成 9 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task10() {
-        simulateShipUpdatePosition(shipTrack10_01, shipNum10_01, mmsiInit10_01, idPoint10_01, idInit10_01, speed10_01, i10_01, amount10_01);
-        System.out.println("-----~~~~~~~完成 10 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task11() {
-        simulateShipUpdatePosition(shipTrack11_01, shipNum11_01, mmsiInit11_01, idPoint11_01, idInit11_01, speed11_01, i11_01, amount11_01);
-        System.out.println("-----~~~~~~~完成 11 ~~~~~------" + LocalDateTime.now());
-    }
-
-    @Scheduled(cron = "1/10 * * * * ?")
-    private void task12() {
-        simulateShipUpdatePosition(shipTrack12_01, shipNum12_01, mmsiInit12_01, idPoint12_01, idInit12_01, speed12_01, i12_01, amount12_01);
-        System.out.println("-----~~~~~~~完成 12 ~~~~~------" + LocalDateTime.now());
-    }
-*/
-
-
-
-
-
-
-
-
-
-    /*    int[] speed = {ran.nextInt(speedMax - speedMin + 1) + speedMin,
-                ran.nextInt(speedMax - speedMin + 1) + speedMin,
-                ran.nextInt(speedMax - speedMin + 1) + speedMin,
-                ran.nextInt(speedMax - speedMin + 1) + speedMin,
-                ran.nextInt(speedMax - speedMin + 1) + speedMin}; //定义每条船速度*/
 
 
     /**
@@ -544,32 +445,20 @@ private SimulateShipUtil simulateShipUtil;*/
             }
         }
     }
-
+/**
+ *  制作数据用：正常运行屏蔽掉
+ */
     //正向，shipNum条船，得到每条船的下一个idPoint，即位置
-    @Scheduled(cron = "1,31 * * * * ?")
+/*    @Scheduled(cron = "1,31 * * * * ?")
     private void simulateTasks() {
-/*
-        for (int i : idInit) {
-            System.out.println(i + " - ");
-        }
-        for (int i : speed) {
-            System.out.println(i + " - ");
-        }
-*/
+
         simulateShipUpdatePositionchannel_point(shipNum1, mmsiInit1, idPoint1, idInit1, speed1, i1, amount1);
     }
 
     //反向，20条，
     @Scheduled(cron = "1,31 * * * * ?")
     private void simulateTasks1() {
-/*
-        for (int i : idInit) {
-            System.out.println(i + " - ");
-        }
-        for (int i : speed) {
-            System.out.println(i + " - ");
-        }
-*/
+
         for (int j = 0; j < shipNum2; j++) {
 
             int mmsi = mmsiInit2 + j;
@@ -582,62 +471,11 @@ private SimulateShipUtil simulateShipUtil;*/
                 i2[j] = 1;
             }
         }
-    }
+    }*/
+
+
+
 }
 
 
-  /*  int mmsiInitial2 = 444440021; //从哪条船开始
-    int idInitial2 = 14400;   //idInitial 初始记录位置
-    int num2 = 20;          //num        一次跳跃的行数
-    int x2 = 100;        //每条船之间idPoint差的倍数
-    int amount2 = 0;   // * amount     总行数
-    int id2 = 0;          // * id         读取的是哪一行
-    int i2 = 0;*/
-//反向，20条船，间隔100点位，速度2点位，
-    /*@Scheduled(cron = "0/1 * * * * ?")
-    private void simulateTasks2() {
-
-        if (id2 > amount2) {
-            id2 = idInitial2 - num2 * i2;
-            i2++;
-        } else {
-            id2 = idInitial2;
-            i2 = 1;
-        }
-
-        for (int j = 0; j < 20; j++) {
-
-            int mmsi = mmsiInitial2 + j;
-            int idPoint = id2 - x2 * j;
-            simulateShipInfoService.simulateCH02601(mmsi, idPoint);
-            //System.out.println("simulateCH02601 反向: " + "  idPoint: " + idPoint + ", mmsi: " + mmsi + "   *    " + LocalDateTime.now());
-        }
-    }*/
-//}
-
-
-//    int divisor = 720;
-//    int remainder = 0;
-//    int subtract = 0;
-//    int r = remainder;
-//    int s = subtract;
-/*        if (subtract < 20) {
-
-            if (r < 720) {
-                r = r + 1;
-
-                simulateShipInfoService.updateCH02601(divisor, r, subtract);
-                System.out.println("UpdateCH02601:   除数: " + divisor + ", 余数: " + r + ", 减数: " + subtract + "   *  " + LocalDateTime.now());
-                r = num * i;
-                i++;
-            } else if (r >= 720) {
-                r = 0;
-                simulateShipInfoService.updateCH02601(divisor, r, subtract);
-                System.out.println("UpdateCH02601:   除数: " + divisor + ", 余数: " + r + ", 减数: " + subtract + "   *  " + LocalDateTime.now());
-                i = 1;
-                subtract++;
-            }
-        } else if (subtract >= 20) {
-            subtract = 0;
-        }*/
 

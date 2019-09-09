@@ -7,14 +7,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
 @Configuration      //1.主要用于标记配置类，兼备Component的效果。
 @EnableScheduling   // 2.开启定时任务
 public class ScheduleServiceAreaInfo {
     @Autowired
-
     private ServiceAreaInfoService serviceAreaInfoService;
     /**
      * id1Initial 一次更新的第一个数；id2Initial 一次更新的最后一个数
@@ -44,8 +41,10 @@ public class ScheduleServiceAreaInfo {
             id2=id2Initial;
             i=1;
         }
-        System.out.println("ScheduleServiceAreaInfo: " + LocalDateTime.now()+"  id1: " + id1+", id2: " + id2 );
+//        System.out.println("ScheduleServiceAreaInfo: " + LocalDateTime.now()+"  id1: " + id1+", id2: " + id2 +" ^^^^^^^^^^^^^^^^^^^^开始^^^^^ " +LocalDateTime.now() );
         serviceAreaInfoService.updateServiceAreaInfoBetweenId(id1,id2);
+//        System.out.println("ScheduleServiceAreaInfo: " + LocalDateTime.now()+"  id1: " + id1+", id2: " + id2 +" ^^^^^^^^^^^^^^^^^^^^结束^^^^^^ " +LocalDateTime.now() );
+
 
     }
 }

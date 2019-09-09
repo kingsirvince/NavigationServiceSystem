@@ -28,10 +28,13 @@ public class BridgeInfoController {
     private BridgeInfoService bridgeInfoService;
 
     /**
+     *
      * 查询某列某行的单值  （模拟限高）
      * @param field   列名 Bridge_limit_height
      * @param row      行名 Bridge_name
      * @param rowValue 值 太子塘桥
+     *                 field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥
+     *                 field=Bridge_limit_height&row=Bridge_ID&rowValue=JXCH026HD0017QL009
      * @return
      */
     @PostMapping("/getByRowField")
