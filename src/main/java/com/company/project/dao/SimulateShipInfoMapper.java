@@ -20,4 +20,16 @@ public interface SimulateShipInfoMapper extends Mapper<SimulateShipInfo> {
     Integer rowCount();
 
     Integer updateAngleSpeed(@Param("angleString")String angleString,@Param("speedString") String speedString ,@Param("id")Integer id);
+
+    Integer updateLongLatAngleSpeed(@Param("longitude")double longitude,
+                                    @Param("latitude")double latitude,
+                                    @Param("angleString")String angleString,
+                                    @Param("speedString") String speedString,
+                                    @Param("id")Integer id);
+
+    Integer insertLongLatAngleSpeedToStatic(@Param("longitude")double longitude,
+                                            @Param("latitude")double latitude,
+                                            @Param("angleString")String angleString,
+                                            @Param("speedString") String speedString,
+                                            @Param("id")Integer id);
 }

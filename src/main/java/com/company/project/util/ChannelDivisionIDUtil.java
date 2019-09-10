@@ -26,7 +26,8 @@ public class ChannelDivisionIDUtil {
         try {
             // 构建Workbook对象, 只读Workbook对象 直接从本地文件创建Workbook
             //只能读xls格式，xlsx不支持
-            readwb = Workbook.getWorkbook(new FileInputStream(new File("D:\\Dev\\IDEA\\【20190726】spring-boot-api-project-seed-boat\\spring-boot-api-project-seed\\src\\main\\resources\\ChannelDivision.xls")));
+            readwb = Workbook.getWorkbook(new FileInputStream(new File("src\\main\\resources\\excel\\ChannelDivision.xls")));
+//            readwb = Workbook.getWorkbook(new FileInputStream(new File("D:\\Dev\\IDEA\\【20190726】spring-boot-api-project-seed-boat\\spring-boot-api-project-seed\\src\\main\\resources\\excel\\ChannelDivision.xls")));
             // Sheet的下标是从0开始 获取第一张Sheet表
             Sheet readsheet = readwb.getSheet(0);
             // 获取Sheet表中所包含的总列数

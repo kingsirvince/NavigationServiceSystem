@@ -4,12 +4,16 @@ import com.company.project.service.ShipInfoService;
 import com.company.project.service.ShipInfoStaticService;
 import com.company.project.service.SimulateShipInfoService;
 import com.company.project.util.SimulateShipUtil;
+import jxl.read.biff.BiffException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Component
 @Configuration      //1.主要用于标记配置类，兼备Component的效果。
@@ -25,12 +29,43 @@ public class ScheduleSimulateShipInfo {
      * new进来这个类，就可以调用里面方法了
      */
     SimulateShipUtil simulateShipUtil = new SimulateShipUtil();
+
+
+    public static String filePath_hj01000 = "src\\main\\resources\\excel\\hj01000.xls";
+    public static String filePath_hj01001 = "src\\main\\resources\\excel\\hj01001.xls";
+    public static String filePath_hj01002 = "src\\main\\resources\\excel\\hj01002.xls";
+    public static String filePath_hj01003 = "src\\main\\resources\\excel\\hj01003.xls";
+    public static String filePath_hj01004 = "src\\main\\resources\\excel\\hj01004.xls";
+    public static String filePath_hj01005 = "src\\main\\resources\\excel\\hj01005.xls";
+    public static String filePath_hj01006 = "src\\main\\resources\\excel\\hj01006.xls";
+    public static String filePath_hj01007 = "src\\main\\resources\\excel\\hj01007.xls";
+    public static String filePath_hj01008 = "src\\main\\resources\\excel\\hj01008.xls";
+    public static String filePath_hj01009 = "src\\main\\resources\\excel\\hj01009.xls";
+    public static String filePath_hj01010 = "src\\main\\resources\\excel\\hj01010.xls";
+    public static String filePath_hj01011 = "src\\main\\resources\\excel\\hj01011.xls";
+    public static String filePath_hj01012 = "src\\main\\resources\\excel\\hj01012.xls";
+    String[][] array_hj01000 = simulateShipUtil.readExcelInputArray(filePath_hj01000);
+/*    String[][] array_hj01001 = simulateShipUtil.readExcelInputArray(filePath_hj01001);
+    String[][] array_hj01002 = simulateShipUtil.readExcelInputArray(filePath_hj01002);
+    String[][] array_hj01003 = simulateShipUtil.readExcelInputArray(filePath_hj01003);
+    String[][] array_hj01004 = simulateShipUtil.readExcelInputArray(filePath_hj01004);
+    String[][] array_hj01005 = simulateShipUtil.readExcelInputArray(filePath_hj01005);
+    String[][] array_hj01006 = simulateShipUtil.readExcelInputArray(filePath_hj01006);
+    String[][] array_hj01007 = simulateShipUtil.readExcelInputArray(filePath_hj01007);
+    String[][] array_hj01008 = simulateShipUtil.readExcelInputArray(filePath_hj01008);
+    String[][] array_hj01009 = simulateShipUtil.readExcelInputArray(filePath_hj01009);
+    String[][] array_hj01010 = simulateShipUtil.readExcelInputArray(filePath_hj01010);
+    String[][] array_hj01011 = simulateShipUtil.readExcelInputArray(filePath_hj01011);
+    String[][] array_hj01012 = simulateShipUtil.readExcelInputArray(filePath_hj01012);*/
+
+    static String[][] ship = new String[400][5];
+
 /*@Autowired
 private SimulateShipUtil simulateShipUtil;*/
 
     public static ScheduleSimulateShipInfo scheduleSimulateShipInfo;
 
-    public ScheduleSimulateShipInfo() {
+    public ScheduleSimulateShipInfo() throws IOException, BiffException {
 
     }
 
@@ -232,7 +267,7 @@ private SimulateShipUtil simulateShipUtil;*/
     /**
      * 计算速度和方向的参数
      */
-    Integer rowCountSimulateShipInfo = 400;
+    Integer rowCountSimulateShipInfo = 400; //动态模拟船总数
     Double[] getLongArray1 = new Double[rowCountSimulateShipInfo];
     Double[] getLongArray2 = new Double[rowCountSimulateShipInfo];
     Double[] getLatArray1 = new Double[rowCountSimulateShipInfo];
@@ -338,7 +373,6 @@ private SimulateShipUtil simulateShipUtil;*/
     */
 
 
-
     /**
      * 计算速度和方向并更新到表
      * A2-A1  i为偶数
@@ -358,10 +392,10 @@ private SimulateShipUtil simulateShipUtil;*/
             } else {
                 System.out.println("速度为0了------------");
             }
-            String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
-            String speedString = String.format("%.2f", speed[i]);
-            simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
-//            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A2-A1 ----    " + LocalDateTime.now());
+            ship[i][3] = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
+            ship[i][4] = String.format("%.2f", speed[i]);
+            simulateShipInfoService.updateLongLatAngleSpeed(Double.valueOf(ship[i][1]), Double.valueOf(ship[i][2]), ship[i][3], ship[i][4], i + 1);
+            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-***经度：" + Double.valueOf(ship[i][1]) + " 纬度：" + Double.valueOf(ship[i][2]) + "  **角度：" + ship[i][3] + " --速度：" + ship[i][4] + "   ---  A2-A1 ----    " + LocalDateTime.now());
         }
     }
 
@@ -384,32 +418,22 @@ private SimulateShipUtil simulateShipUtil;*/
             } else {
                 System.out.println("速度为0了------------");
             }
-            String angleString = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
-            String speedString = String.format("%.2f", speed[i]);
-            simulateShipInfoService.updateAngleSpeed(angleString, speedString, i + 1);
-//            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-*******角度：" + angleString + "   //------速度：" + speedString + "   ---  A1-A2 ----    " + LocalDateTime.now());
+            ship[i][3] = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
+            ship[i][4] = String.format("%.2f", speed[i]);
+            simulateShipInfoService.updateLongLatAngleSpeed(Double.valueOf(ship[i][1]), Double.valueOf(ship[i][2]), ship[i][3], ship[i][4], i + 1);
+            System.out.println("//-@@@@@@id：" + (i + 1) + "   //-***经度：" + Double.valueOf(ship[i][1]) + " 纬度：" + Double.valueOf(ship[i][2]) + "  **角度：" + ship[i][3] + " --速度：" + ship[i][4] + "   ---  A1-A2 ----    " + LocalDateTime.now());
+
         }
     }
 
 
-    /**
-     * 通用方法
-     * hj01001 等
-     *
-     * @param shipTrack
-     * @param shipNum
-     * @param mmsiInit
-     * @param idPoint
-     * @param idInit
-     * @param speed
-     * @param i
-     * @param amount
-     */
-    private void simulateShipUpdatePosition(String shipTrack, int shipNum, int mmsiInit, int[] idPoint, int[] idInit, int[] speed, int[] i, int amount) {
+
+/*    private void simulateShipUpdatePosition(String shipTrack, int shipNum, int mmsiInit, int[] idPoint, int[] idInit, int[] speed, int[] i, int amount) {
         for (int j = 0; j < shipNum; j++) {
 
             int mmsi = mmsiInit + j;
             idPoint[j] = idInit[j] + speed[j] * i[j];
+
             simulateShipInfoService.simulateShipUpdatePosition(shipTrack, mmsi, idPoint[j]);
 //            System.out.println("simulateCH02601: " + "  idPoint: " + idPoint1[j] + ", mmsi: " + mmsi + "   *    " + LocalDateTime.now());
             if (idPoint[j] < amount) {
@@ -418,9 +442,129 @@ private SimulateShipUtil simulateShipUtil;*/
                 i[j] = 1;
             }
         }
-    }
+    }*/
 
     /**
+     * 航迹数组赋值给ship数组  经纬度
+     * @param array_hj
+     * @param shipNum
+     * @param shipidInit
+     * @param idPoint
+     * @param idInit
+     * @param speed
+     * @param i
+     * @param amount
+     */
+    private void shipArrayGetPosition(String[][] array_hj, int shipNum, int shipidInit, int[] idPoint, int[] idInit, int[] speed, int[] i, int amount) {
+        for (int j = 0; j < shipNum; j++) {
+
+            int shipid = shipidInit + j;
+            idPoint[j] = idInit[j] + speed[j] * i[j];
+            if (idPoint[j] >= amount - 1) {
+                idPoint[j] = amount - 1;
+            }
+            ship[shipid - 1][0] = String.valueOf(shipid);
+            //经度  (航迹数组赋值给ship数组）
+            ship[shipid - 1][1] = array_hj[1][idPoint[j]];
+            //纬度
+            ship[shipid - 1][2] = array_hj[2][idPoint[j]];
+
+            if (idPoint[j] < amount) {
+                i[j]++;
+            } else {
+                i[j] = 1;
+            }
+        }
+    }
+
+
+    /**
+     * hj01000
+     * array_hj01000
+     */
+    String shipTrack00_01 = "hj01000"; //航迹
+    int speedMax00_01 = 8;     //最大速度
+    int speedMin00_01 = 3;     //最小速度
+    int amount00_01 = 14400;    // amount     总行数
+    //正向
+    int shipNum00_01 = 400;      //船数量
+    int[] idInit00_01 = simulateShipUtil.getIdInit(shipNum00_01, amount00_01);
+    int[] speed00_01 = simulateShipUtil.getSpeed(speedMax00_01, speedMin00_01, shipNum00_01);
+    int shipidInit00_01 = 1;          //从哪条船开始
+    int[] idPoint00_01 = new int[shipNum00_01];
+    int[] i00_01 = new int[shipNum00_01];
+
+    /**
+     * New
+     * 新简化任务
+     */
+    @Scheduled(cron = "0/2 * * * * ?")
+    private void taskNew() {
+        //得到经纬度赋值该  经度：ship[x][1]  纬度：ship[x][2] ;
+        shipArrayGetPosition(array_hj01000, shipNum00_01, shipidInit00_01, idPoint00_01, idInit00_01, speed00_01, i00_01, amount00_01);
+
+
+        //计算方向、速度   方向：ship[x][3]  速度：ship[x][4]
+        //第一遍不计算；
+        if (iJudge == 0) {
+            for (int i = 0; i < rowCountSimulateShipInfo; i++) {
+                getLongArray2[i] = Double.valueOf(ship[i][1]);
+                getLatArray2[i] = Double.valueOf(ship[i][2]);
+
+            }
+        }
+        //第二遍开始计算
+        if (iJudge != 0) {
+            for (int i = 0; i < rowCountSimulateShipInfo; i++) {
+                getLongArray1[i] = getLongArray2[i];
+                getLatArray1[i] = getLatArray2[i];
+
+                getLongArray2[i] = Double.valueOf(ship[i][1]);
+                getLatArray2[i] = Double.valueOf(ship[i][2]);
+
+
+                angle[i] = simulateShipUtil.getAngle(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
+                speed[i] = simulateShipUtil.getSpeed(getLongArray1[i], getLatArray1[i], getLongArray2[i], getLatArray2[i]);
+                ship[i][3] = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
+                ship[i][4] = String.format("%.2f", speed[i]);
+            }
+            for (int i = 0; i < rowCountSimulateShipInfo; i++) {
+                simulateShipInfoService.insertLongLatAngleSpeedToStatic(
+                        Double.valueOf(ship[i][1]),
+                        Double.valueOf(ship[i][2]),
+                        ship[i][3],
+                        ship[i][4],
+                        Integer.valueOf(ship[i][0]));
+//                System.out.println(ship[i][0] + "  " + ship[i][1] + "  " + ship[i][2] + "  " + ship[i][3] + "  " + ship[i][4]);
+
+            }
+            System.out.println("/-----------------One Time-------  : "+LocalDateTime.now());
+
+//新增到static表
+//            shipInfoStaticService.updateToShipInfoStatic();
+//            System.out.println("```````````从模拟表simulate_ship_info更新 经纬度/速度/方向 新增到ship_info_static形成静态长表·············· 2 ····" + LocalDateTime.now());
+//            for (int i = 0; i < rowCountSimulateShipInfo; i++) {
+//                simulateShipInfoService.updateLongLatAngleSpeed(
+//                        Double.valueOf(ship[i][1]),
+//                        Double.valueOf(ship[i][2]),
+//                        ship[i][3],
+//                        ship[i][4],
+//                        Integer.valueOf(ship[i][0]));
+//                System.out.println(ship[i][0] + "  " + ship[i][1] + "  " + ship[i][2] + "  " + ship[i][3] + "  " + ship[i][4]);
+//
+//            }
+//
+////新增到static表
+//            shipInfoStaticService.updateToShipInfoStatic();
+//            System.out.println("```````````从模拟表simulate_ship_info更新 经纬度/速度/方向 新增到ship_info_static形成静态长表·············· 2 ····" + LocalDateTime.now());
+
+        }
+
+        iJudge++;
+    }
+
+
+ /*   *//**
      * channel_point simulateCH02601专用方法
      *
      * @param shipNum1
@@ -430,7 +574,7 @@ private SimulateShipUtil simulateShipUtil;*/
      * @param speed1
      * @param i1
      * @param amount1
-     */
+     *//*
     private void simulateShipUpdatePositionchannel_point(int shipNum1, int mmsiInit1, int[] idPoint1, int[] idInit1, int[] speed1, int[] i1, int amount1) {
         for (int j = 0; j < shipNum1; j++) {
 
@@ -444,9 +588,10 @@ private SimulateShipUtil simulateShipUtil;*/
                 i1[j] = 1;
             }
         }
-    }
+    }*/
 /**
  *  制作数据用：正常运行屏蔽掉
+ *
  */
     //正向，shipNum条船，得到每条船的下一个idPoint，即位置
 /*    @Scheduled(cron = "1,31 * * * * ?")
@@ -472,7 +617,6 @@ private SimulateShipUtil simulateShipUtil;*/
             }
         }
     }*/
-
 
 
 }

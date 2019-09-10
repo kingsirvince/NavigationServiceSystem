@@ -149,7 +149,25 @@ public class SimulateShipInfoServiceImpl extends AbstractService<SimulateShipInf
         return speed;
     }
 
-    /* @Override
+    /**
+     * 根据id更新 经纬度、角度、速度
+     * @param longitude
+     * @param latitude
+     * @param angleString
+     * @param speedString
+     * @param id
+     * @return
+     */
+    @Override
+    public Integer updateLongLatAngleSpeed(double longitude, double latitude, String angleString, String speedString, Integer id) {
+        return simulateShipInfoMapper.updateLongLatAngleSpeed(longitude, latitude, angleString, speedString, id);
+    }
+
+    @Override
+    public Integer insertLongLatAngleSpeedToStatic(double longitude, double latitude, String angleString, String speedString, Integer id) {
+        return simulateShipInfoMapper.insertLongLatAngleSpeedToStatic(longitude, latitude, angleString, speedString, id);
+    }
+/* @Override
     public Integer updateCH02601(Integer divisor, Integer remainder , Integer subtract) {
         return simulateShipInfoMapper.updateCH02601(divisor, remainder,subtract);
     }*/

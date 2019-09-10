@@ -23,6 +23,10 @@ public class Application {
 //测试航道划分功能,读取excel，得到航道划分数组
 //        ChannelDivisionIDUtil channelDivisionIDUtil = new ChannelDivisionIDUtil();(已经改为静态方法，所以不用生成一个新对象）
         ChannelDivisionIDUtil.readExcelInputArray();
+
+
+
+
 /*
         Thread t = new Thread(new Runnable() {
             @Override

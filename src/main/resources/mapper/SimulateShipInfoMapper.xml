@@ -28,36 +28,6 @@
     <result column="Ship_latitude" jdbcType="DECIMAL" property="shipLatitude" />
   </resultMap>
 
-<!--将idPoint行的经纬度，更新给mmsi的模拟船舶-->
-<update id="simulateCH02601" parameterType="com.company.project.model.SimulateShipInfo">
-  UPDATE  simulate_ship_info s
-LEFT JOIN
-        channel_point  c
-ON      s.Ship_MMSI = #{mmsi}
-SET     s.Ship_longitude = c.CH02601_long , s.Ship_latitude = c.CH02601_lat
-WHERE   c.id = #{idPoint}
-</update>
-  <!--基础方法，将idPoint行的经纬度，更新给mmsi的模拟船舶-->
-  <update id="simulateShipUpdatePosition" parameterType="com.company.project.model.SimulateShipInfo">
-  UPDATE  simulate_ship_info s
-LEFT JOIN
-        ${ShipTrack}  c
-ON      s.Ship_MMSI = #{mmsi}
-SET     s.Ship_longitude = c.longitude , s.Ship_latitude = c.latitude
-WHERE   c.id = #{idPoint}
-</update>
-  <!--将经纬度取出计算方向-->
-  <select id="getIdLongLat" resultMap="IdLongLatResultMap">
-    select ID,Ship_longitude,Ship_latitude from `simulate_ship_info`
-  </select>
-  <!--将经度取出计算方向-->
-  <select id="getLong" resultType="java.lang.Double">
-    select Ship_longitude from `simulate_ship_info`
-  </select>
-  <!--将纬度取出计算方向-->
-  <select id="getLat" resultType="java.lang.Double">
-    select Ship_latitude from `simulate_ship_info`
-  </select>
   
   <!--快速查询行总数-->
   <select id="rowCount" resultType="java.lang.Integer">
@@ -69,6 +39,18 @@ WHERE   c.id = #{idPoint}
         update simulate_ship_info  set Ship_heading = #{angleString}, Ship_speed= #{speedString} where id = #{id}
     </update>
 
+<!--  根据id更新船的 经纬度、方向、速度-->
+<update id="updateLongLatAngleSpeed">
+  update simulate_ship_info  set Ship_longitude=#{longitude}, Ship_latitude=#{latitude},Ship_heading = #{angleString}, Ship_speed= #{speedString} where id = #{id}
+</update>
+
+  <!--  static 根据id更新船的 经纬度、方向、速度-->
+  <update id="insertLongLatAngleSpeedToStatic">
+  insert into ship_info_static  (id,Ship_longitude, Ship_latitude,Ship_heading, Ship_speed)
+  VALUES
+ (#{id}, #{longitude},#{latitude},#{angleString},#{speedString})
+</update>
+
 <!--将所有轨迹点14400/720，得到20个点，然后每次加num的间隔频率。查询结果加自增序列i。更新模拟船舶的id=c.i 20条配20条-->
 <!--  <update id="updateCH02601" parameterType="com.company.project.model.SimulateShipInfo">
 UPDATE simulate_ship_info s
@@ -76,5 +58,38 @@ LEFT JOIN (
 select (@i:=@i+1) i ,id,CH02601_long,CH02601_lat  from channel_point  , (SELECT @i:=0) AS i where id%#{divisor}=#{remainder}  ) c
 on s.id = (c.i-#{subtract} ) set s.Ship_longitude=c.CH02601_long , s.Ship_latitude=c.CH02601_lat;
 </update>-->
-
+  <!--废弃-->
+  <!--将idPoint行的经纬度，更新给mmsi的模拟船舶-->
+  <update id="simulateCH02601" parameterType="com.company.project.model.SimulateShipInfo">
+  UPDATE  simulate_ship_info s
+LEFT JOIN
+        channel_point  c
+ON      s.Ship_MMSI = #{mmsi}
+SET     s.Ship_longitude = c.CH02601_long , s.Ship_latitude = c.CH02601_lat
+WHERE   c.id = #{idPoint}
+</update>
+  <!--  废弃-->
+  <!--基础方法，将idPoint行的经纬度，更新给mmsi的模拟船舶-->
+  <update id="simulateShipUpdatePosition" parameterType="com.company.project.model.SimulateShipInfo">
+  UPDATE  simulate_ship_info s
+LEFT JOIN
+        ${ShipTrack}  c
+ON      s.Ship_MMSI = #{mmsi}
+SET     s.Ship_longitude = c.longitude , s.Ship_latitude = c.latitude
+WHERE   c.id = #{idPoint}
+</update>
+  <!--废弃-->
+  <!--将经纬度取出计算方向-->
+  <select id="getIdLongLat" resultMap="IdLongLatResultMap">
+    select ID,Ship_longitude,Ship_latitude from `simulate_ship_info`
+  </select>
+  <!--  废弃-->
+  <!--将经度取出计算方向-->
+  <select id="getLong" resultType="java.lang.Double">
+    select Ship_longitude from `simulate_ship_info`
+  </select>
+  <!--将纬度取出计算方向-->
+  <select id="getLat" resultType="java.lang.Double">
+    select Ship_latitude from `simulate_ship_info`
+  </select>
 </mapper>

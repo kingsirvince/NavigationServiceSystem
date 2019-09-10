@@ -26,6 +26,18 @@ public interface SimulateShipInfoService extends Service<SimulateShipInfo> {
     Double[] getLatArray();
     double getAngle( double lng_a,double lat_a, double lng_b,double lat_b );
     double getSpeed( double lng_a,double lat_a, double lng_b,double lat_b);
+
+    Integer updateLongLatAngleSpeed(double longitude,
+                                    double latitude,
+                                    String angleString,
+                                     String speedString,
+                                    Integer id);
+
+    Integer insertLongLatAngleSpeedToStatic(double longitude,
+                                            double latitude,
+                                            String angleString,
+                                            String speedString,
+                                            Integer id);
 //    Integer updateCH02601(Integer divisor, Integer remainder,Integer subtract);
 
 }
