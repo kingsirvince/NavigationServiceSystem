@@ -20,7 +20,7 @@ import java.util.Random;
  * random函数
  */
 @Component
-public class SimulateShipUtil{
+public class SimulateShipUtil {
 
     @Autowired
     public SimulateShipInfoService simulateShipInfoService;
@@ -30,10 +30,11 @@ public class SimulateShipUtil{
     public SimulateShipUtil() {
 
     }
+
     @PostConstruct
     public void init() {
-        simulateShipUtil=this;
-        simulateShipUtil.simulateShipInfoService=this.simulateShipInfoService;
+        simulateShipUtil = this;
+        simulateShipUtil.simulateShipInfoService = this.simulateShipInfoService;
 
     }
 
@@ -43,8 +44,6 @@ public class SimulateShipUtil{
 
 
     Random ran = new Random();
-
-
 
 
     //
@@ -69,6 +68,7 @@ public class SimulateShipUtil{
 
     /**
      * 将经度从mysql返回的list中，提取到数组getLong中
+     *
      * @return
      */
     public Double[] getLongArray() {
@@ -90,14 +90,15 @@ public class SimulateShipUtil{
 
 
     /**
-     *算角度
+     * 算角度
+     *
      * @param lat_a 纬度1
      * @param lng_a 经度1
      * @param lat_b 纬度2
      * @param lng_b 经度2
      * @return
      */
-    public   double getAngle( double lng_a,double lat_a, double lng_b,double lat_b ) {
+    public double getAngle(double lng_a, double lat_a, double lng_b, double lat_b) {
 
         double y = Math.sin(lng_b - lng_a) * Math.cos(lat_b);
         double x = Math.cos(lat_a) * Math.sin(lat_b) - Math.sin(lat_a) * Math.cos(lat_b) * Math.cos(lng_b - lng_a);
@@ -113,10 +114,10 @@ public class SimulateShipUtil{
     /**
      * 算速度
      */
-    public double getSpeed( double lng_a,double lat_a, double lng_b,double lat_b) {
-        double x = Math.pow((lng_b - lng_a),2);
+    public double getSpeed(double lng_a, double lat_a, double lng_b, double lat_b) {
+        double x = Math.pow((lng_b - lng_a), 2);
         double y = Math.pow((lat_b - lat_a), 2);
-        double speed= Math.sqrt(x+y)*111322.2222*3600/1000/1.825;
+        double speed = Math.sqrt(x + y) * 111322.2222 * 3600 / 1000 / 1.825;
         return speed;
     }
 
@@ -126,45 +127,57 @@ public class SimulateShipUtil{
 
     /**
      * 从航迹excel读取到数组
+     *
      * @param filePath
      * @return
      */
-    public String[][] readExcelInputArray(String filePath) throws IOException, BiffException {
+
+    public String[][] readExcelInputArray(String filePath) {
 //        本地读取excel
-        String[][] array;
+//        String[][] array;
 
         Workbook readwb = null;
         // List<String> list = new ArrayList<String>();
 
-            // 构建Workbook对象, 只读Workbook对象 直接从本地文件创建Workbook
-            //只能读xls格式，xlsx不支持
+        // 构建Workbook对象, 只读Workbook对象 直接从本地文件创建Workbook
+        //只能读xls格式，xlsx不支持
+        try {
             readwb = Workbook.getWorkbook(new FileInputStream(new File(filePath)));
-            // Sheet的下标是从0开始 获取第一张Sheet表
-            Sheet readsheet = readwb.getSheet(0);
-            // 获取Sheet表中所包含的总列数
-            int rsColumns = readsheet.getColumns();
-            // 获取Sheet表中所包含的总行数
-            int rsRows = readsheet.getRows();
-            // 获取指定单元格的对象引用
-             array = (new String[rsColumns][rsRows]);
-            for (int i = 0; i < rsColumns; i++) {
-                for (int j = 0; j < rsRows; j++) {
-                    Cell cell = readsheet.getCell(i, j);
-                    // System.out.print(cell.getContents() + " ");
-                    // list.add(cell.getContents());
-                    array[i][j] = cell.getContents();
-                }
+
+        // Sheet的下标是从0开始 获取第一张Sheet表
+        Sheet readsheet = readwb.getSheet(0);
+        // 获取Sheet表中所包含的总列数
+        int rsColumns = readsheet.getColumns();
+        // 获取Sheet表中所包含的总行数
+        int rsRows = readsheet.getRows();
+        // 获取指定单元格的对象引用
+        String[][] array = (new String[rsColumns][rsRows]);
+        for (int i = 0; i < rsColumns; i++) {
+            for (int j = 0; j < rsRows; j++) {
+                Cell cell = readsheet.getCell(i, j);
+                // System.out.print(cell.getContents() + " ");
+                // list.add(cell.getContents());
+                array[i][j] = cell.getContents();
             }
-            //遍历打印数组
-            for (int i = 0; i < rsColumns; i++) {
+        }
+        //遍历打印数组
+ /*           for (int i = 0; i < rsColumns; i++) {
                 for (int j = 0; j < rsRows; j++) {
                     System.out.print( " array["+i+"] [" + j+"] =" +array[i][j] );
-                }
-                System.out.println("  ");
-                System.out.println("---------------------数据分割线-------------+----"+filePath);
-            }
+                }*/
+        System.out.println("  ");
+        System.out.println("---------------------数据分割线--  " + array[0].length +" ---- "+ array[1].length +" ---- "+ array[2].length +" ---- "+ filePath);
+            return array;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (BiffException e) {
+            e.printStackTrace();
+        }
+        finally{
+            readwb.close();
+        }
 
-        return array;
 
+        return new String[0][];
     }
 }
