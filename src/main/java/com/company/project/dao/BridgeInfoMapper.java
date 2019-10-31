@@ -3,6 +3,7 @@ package com.company.project.dao;
 import com.company.project.core.Mapper;
 import com.company.project.model.BridgeInfo;
 import com.company.project.model.distance.BridgeInfoDistance;
+import com.company.project.model.other.BridgeInfoHeight;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
@@ -14,4 +15,6 @@ public interface BridgeInfoMapper extends Mapper<BridgeInfo> {
     Integer updateLimitHeight(@Param("subtrahend") Double subtrahend);
 
     Double getByRowField(@Param("field")String field, @Param("row")String row,@Param("rowValue")String rowValue);
+
+    List<BridgeInfoHeight> getLimitHeight();
 }

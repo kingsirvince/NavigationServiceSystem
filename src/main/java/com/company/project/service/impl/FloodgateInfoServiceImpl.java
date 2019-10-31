@@ -3,6 +3,7 @@ package com.company.project.service.impl;
 import com.company.project.dao.FloodgateInfoMapper;
 import com.company.project.model.FloodgateInfo;
 import com.company.project.model.distance.FloodgateInfoDistance;
+import com.company.project.model.other.FloodgateInfoHeight;
 import com.company.project.service.FloodgateInfoService;
 import com.company.project.core.AbstractService;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,10 @@ public class FloodgateInfoServiceImpl extends AbstractService<FloodgateInfo> imp
     @Override
     public Double getByRowField(String field, String row, String rowValue) {
         return floodgateInfoMapper.getByRowField(field, row, rowValue);
+    }
+
+    @Override
+    public List<FloodgateInfoHeight> getLimitHeight() {
+        return floodgateInfoMapper.getLimitHeight();
     }
 }

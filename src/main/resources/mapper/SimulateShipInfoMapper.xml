@@ -51,6 +51,13 @@
  (#{id}, #{longitude},#{latitude},#{angleString},#{speedString})
 </update>
 
+  <!--  demo01 根据id更新船的 经纬度、方向、速度-->
+  <update id="insertLongLatAngleSpeedToDemo">
+  insert into ${demoStaticName}  (id,Ship_longitude, Ship_latitude,Ship_heading, Ship_speed)
+  VALUES
+ (#{id}, #{longitude},#{latitude},#{angleString},#{speedString})
+</update>
+
 <!--将所有轨迹点14400/720，得到20个点，然后每次加num的间隔频率。查询结果加自增序列i。更新模拟船舶的id=c.i 20条配20条-->
 <!--  <update id="updateCH02601" parameterType="com.company.project.model.SimulateShipInfo">
 UPDATE simulate_ship_info s

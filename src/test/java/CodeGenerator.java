@@ -38,7 +38,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("ship_info_static");
+        genCode("data_weather");
 
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }

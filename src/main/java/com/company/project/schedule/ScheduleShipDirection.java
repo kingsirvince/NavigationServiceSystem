@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 /**
+ * 废弃
  * 模拟船舶方向
  * 定时得到第一组和第二组经纬度，sleep等待
  * 计算方向，赋值给simulate_ship_info

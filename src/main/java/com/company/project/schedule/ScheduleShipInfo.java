@@ -23,6 +23,7 @@ public class ScheduleShipInfo {
 
 
     /**
+     * 废弃
      * id1Initial 一次更新的第一个数；id2Initial 一次更新的最后一个数
      * num 一次更新的数量； amount 模拟数据总个数； i 第几次更新
      *//*

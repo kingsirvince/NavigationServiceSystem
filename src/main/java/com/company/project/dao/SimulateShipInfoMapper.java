@@ -32,4 +32,11 @@ public interface SimulateShipInfoMapper extends Mapper<SimulateShipInfo> {
                                             @Param("angleString")String angleString,
                                             @Param("speedString") String speedString,
                                             @Param("id")Integer id);
+
+    Integer insertLongLatAngleSpeedToDemo(@Param("longitude")double longitude,
+                                            @Param("latitude")double latitude,
+                                            @Param("angleString")String angleString,
+                                            @Param("speedString") String speedString,
+                                            @Param("id")Integer id,
+                                            @Param("demoStaticName")String demoStaticName )  ;
 }

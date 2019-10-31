@@ -4,6 +4,7 @@ import com.company.project.core.AbstractService;
 import com.company.project.dao.BridgeInfoMapper;
 import com.company.project.model.BridgeInfo;
 import com.company.project.model.distance.BridgeInfoDistance;
+import com.company.project.model.other.BridgeInfoHeight;
 import com.company.project.service.BridgeInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +38,10 @@ public class BridgeInfoServiceImpl extends AbstractService<BridgeInfo> implement
     public Double getByRowField(String field, String row, String rowValue) {
         System.out.println(field);
         return bridgeInfoMapper.getByRowField(field, row, rowValue);
+    }
+
+    @Override
+    public List<BridgeInfoHeight> getLimitHeight() {
+        return bridgeInfoMapper.getLimitHeight();
     }
 }

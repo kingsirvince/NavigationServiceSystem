@@ -4,6 +4,7 @@ import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
 import com.company.project.model.BridgeInfo;
 import com.company.project.model.distance.BridgeInfoDistance;
+import com.company.project.model.other.BridgeInfoHeight;
 import com.company.project.service.BridgeInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -65,9 +66,19 @@ public class BridgeInfoController {
      * @param num   需要返回数量（可以不写，默认是5个）
      * @return
      */
-    @PostMapping("sortByDistance")
+    @PostMapping("/sortByDistance")
     public Result sortByDistance(@RequestParam("longitude") BigDecimal longitude, @RequestParam ("latitude")BigDecimal latitude, @RequestParam(value = "num",defaultValue ="5" )Integer num ){
         List<BridgeInfoDistance> list = bridgeInfoService.sortByDistance(longitude, latitude,num);
+        return ResultGenerator.genSuccessResult(list);
+    }
+
+    /**
+     * 得到限高列表 （名字、ID、限高）
+     * @return
+     */
+    @PostMapping("/getLimitHeight")
+    public Result getLimitHeight(){
+        List<BridgeInfoHeight> list =bridgeInfoService.getLimitHeight();
         return ResultGenerator.genSuccessResult(list);
     }
 

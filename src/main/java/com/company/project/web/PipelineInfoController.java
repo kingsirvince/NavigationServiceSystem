@@ -4,6 +4,7 @@ import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
 import com.company.project.model.PipelineInfo;
 import com.company.project.model.distance.PipelineInfoDistance;
+import com.company.project.model.other.PipelineInfoHeight;
 import com.company.project.service.PipelineInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -52,6 +53,16 @@ public class PipelineInfoController {
         criteria.orEqualTo(fieldName, value);
 
         List<PipelineInfo> list = pipelineInfoService.findByCondition(condition);
+        return ResultGenerator.genSuccessResult(list);
+    }
+
+    /**
+     * 得到限高列表 （名字、ID、限高）
+     * @return
+     */
+    @PostMapping("/getLimitHeight")
+    public Result getLimitHeight(){
+        List<PipelineInfoHeight> list =pipelineInfoService.getLimitHeight();
         return ResultGenerator.genSuccessResult(list);
     }
 

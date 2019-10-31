@@ -2,8 +2,10 @@ package com.company.project;
 
 import com.company.project.util.ChannelDivisionIDUtil;
 import com.company.project.util.SpringContextUtil;
+import com.company.project.util.WeatherUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -15,6 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableScheduling
 @Import(SpringContextUtil.class)
 @MapperScan("com.company.project.dao")
+@EnableAutoConfiguration(exclude = {
+        org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class
+})
+//上面把安全认证给关了
 //@MapperScan(basePackages = {"com.company.project.dao","com.company.project.util"})
 //@ComponentScan("com.company.project.schedule" )
 public class Application {
@@ -24,6 +30,8 @@ public class Application {
 //        ChannelDivisionIDUtil channelDivisionIDUtil = new ChannelDivisionIDUtil();(已经改为静态方法，所以不用生成一个新对象）
         ChannelDivisionIDUtil.readExcelInputArray();
 
+        WeatherUtil weatherUtil =new WeatherUtil();
+        weatherUtil.startWeather();
 
 
 

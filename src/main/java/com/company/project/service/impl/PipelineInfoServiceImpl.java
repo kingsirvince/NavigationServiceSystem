@@ -3,6 +3,7 @@ package com.company.project.service.impl;
 import com.company.project.dao.PipelineInfoMapper;
 import com.company.project.model.PipelineInfo;
 import com.company.project.model.distance.PipelineInfoDistance;
+import com.company.project.model.other.PipelineInfoHeight;
 import com.company.project.service.PipelineInfoService;
 import com.company.project.core.AbstractService;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,10 @@ public class PipelineInfoServiceImpl extends AbstractService<PipelineInfo> imple
     @Override
     public Double getByRowField(String field, String row, String rowValue) {
         return pipelineInfoMapper.getByRowField(field, row, rowValue);
+    }
+
+    @Override
+    public List<PipelineInfoHeight> getLimitHeight() {
+        return pipelineInfoMapper.getLimitHeight();
     }
 }

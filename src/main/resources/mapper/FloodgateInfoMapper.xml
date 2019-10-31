@@ -27,6 +27,13 @@
     <result column="distance" property="distance" />
   </resultMap>
 
+    <resultMap id="LimitHeightResultMap" type="com.company.project.model.other.FloodgateInfoHeight">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="Floodgate_name" jdbcType="VARCHAR" property="floodgateName" />
+        <result column="Floodgate_ID" jdbcType="VARCHAR" property="floodgateId" />
+        <result column="Floodgate_limit_height" jdbcType="VARCHAR" property="floodgateLimitHeight" />
+    </resultMap>
+
   <select id="sortByDistance" resultMap="DistanceResultMap">
  SELECT
     *,
@@ -64,5 +71,10 @@
 
     <select id="getByRowField"  resultType="java.lang.Double" parameterType="java.lang.String">
         select ${field} from floodgate_info where ${row} = #{rowValue};
+    </select>
+
+    <select id="getLimitHeight" resultMap="LimitHeightResultMap">
+    select ID, Floodgate_name ,Floodgate_ID,Floodgate_limit_height from Floodgate_info
+
     </select>
 </mapper>

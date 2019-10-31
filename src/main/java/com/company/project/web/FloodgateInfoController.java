@@ -4,6 +4,7 @@ import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
 import com.company.project.model.FloodgateInfo;
 import com.company.project.model.distance.FloodgateInfoDistance;
+import com.company.project.model.other.FloodgateInfoHeight;
 import com.company.project.service.FloodgateInfoService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -52,6 +53,15 @@ public class FloodgateInfoController {
         criteria.orEqualTo(fieldName, value);
 
         List<FloodgateInfo> list = floodgateInfoService.findByCondition(condition);
+        return ResultGenerator.genSuccessResult(list);
+    }
+    /**
+     * 得到限高列表 （名字、ID、限高）
+     * @return
+     */
+    @PostMapping("/getLimitHeight")
+    public Result getLimitHeight(){
+        List<FloodgateInfoHeight> list =floodgateInfoService.getLimitHeight();
         return ResultGenerator.genSuccessResult(list);
     }
 

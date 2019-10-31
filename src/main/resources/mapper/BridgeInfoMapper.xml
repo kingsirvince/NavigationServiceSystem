@@ -26,9 +26,17 @@
     <result column="distance" property="distance" />
   </resultMap>
 
-    <resultMap id="HeightResultMap" type="com.company.project.model.BridgeInfo">
+    <resultMap id="LimitHeightResultMap" type="com.company.project.model.other.BridgeInfoHeight">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="Bridge_name" jdbcType="VARCHAR" property="bridgeName" />
+        <result column="Bridge_ID" jdbcType="VARCHAR" property="bridgeId" />
         <result column="Bridge_limit_height" jdbcType="VARCHAR" property="bridgeLimitHeight" />
     </resultMap>
+
+<!--    <resultMap id="HeightResultMap" type="com.company.project.model.BridgeInfo">
+        <result column="Bridge_limit_height" jdbcType="VARCHAR" property="bridgeLimitHeight" />
+    </resultMap>
+    -->
 
   <select id="sortByDistance" resultMap="DistanceResultMap">
  SELECT
@@ -68,6 +76,11 @@
 
     <select id="getByRowField"  resultType="java.lang.Double" parameterType="java.lang.String">
         select ${field} from bridge_info where ${row} = #{rowValue};
+    </select>
+
+    <select id="getLimitHeight" resultMap="LimitHeightResultMap">
+    select ID, Bridge_name ,Bridge_ID,Bridge_limit_height from bridge_info
+
     </select>
 
 </mapper>

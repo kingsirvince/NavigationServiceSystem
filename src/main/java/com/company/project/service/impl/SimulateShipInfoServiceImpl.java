@@ -167,7 +167,12 @@ public class SimulateShipInfoServiceImpl extends AbstractService<SimulateShipInf
     public Integer insertLongLatAngleSpeedToStatic(double longitude, double latitude, String angleString, String speedString, Integer id) {
         return simulateShipInfoMapper.insertLongLatAngleSpeedToStatic(longitude, latitude, angleString, speedString, id);
     }
-/* @Override
+
+    @Override
+    public Integer insertLongLatAngleSpeedToDemo(double longitude, double latitude, String angleString, String speedString, Integer id, String demoStaticName) {
+        return simulateShipInfoMapper.insertLongLatAngleSpeedToDemo(longitude, latitude, angleString, speedString, id, demoStaticName);
+    }
+    /* @Override
     public Integer updateCH02601(Integer divisor, Integer remainder , Integer subtract) {
         return simulateShipInfoMapper.updateCH02601(divisor, remainder,subtract);
     }*/

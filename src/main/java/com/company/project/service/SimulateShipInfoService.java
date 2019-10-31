@@ -38,6 +38,15 @@ public interface SimulateShipInfoService extends Service<SimulateShipInfo> {
                                             String angleString,
                                             String speedString,
                                             Integer id);
+
+    Integer insertLongLatAngleSpeedToDemo(double longitude,
+                                            double latitude,
+                                            String angleString,
+                                            String speedString,
+                                            Integer id,
+                                          String demoStaticName);
+
+
 //    Integer updateCH02601(Integer divisor, Integer remainder,Integer subtract);
 
 }

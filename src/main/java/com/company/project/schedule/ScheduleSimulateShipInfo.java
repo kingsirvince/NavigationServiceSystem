@@ -7,11 +7,9 @@ import com.company.project.util.SimulateShipUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 
 @Component
 @Configuration      //1.主要用于标记配置类，兼备Component的效果。
@@ -44,6 +42,9 @@ public class ScheduleSimulateShipInfo {
     public static String filePath_hj01011 = "src\\main\\resources\\excel\\hj01011.xls";
     public static String filePath_hj01012 = "src\\main\\resources\\excel\\hj01012.xls";
     //把excel航迹经纬度 读入到 数组 array_hj
+
+    //正常运行注释掉
+    /*
     String[][] array_hj01001 = simulateShipUtil.readExcelInputArray(filePath_hj01001);
     String[][] array_hj01002 = simulateShipUtil.readExcelInputArray(filePath_hj01002);
     String[][] array_hj01003 = simulateShipUtil.readExcelInputArray(filePath_hj01003);
@@ -56,6 +57,8 @@ public class ScheduleSimulateShipInfo {
     String[][] array_hj01010 = simulateShipUtil.readExcelInputArray(filePath_hj01010);
     String[][] array_hj01011 = simulateShipUtil.readExcelInputArray(filePath_hj01011);
     String[][] array_hj01012 = simulateShipUtil.readExcelInputArray(filePath_hj01012);
+*/
+
 
     /**
      * 反向 12条 航迹
@@ -72,6 +75,9 @@ public class ScheduleSimulateShipInfo {
     public static String filePath_hj02010 = "src\\main\\resources\\excel\\hj02010.xls";
     public static String filePath_hj02011 = "src\\main\\resources\\excel\\hj02011.xls";
     public static String filePath_hj02012 = "src\\main\\resources\\excel\\hj02012.xls";
+
+    //正常运行注释掉
+  /*
     String[][] array_hj02001 = simulateShipUtil.readExcelInputArray(filePath_hj02001);
     String[][] array_hj02002 = simulateShipUtil.readExcelInputArray(filePath_hj02002);
     String[][] array_hj02003 = simulateShipUtil.readExcelInputArray(filePath_hj02003);
@@ -84,7 +90,7 @@ public class ScheduleSimulateShipInfo {
     String[][] array_hj02010 = simulateShipUtil.readExcelInputArray(filePath_hj02010);
     String[][] array_hj02011 = simulateShipUtil.readExcelInputArray(filePath_hj02011);
     String[][] array_hj02012 = simulateShipUtil.readExcelInputArray(filePath_hj02012);
-
+*/
     static String[][] ship = new String[400][5];  // 船的数组，包括400条船。id、经度、维度、角度、速度 5个列
 
 /*@Autowired
@@ -108,8 +114,8 @@ private SimulateShipUtil simulateShipUtil;*/
      * 计算速度和方向的参数
      */
     Integer rowCountSimulateShipInfo = 400; //动态模拟船总数
-    int speedMaxBase = 6;   //基础最大速度（跳跃行数）
-    int speedMinBase = 3;   //基础最小速度（跳跃行数）
+    int speedMaxBase = 2;   //基础最大速度（跳跃行数）
+    int speedMinBase = 1;   //基础最小速度（跳跃行数）
 
     Double[] getLongArray1 = new Double[rowCountSimulateShipInfo];
     Double[] getLongArray2 = new Double[rowCountSimulateShipInfo];
@@ -121,30 +127,16 @@ private SimulateShipUtil simulateShipUtil;*/
     //    Double[] speedFirst = new Double[rowCountSimulateShipInfo];
 //    Double precision = 0.0000001;
     int iJudge = 0;
-/*    *//** 正向航迹
-     * hj01000
-     * array_hj01000
-     *//*
-    String shipTrack00_01 = "hj01000"; //航迹
-    int speedMax00_01 = speedMaxBase;     //最大速度
-    int speedMin00_01 = speedMinBase;     //最小速度
-    int amount00_01 = 14400;    // amount     总行数
-    //正向
-    int shipNum00_01 = 20;      //船数量
-    int[] idInit00_01 = simulateShipUtil.getIdInit(shipNum00_01, amount00_01);
-    int[] speed00_01 = simulateShipUtil.getSpeed(speedMax00_01, speedMin00_01, shipNum00_01);
-    int shipidInit00_01 = 1;          //从哪条船开始
-    int[] idPoint00_01 = new int[shipNum00_01];
-    int[] i00_01 = new int[shipNum00_01];*/
-
-
-    /**
+   /** 正向航迹
+     *
+     * array_hj01001
+    *
      * hj01001
      */
     String shipTrack01_01 = "hj01001"; //航迹
     int speedMax01_01 = speedMaxBase;     //最大速度
     int speedMin01_01 = speedMinBase;     //最小速度
-    int amount01_01 = 10834;    // amount     总行数
+    int amount01_01 = 10821;    // amount     总行数
     //正向
     int shipNum01_01 = 20;      //船数量
     int[] idInit01_01 = simulateShipUtil.getIdInit(shipNum01_01, amount01_01);
@@ -159,7 +151,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack02_01 = "hj01002"; //航迹
     int speedMax02_01 = speedMaxBase;     //最大速度
     int speedMin02_01 = speedMinBase;     //最小速度
-    int amount02_01 = 14386;    // amount     总行数
+    int amount02_01 = 14071;    // amount     总行数
     //正向
     int shipNum02_01 = 20;      //船数量
     int[] idInit02_01 = simulateShipUtil.getIdInit(shipNum02_01, amount02_01);
@@ -173,7 +165,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack03_01 = "hj01003"; //航迹
     int speedMax03_01 = speedMaxBase;     //最大速度
     int speedMin03_01 = speedMinBase;     //最小速度
-    int amount03_01 = 13450;    // amount     总行数
+    int amount03_01 = 12972;    // amount     总行数
     //正向
     int shipNum03_01 = 20;      //船数量
     int[] idInit03_01 = simulateShipUtil.getIdInit(shipNum03_01, amount03_01);
@@ -187,7 +179,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack04_01 = "hj01004"; //航迹
     int speedMax04_01 = speedMaxBase;     //最大速度
     int speedMin04_01 = speedMinBase;     //最小速度
-    int amount04_01 = 13552;    // amount     总行数
+    int amount04_01 = 13378;    // amount     总行数
     //正向
     int shipNum04_01 = 20;      //船数量
     int[] idInit04_01 = simulateShipUtil.getIdInit(shipNum04_01, amount04_01);
@@ -201,7 +193,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack05_01 = "hj01005"; //航迹
     int speedMax05_01 = speedMaxBase;     //最大速度
     int speedMin05_01 = speedMinBase;     //最小速度
-    int amount05_01 = 15683;    // amount     总行数
+    int amount05_01 = 15527;    // amount     总行数
     //正向
     int shipNum05_01 = 20;      //船数量
     int[] idInit05_01 = simulateShipUtil.getIdInit(shipNum05_01, amount05_01);
@@ -215,7 +207,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack06_01 = "hj01006"; //航迹
     int speedMax06_01 = speedMaxBase;     //最大速度
     int speedMin06_01 = speedMinBase;     //最小速度
-    int amount06_01 = 13236;    // amount     总行数
+    int amount06_01 = 12923;    // amount     总行数
     //正向
     int shipNum06_01 = 20;      //船数量
     int[] idInit06_01 = simulateShipUtil.getIdInit(shipNum06_01, amount06_01);
@@ -229,7 +221,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack07_01 = "hj01007"; //航迹
     int speedMax07_01 = speedMaxBase;     //最大速度
     int speedMin07_01 = speedMinBase;     //最小速度
-    int amount07_01 = 3914;    // amount     总行数
+    int amount07_01 = 3780;    // amount     总行数
     //正向
     int shipNum07_01 = 10;      //船数量
     int[] idInit07_01 = simulateShipUtil.getIdInit(shipNum07_01, amount07_01);
@@ -243,7 +235,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack08_01 = "hj01008"; //航迹
     int speedMax08_01 = speedMaxBase;     //最大速度
     int speedMin08_01 = speedMinBase;     //最小速度
-    int amount08_01 = 5073;    // amount     总行数
+    int amount08_01 = 5020;    // amount     总行数
     //正向
     int shipNum08_01 = 10;      //船数量
     int[] idInit08_01 = simulateShipUtil.getIdInit(shipNum08_01, amount08_01);
@@ -257,7 +249,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack09_01 = "hj01009"; //航迹
     int speedMax09_01 = speedMaxBase;     //最大速度
     int speedMin09_01 = speedMinBase;     //最小速度
-    int amount09_01 = 7189;    // amount     总行数
+    int amount09_01 = 7115;    // amount     总行数
     //正向
     int shipNum09_01 = 10;      //船数量
     int[] idInit09_01 = simulateShipUtil.getIdInit(shipNum09_01, amount09_01);
@@ -271,7 +263,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack10_01 = "hj01010"; //航迹
     int speedMax10_01 = speedMaxBase;     //最大速度
     int speedMin10_01 = speedMinBase;     //最小速度
-    int amount10_01 = 12174;    // amount     总行数
+    int amount10_01 = 11694;    // amount     总行数
     //正向
     int shipNum10_01 = 20;      //船数量
     int[] idInit10_01 = simulateShipUtil.getIdInit(shipNum10_01, amount10_01);
@@ -285,7 +277,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack11_01 = "hj01011"; //航迹
     int speedMax11_01 = speedMaxBase;     //最大速度
     int speedMin11_01 = speedMinBase;     //最小速度
-    int amount11_01 = 6227;    // amount     总行数
+    int amount11_01 = 6114;    // amount     总行数
     //正向
     int shipNum11_01 = 10;      //船数量
     int[] idInit11_01 = simulateShipUtil.getIdInit(shipNum11_01, amount11_01);
@@ -299,7 +291,7 @@ private SimulateShipUtil simulateShipUtil;*/
     String shipTrack12_01 = "hj01012"; //航迹
     int speedMax12_01 = speedMaxBase;     //最大速度
     int speedMin12_01 = speedMinBase;     //最小速度
-    int amount12_01 = 13838;    // amount     总行数
+    int amount12_01 = 13609;    // amount     总行数
     //正向
     int shipNum12_01 = 20;      //船数量
     int[] idInit12_01 = simulateShipUtil.getIdInit(shipNum12_01, amount12_01);
@@ -541,7 +533,10 @@ private SimulateShipUtil simulateShipUtil;*/
      * New
      * 新简化任务
      */
-    @Scheduled(cron = "0/2 * * * * ?")
+    //正常运行注释掉
+    /*
+
+   @Scheduled(cron = "0/2 * * * * ?")
     private void taskNew() {
         //得到经纬度赋值该  经度：ship[x][1]  纬度：ship[x][2] ;
         //正向航迹12条
@@ -597,6 +592,7 @@ private SimulateShipUtil simulateShipUtil;*/
                 ship[i][3] = String.format("%.2f", angle[i]); //转成String，保留2位小数，四舍五入
                 ship[i][4] = String.format("%.2f", speed[i]);
             }
+            //将经纬度、角度、速度新增到static静态长表
             for (int i = 0; i < rowCountSimulateShipInfo; i++) {
                 simulateShipInfoService.insertLongLatAngleSpeedToStatic(
                         Double.valueOf(ship[i][1]),
@@ -609,31 +605,25 @@ private SimulateShipUtil simulateShipUtil;*/
             }
             System.out.println("/-----------------One Time-------  : "+ LocalDateTime.now());
 
-//新增到static表
-//            shipInfoStaticService.updateToShipInfoStatic();
-//            System.out.println("```````````从模拟表simulate_ship_info更新 经纬度/速度/方向 新增到ship_info_static形成静态长表·············· 2 ····" + LocalDateTime.now());
-//            for (int i = 0; i < rowCountSimulateShipInfo; i++) {
-//                simulateShipInfoService.updateLongLatAngleSpeed(
-//                        Double.valueOf(ship[i][1]),
-//                        Double.valueOf(ship[i][2]),
-//                        ship[i][3],
-//                        ship[i][4],
-//                        Integer.valueOf(ship[i][0]));
-//                System.out.println(ship[i][0] + "  " + ship[i][1] + "  " + ship[i][2] + "  " + ship[i][3] + "  " + ship[i][4]);
-//
-//            }
-//
-////新增到static表
-//            shipInfoStaticService.updateToShipInfoStatic();
-//            System.out.println("```````````从模拟表simulate_ship_info更新 经纬度/速度/方向 新增到ship_info_static形成静态长表·············· 2 ····" + LocalDateTime.now());
+
 
         }
 
         iJudge++;
     }
 
+     */
+}
 
 
+
+
+
+
+
+
+
+//下面是废弃代码：
 
 
 //    public static BlockingQueue<Boat> queue = new ArrayBlockingQueue<>(10000);
@@ -860,7 +850,7 @@ private SimulateShipUtil simulateShipUtil;*/
     }*/
 
 
-}
+
 
 
 

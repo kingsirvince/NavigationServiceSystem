@@ -20,6 +20,12 @@
     <result column="distance" property="distance"/>
   </resultMap>
 
+  <resultMap id="LimitHeightResultMap" type="com.company.project.model.other.PipelineInfoHeight">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Pipeline_name" jdbcType="VARCHAR" property="pipelineName" />
+    <result column="Pipeline_ID" jdbcType="VARCHAR" property="pipelineId" />
+    <result column="Pipeline_limit_height" jdbcType="VARCHAR" property="pipelineLimitHeight" />
+  </resultMap>
   <select id="sortByDistance" resultMap="DistanceResultMap">
      SELECT
     *,
@@ -57,5 +63,10 @@
 
   <select id="getByRowField"  resultType="java.lang.Double" parameterType="java.lang.String">
         select ${field} from pipeline_info where ${row} = #{rowValue};
+    </select>
+
+  <select id="getLimitHeight" resultMap="LimitHeightResultMap">
+    select ID, Pipeline_name ,Pipeline_ID,Pipeline_limit_height from Pipeline_info
+
     </select>
 </mapper>
