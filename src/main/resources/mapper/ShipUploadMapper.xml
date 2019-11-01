@@ -28,6 +28,7 @@
 
 select Channel_division_ID from ship_upload where Ship_MMSI=#{MMSI} ;
 </select>
+<!--  未发挥作用-->
   <update id="updateShipUpload" parameterType="com.company.project.model.ShipUpload">
 
 update ship_upload  set Ship_call=#{shipCall},Ship_class=#{shipClass},Ship_state=#{shipState},Ship_longitude=#{shipLatitude},Ship_latitude=#{shipLatitude},Ship_length=#{shipLength},Ship_width=#{shipWidth},Ship_heading=#{shipHeading},Ship_speed=#{shipSpeed},Ship_draught = #{shipDraught},Ship_load=#{shipLoad},Ship_max_load=#{shipMaxLoad},Channel_division_ID=#{channelDivisionId}  where Ship_MMSI =#{shipMmsi};

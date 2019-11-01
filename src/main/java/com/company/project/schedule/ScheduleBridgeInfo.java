@@ -1,8 +1,10 @@
 package com.company.project.schedule;
 
+import com.company.project.model.ShipMonitor;
 import com.company.project.service.BridgeInfoService;
 import com.company.project.service.FloodgateInfoService;
 import com.company.project.service.PipelineInfoService;
+import com.company.project.service.ShipMonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,6 +24,8 @@ public class ScheduleBridgeInfo {
     private FloodgateInfoService floodgateInfoService;
     @Autowired
     private PipelineInfoService pipelineInfoService;
+    @Autowired
+    private ShipMonitorService shipMonitorService;
 
     @Scheduled(cron = "0 0/1 * * * ?") //每分钟一次
     private void task() {
@@ -31,6 +35,17 @@ public class ScheduleBridgeInfo {
         bridgeInfoService.updateLimitHeight(subtrahend);
         pipelineInfoService.updateLimitHeight(subtrahend);
 
+
+        //合并
+        String monitorLog = " 桥梁限高刷新; 过河管线限高刷新； 防洪闸限高刷新；  ";
+        System.out.println("****************  " + monitorLog + "   ****************  ");
+        //写入到ship_monitor表中,监控显示
+        ShipMonitor shipMonitor = new ShipMonitor();
+        shipMonitor.setMonitorlog(monitorLog);
+        shipMonitor.setType("heightLimit");
+
+
+        shipMonitorService.save(shipMonitor);
 
     }
 }

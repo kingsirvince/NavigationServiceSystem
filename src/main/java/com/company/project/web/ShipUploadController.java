@@ -2,10 +2,13 @@ package com.company.project.web;
 
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
+import com.company.project.model.ShipMonitor;
 import com.company.project.model.ShipUpload;
+import com.company.project.service.ShipMonitorService;
 import com.company.project.service.ShipUploadService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +25,10 @@ import java.util.List;
 public class ShipUploadController {
     @Resource
     private ShipUploadService shipUploadService;
+//    private ShipMonitorService shipMonitorService; 这样不行
+    //得用载入来调用service的方法
+    @Autowired
+    private ShipMonitorService shipMonitorService;
 
     @PostMapping("/add")
     public Result add(ShipUpload shipUpload) {
@@ -36,11 +43,48 @@ public class ShipUploadController {
         return ResultGenerator.genSuccessResult();
     }
 
+    /**
+     * 上传状态截取监控
+     * @param shipUpload
+     * @return
+     */
+
+    int i=0;
     @PostMapping("/update")
     public Result update(ShipUpload shipUpload) {
         shipUploadService.update(shipUpload);
+
+
+        //得到想要监控的几个参数
+        String shipMmsi=shipUpload.getShipMmsi().toString();
+
+        //延迟2次，执行后续，防止快速刷屏
+            if (i > 2) {
+
+                String shipState = shipUpload.getShipState();
+                String shipLongitude = shipUpload.getShipLongitude().toString();
+                String shipLatitude = shipUpload.getShipLatitude().toString();
+                //合并
+                String monitorLog = "船舶上传： MMSI= " + shipMmsi + " ,在航状态= " + shipState + " ,经度= " + shipLongitude + " ,维度= " + shipLatitude + " ; ";
+                System.out.println("****************  " + monitorLog + "   ****************  ");
+                //写入到ship_monitor表中
+                ShipMonitor shipMonitor = new ShipMonitor();
+                shipMonitor.setMonitorlog(monitorLog);
+                shipMonitor.setType("shipUpload");
+
+
+                shipMonitorService.save(shipMonitor);
+
+                i = 0;
+            } else {
+                i++;
+            }
+
         return ResultGenerator.genSuccessResult();
     }
+
+
+
 
     @PostMapping("/detail")
     public Result detail(@RequestParam Integer shipMmsi) {
