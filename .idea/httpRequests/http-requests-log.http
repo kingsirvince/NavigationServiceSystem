@@ -1,0 +1,386 @@
+POST http://localhost:8080/bridge/info/update?requestId=requestId:10001&id=1&bridgeName=无名桥1
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114815.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/add?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥add&requestId=requestId:10001
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114531.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=requestId:10001
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114335.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=10001
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114318.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114254.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/detail?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114231.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getLimitHeight?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114136.200.json
+
+###
+
+POST http://localhost:8080/getLimitHeight?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T114124.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113735.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=13
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113716.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=requestId:10001
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113702.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=requestId:10001
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113523.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113410.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113335.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T113045.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T111629.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T111300.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T111117.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T111056.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T111049.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T110338.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T105923.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T105027.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航&requestId=101
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T104707.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T104646.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T104449.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T103549.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T103223.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T102648.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T095156.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T094102.200.json
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T093741.200.json
+
+###
+
+POST http://192.168.2.84:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://localhost:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T092938.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航&requestId=40000000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T092858.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T092830.200.json
+
+###
+
+POST http://localhost:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T061714.200.json
+
+###
+
+POST http://localhost/8080?shipMmsi=2343562&shipLongitude=120.333333&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://localhost/ship/upload/update?shipMmsi=2343562&shipLongitude=120.333333&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://192.168.2.144:8080/ship/upload/update?shipMmsi=2343562&shipLongitude=120.333333&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://192.168.2.84:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T061509.200.json
+
+###
+
+POST http://localhost:8080/dock/info/list?longitude=120.6987855&latitude=30.76520924
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T061044.200.json
+
+###
+
+POST http://localhost:8080/dock/info/list?longitude=120.6987855&latitude=30.76520924
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T055922.200.json
+
+###
+
+POST http://localhost:8080/dock/info/list?longitude=120.6987855&latitude=30.76520924
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T055706.200.json
+
+###
+
+POST http://localhost:8080/dock/info/list?longitude=120.6987855&latitude=30.76520924
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T044019.200.json
+
+###
+
+POST http://192.168.2.144:8080/dock/info/list?longitude=120.6987855&latitude=30.76520924
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://192.168.2.144:8080/ship/info/list?longitude=120.6987855&latitude=30.76520924&page=1&size=50
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://192.168.2.144:8080/ship/info/list?longitude=120.6987855&latitude=30.76520924&page=1&size=50
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://192.168.2.84:8080/ship/monitor/findSeveralMonitor?shipMmsi=2343562&shipLongitude=120.3344433&shipLatitude=30.22222&shipHeading=30&shipSpeed=10&shipLoad=350&shipState=在航&num=20
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T043832.200.json
+
+###
+
+POST http://192.168.2.84:8080/bridge/info/getByRowField?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&requestId=110
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-18T043750.200.json
+
+###
+

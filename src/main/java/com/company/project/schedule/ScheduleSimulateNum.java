@@ -7,8 +7,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 /**
  * 正常演示：将静态表ship_info_static定时更新经纬度、速度、方向 到 ship_info
  * 生产模拟数据：注释掉
@@ -46,7 +44,7 @@ private ShipInfoService shipInfoService;
             i=1;
         }
         //显示正在刷新模拟船
-        System.out.println("ScheduleSimulateNum : " + LocalDateTime.now()+"  uid1: " + uid1+", uid2: " + uid2 +" ^^^^^^^^^^^^^^^^^^^^开始^^^^^ " +LocalDateTime.now() );
+//        System.out.println("ScheduleSimulateNum : " + LocalDateTime.now()+"  uid1: " + uid1+", uid2: " + uid2 +" ^^^^^^^^^^^^^^^^^^^^开始^^^^^ " +LocalDateTime.now() );
         shipInfoService.updateToShipInfoFromStatic(uid1,uid2);
 //        System.out.println("ScheduleSimulateNum : " + LocalDateTime.now()+"  uid1: " + uid1+", uid2: " + uid2 +" ^^^^^^^^^^^^^^^^^^^^结束^^^^^^ " +LocalDateTime.now() );
     }

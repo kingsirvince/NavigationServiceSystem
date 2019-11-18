@@ -6,8 +6,10 @@ import com.company.project.model.BridgeInfo;
 import com.company.project.model.distance.BridgeInfoDistance;
 import com.company.project.model.other.BridgeInfoHeight;
 import com.company.project.service.BridgeInfoService;
+import com.company.project.service.ShipMonitorService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +29,9 @@ import java.util.List;
 public class BridgeInfoController {
     @Resource
     private BridgeInfoService bridgeInfoService;
-
+    //得用载入来调用service的方法
+    @Autowired
+    private ShipMonitorService shipMonitorService;
     /**
      *
      * 查询某列某行的单值  （模拟限高）
@@ -39,8 +43,21 @@ public class BridgeInfoController {
      * @return
      */
     @PostMapping("/getByRowField")
-    public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue) {
+    public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue,@RequestParam(defaultValue = "requestId:0") String requestId) {
        Double s = bridgeInfoService.getByRowField(field, row, rowValue);
+
+//       //监控记录
+//        String monitorLog = "查询请求： requestId= " + requestId + " ,在航状态= " + shipState + " ,经度= " + shipLongitude + " ,维度= " + shipLatitude + " ; ";
+//        System.out.println("****************  " + monitorLog + "   ****************  ");
+//        //写入到ship_monitor表中
+//        ShipMonitor shipMonitor = new ShipMonitor();
+//        shipMonitor.setMonitorlog(monitorLog);
+//        shipMonitor.setType("shipUpload");
+//
+//
+//        shipMonitorService.save(shipMonitor);
+
+
         return ResultGenerator.genSuccessResult(s);
     }
 
@@ -50,7 +67,7 @@ public class BridgeInfoController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(BridgeInfo.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -67,7 +84,7 @@ public class BridgeInfoController {
      * @return
      */
     @PostMapping("/sortByDistance")
-    public Result sortByDistance(@RequestParam("longitude") BigDecimal longitude, @RequestParam ("latitude")BigDecimal latitude, @RequestParam(value = "num",defaultValue ="5" )Integer num ){
+    public Result sortByDistance(@RequestParam("longitude") BigDecimal longitude, @RequestParam ("latitude")BigDecimal latitude, @RequestParam(value = "num",defaultValue ="5" )Integer num ,@RequestParam(defaultValue = "requestId:0") String requestId){
         List<BridgeInfoDistance> list = bridgeInfoService.sortByDistance(longitude, latitude,num);
         return ResultGenerator.genSuccessResult(list);
     }
@@ -77,37 +94,37 @@ public class BridgeInfoController {
      * @return
      */
     @PostMapping("/getLimitHeight")
-    public Result getLimitHeight(){
+    public Result getLimitHeight(@RequestParam(defaultValue = "requestId:0") String requestId){
         List<BridgeInfoHeight> list =bridgeInfoService.getLimitHeight();
         return ResultGenerator.genSuccessResult(list);
     }
 
     @PostMapping("/add")
-    public Result add(BridgeInfo bridgeInfo) {
+    public Result add(BridgeInfo bridgeInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         bridgeInfoService.save(bridgeInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         bridgeInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(BridgeInfo bridgeInfo) {
+    public Result update(BridgeInfo bridgeInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         bridgeInfoService.update(bridgeInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         BridgeInfo bridgeInfo = bridgeInfoService.findById(id);
         return ResultGenerator.genSuccessResult(bridgeInfo);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<BridgeInfo> list = bridgeInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);
