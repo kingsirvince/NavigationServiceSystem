@@ -41,7 +41,7 @@ public class ShipUploadController {
     }
 
     /**
-     * 更新上传船舶，其中监控通过提取实体类中的shipMmsi获取
+     * 更新上传船舶，其中监控通过提取实体类中的shipMmsi获取,无需上传requestId
      * @param shipUpload
      * @return
      */

@@ -60,7 +60,7 @@ public class ShipHistoryController {
 
     /**
      * 按条件查询
-     * @param fieldName  代表字段名（Model中的成员变量，Tableship）
+     * @param fieldName  代表字段名（Model中的成员变量）
      * @param value      可以不是唯一的（返回多个List）
      */
     @PostMapping("/findByCondition")
@@ -120,7 +120,7 @@ public class ShipHistoryController {
 
     /**
      * 条件查询，where fieldName between value1 and value2
-     * @param fieldName 代表字段名（Model中的成员变量，Tableship）
+     * @param fieldName 代表字段名（Model中的成员变量）
      * @param value1    在1 和 2 之间
      * @param value2
      * @return          List

@@ -31,7 +31,7 @@ public class ScheduleShipHistory {
         System.out.println("****************  " + monitorLog + "   ****************  ");
         //写入到ship_monitor表中,监控显示
         ShipMonitor shipMonitor = new ShipMonitor();
-        shipMonitor.setMonitorlog(monitorLog);
+        shipMonitor.setMonitorLog(monitorLog);
         shipMonitor.setType("shipHistory");
 
 

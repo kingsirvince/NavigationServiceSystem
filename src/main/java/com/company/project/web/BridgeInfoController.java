@@ -6,10 +6,8 @@ import com.company.project.model.BridgeInfo;
 import com.company.project.model.distance.BridgeInfoDistance;
 import com.company.project.model.other.BridgeInfoHeight;
 import com.company.project.service.BridgeInfoService;
-import com.company.project.service.ShipMonitorService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +27,7 @@ import java.util.List;
 public class BridgeInfoController {
     @Resource
     private BridgeInfoService bridgeInfoService;
-    //得用载入来调用service的方法
-    @Autowired
-    private ShipMonitorService shipMonitorService;
+
     /**
      *
      * 查询某列某行的单值  （模拟限高）
@@ -40,24 +36,12 @@ public class BridgeInfoController {
      * @param rowValue 值 太子塘桥
      *                 field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥
      *                 field=Bridge_limit_height&row=Bridge_ID&rowValue=JXCH026HD0017QL009
+     *                   select ${field} from bridge_info where ${row} = #{rowValue};
      * @return
      */
     @PostMapping("/getByRowField")
     public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue,@RequestParam(defaultValue = "requestId:0") String requestId) {
        Double s = bridgeInfoService.getByRowField(field, row, rowValue);
-
-//       //监控记录
-//        String monitorLog = "查询请求： requestId= " + requestId + " ,在航状态= " + shipState + " ,经度= " + shipLongitude + " ,维度= " + shipLatitude + " ; ";
-//        System.out.println("****************  " + monitorLog + "   ****************  ");
-//        //写入到ship_monitor表中
-//        ShipMonitor shipMonitor = new ShipMonitor();
-//        shipMonitor.setMonitorlog(monitorLog);
-//        shipMonitor.setType("shipUpload");
-//
-//
-//        shipMonitorService.save(shipMonitor);
-
-
         return ResultGenerator.genSuccessResult(s);
     }
 
