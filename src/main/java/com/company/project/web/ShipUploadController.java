@@ -28,54 +28,28 @@ public class ShipUploadController {
     private ShipMonitorService shipMonitorService;*/
 
     @PostMapping("/add")
-    public Result add(ShipUpload shipUpload) {
+    public Result add(ShipUpload shipUpload,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipUploadService.save(shipUpload);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer shipMmsi) {
+    public Result delete(@RequestParam Integer shipMmsi,@RequestParam(defaultValue = "requestId:0") String requestId) {
         Integer id = shipMmsi;
         shipUploadService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     /**
-     * 上传状态截取监控
+     * 更新上传船舶，其中监控通过提取实体类中的shipMmsi获取
      * @param shipUpload
      * @return
      */
 
-//    int i=0;@RequestParam(defaultValue="0") String requestId
+
     @PostMapping("/update")
     public Result update(ShipUpload shipUpload) {
         shipUploadService.update(shipUpload);
-
-
-//        //得到想要监控的几个参数
-//        String shipMmsi=shipUpload.getShipMmsi().toString();
-//
-//        //延迟2次，执行后续，防止快速刷屏
-//            if (i > 2) {
-//
-//                String shipState = shipUpload.getShipState();
-//                String shipLongitude = shipUpload.getShipLongitude().toString();
-//                String shipLatitude = shipUpload.getShipLatitude().toString();
-//                //合并
-//                String monitorLog = "船舶上传： MMSI= " + shipMmsi + " ,在航状态= " + shipState + " ,经度= " + shipLongitude + " ,维度= " + shipLatitude + " ; ";
-//                System.out.println("****************  " + monitorLog + "   ****************  ");
-//                //写入到ship_monitor表中
-//                ShipMonitor shipMonitor = new ShipMonitor();
-//                shipMonitor.setMonitorlog(monitorLog);
-//                shipMonitor.setType("shipUpload");
-//
-//
-//                shipMonitorService.save(shipMonitor);
-//
-//                i = 0;
-//            } else {
-//                i++;
-//            }
 
         return ResultGenerator.genSuccessResult();
     }
@@ -84,14 +58,14 @@ public class ShipUploadController {
 
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer shipMmsi) {
+    public Result detail(@RequestParam Integer shipMmsi,@RequestParam(defaultValue = "requestId:0") String requestId) {
         Integer id = shipMmsi;
         ShipUpload shipUpload = shipUploadService.findById(id);
         return ResultGenerator.genSuccessResult(shipUpload);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<ShipUpload> list = shipUploadService.findAll();
         PageInfo pageInfo = new PageInfo(list);
@@ -99,7 +73,7 @@ public class ShipUploadController {
     }
 
     @PostMapping("/getChannelDivisionID")
-    public Result getChannelDivisionID(@RequestParam Integer MMSI) {
+    public Result getChannelDivisionID(@RequestParam Integer MMSI,@RequestParam(defaultValue = "requestId:0") String requestId) {
         String channelDivisionID = shipUploadService.getChannelDivisionID(MMSI);
         return ResultGenerator.genSuccessResult(channelDivisionID);
     }

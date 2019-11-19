@@ -33,7 +33,7 @@ public class CheckpointInfoController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(CheckpointInfo.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -50,36 +50,36 @@ public class CheckpointInfoController {
      * @return
      */
     @PostMapping("sortByDistance")
-    public Result sortByDistance(@RequestParam("longitude") BigDecimal longitude, @RequestParam ("latitude")BigDecimal latitude, @RequestParam(value = "num",defaultValue ="5" )Integer num ){
+    public Result sortByDistance(@RequestParam("longitude") BigDecimal longitude, @RequestParam ("latitude")BigDecimal latitude, @RequestParam(value = "num",defaultValue ="5" )Integer num ,@RequestParam(defaultValue = "requestId:0") String requestId){
         List<CheckpointInfoDistance> list = checkpointInfoService.sortByDistance(longitude, latitude,num);
         return ResultGenerator.genSuccessResult(list);
     }
     @PostMapping("/add")
-    public Result add(CheckpointInfo checkpointInfo) {
+    public Result add(CheckpointInfo checkpointInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         checkpointInfoService.save(checkpointInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         checkpointInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(CheckpointInfo checkpointInfo) {
+    public Result update(CheckpointInfo checkpointInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         checkpointInfoService.update(checkpointInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         CheckpointInfo checkpointInfo = checkpointInfoService.findById(id);
         return ResultGenerator.genSuccessResult(checkpointInfo);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<CheckpointInfo> list = checkpointInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);

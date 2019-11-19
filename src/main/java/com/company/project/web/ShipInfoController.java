@@ -32,25 +32,25 @@ public class ShipInfoController {
     private ShipInfo shipInfo;
 
     @PostMapping("/add")
-    public Result add(ShipInfo shipInfo) {
+    public Result add(ShipInfo shipInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipInfoService.save(shipInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(ShipInfo shipInfo) {
+    public Result update(ShipInfo shipInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipInfoService.update(shipInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         ShipInfo shipInfo = shipInfoService.findById(id);
         return ResultGenerator.genSuccessResult(shipInfo);
     }
@@ -67,7 +67,7 @@ public class ShipInfoController {
      * 查询所有船（包括静态船）
      */
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<ShipInfo> list = shipInfoService.findAllIncludeStaticShip();
         PageInfo pageInfo = new PageInfo(list);
@@ -84,7 +84,7 @@ public class ShipInfoController {
      */
 
     @PostMapping("/nearbyShip")
-    public Result getVicinity(@RequestParam(defaultValue = "2") double radii, double longitude, double latitude) {
+    public Result getVicinity(@RequestParam(defaultValue = "2") double radii, double longitude, double latitude,@RequestParam(defaultValue = "requestId:0") String requestId) {
         double r = 6371;//地球半径千米
         double dis = radii;
         double dlng =  2*Math.asin(Math.sin(dis/(2*r))/Math.cos(latitude*Math.PI/180));

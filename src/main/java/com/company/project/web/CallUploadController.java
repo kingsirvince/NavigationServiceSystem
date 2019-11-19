@@ -31,7 +31,7 @@ public class CallUploadController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(CallUpload.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -41,31 +41,31 @@ public class CallUploadController {
         return ResultGenerator.genSuccessResult(list);
     }
     @PostMapping("/add")
-    public Result add(CallUpload callUpload) {
+    public Result add(CallUpload callUpload,@RequestParam(defaultValue = "requestId:0") String requestId) {
         callUploadService.save(callUpload);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         callUploadService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(CallUpload callUpload) {
+    public Result update(CallUpload callUpload,@RequestParam(defaultValue = "requestId:0") String requestId) {
         callUploadService.update(callUpload);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         CallUpload callUpload = callUploadService.findById(id);
         return ResultGenerator.genSuccessResult(callUpload);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<CallUpload> list = callUploadService.findAll();
         PageInfo pageInfo = new PageInfo(list);

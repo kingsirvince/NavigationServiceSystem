@@ -28,7 +28,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/getBerth")
-    public Result getBerth() {
+    public Result getBerth(@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamic> list = generalDynamicService.getBerth();
         return ResultGenerator.genSuccessResult(list);
     }
@@ -41,7 +41,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/berthSortByDistance")
-    public Result berthSortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5")Integer num) {
+    public Result berthSortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5")Integer num,@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamicDistance> list = generalDynamicService.berthSortByDistance(longitude, latitude, num);
         return ResultGenerator.genSuccessResult(list);
     }
@@ -51,7 +51,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/getCharger")
-    public Result getCharger() {
+    public Result getCharger(@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamic> list=generalDynamicService.getCharger();
         return ResultGenerator.genSuccessResult(list);
     }
@@ -63,7 +63,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/chargerSortByDistance")
-    public Result chargerSortByDistance(@RequestParam BigDecimal longitude,@RequestParam BigDecimal latitude,@RequestParam(defaultValue = "5")Integer num) {
+    public Result chargerSortByDistance(@RequestParam BigDecimal longitude,@RequestParam BigDecimal latitude,@RequestParam(defaultValue = "5")Integer num,@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamicDistance> list = generalDynamicService.chargerSortByDistance(longitude, latitude, num);
         return ResultGenerator.genSuccessResult(list);
 
@@ -75,7 +75,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/getRecycling")
-    public Result getRecycling() {
+    public Result getRecycling(@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamic> list = generalDynamicService.getRecycling();
         return ResultGenerator.genSuccessResult(list);
     }
@@ -88,7 +88,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/recyclingSortByDistance")
-    public Result recyclingSortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5")Integer num) {
+    public Result recyclingSortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5")Integer num,@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamicDistance> list = generalDynamicService.recyclingSortByDistance(longitude, latitude, num);
         return ResultGenerator.genSuccessResult(list);
     }
@@ -98,7 +98,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/getGas")
-    public Result getGas() {
+    public Result getGas(@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamic> list = generalDynamicService.getGas();
         return ResultGenerator.genSuccessResult(list);
     }
@@ -111,7 +111,7 @@ public class GeneralDynamicController {
      * @return
      */
     @PostMapping("/gasSortByDistance")
-    public Result gasSortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5")Integer num) {
+    public Result gasSortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5")Integer num,@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<GeneralDynamicDistance> list = generalDynamicService.gasSortByDistance(longitude, latitude, num);
         return ResultGenerator.genSuccessResult(list);
     }

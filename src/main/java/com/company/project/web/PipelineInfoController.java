@@ -36,7 +36,7 @@ public class PipelineInfoController {
      * @return
      */
     @PostMapping("/getByRowField")
-    public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue) {
+    public Result getByRowField(@RequestParam String field,@RequestParam String row,@RequestParam String rowValue,@RequestParam(defaultValue = "requestId:0") String requestId) {
         Double s = pipelineInfoService.getByRowField(field, row, rowValue);
         return ResultGenerator.genSuccessResult(s);
     }
@@ -46,7 +46,7 @@ public class PipelineInfoController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(PipelineInfo.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -61,42 +61,42 @@ public class PipelineInfoController {
      * @return
      */
     @PostMapping("/getLimitHeight")
-    public Result getLimitHeight(){
+    public Result getLimitHeight(@RequestParam(defaultValue = "requestId:0") String requestId){
         List<PipelineInfoHeight> list =pipelineInfoService.getLimitHeight();
         return ResultGenerator.genSuccessResult(list);
     }
 
     @PostMapping("/sortByDistance")
-    public Result sortByDistance(@RequestParam BigDecimal longitude,@RequestParam BigDecimal latitude,@RequestParam(defaultValue = "5")Integer num) {
+    public Result sortByDistance(@RequestParam BigDecimal longitude,@RequestParam BigDecimal latitude,@RequestParam(defaultValue = "5")Integer num,@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<PipelineInfoDistance> list = pipelineInfoService.sortByDistance(longitude, latitude, num);
         return ResultGenerator.genSuccessResult(list);
     }
     @PostMapping("/add")
-    public Result add(PipelineInfo pipelineInfo) {
+    public Result add(PipelineInfo pipelineInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         pipelineInfoService.save(pipelineInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         pipelineInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(PipelineInfo pipelineInfo) {
+    public Result update(PipelineInfo pipelineInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         pipelineInfoService.update(pipelineInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PipelineInfo pipelineInfo = pipelineInfoService.findById(id);
         return ResultGenerator.genSuccessResult(pipelineInfo);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<PipelineInfo> list = pipelineInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);

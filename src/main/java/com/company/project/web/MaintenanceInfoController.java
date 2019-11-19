@@ -33,7 +33,7 @@ public class MaintenanceInfoController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(MaintenanceInfo.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -44,37 +44,37 @@ public class MaintenanceInfoController {
     }
 
     @PostMapping("/sortByDistance")
-    public Result sortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5") Integer num) {
+    public Result sortByDistance(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam(defaultValue = "5") Integer num,@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<MaintenanceInfoDistance> list = maintenanceInfoService.sortByDistance(longitude, latitude, num);
         return ResultGenerator.genSuccessResult(list);
 
     }
     @PostMapping("/add")
-    public Result add(MaintenanceInfo maintenanceInfo) {
+    public Result add(MaintenanceInfo maintenanceInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         maintenanceInfoService.save(maintenanceInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         maintenanceInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(MaintenanceInfo maintenanceInfo) {
+    public Result update(MaintenanceInfo maintenanceInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         maintenanceInfoService.update(maintenanceInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         MaintenanceInfo maintenanceInfo = maintenanceInfoService.findById(id);
         return ResultGenerator.genSuccessResult(maintenanceInfo);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<MaintenanceInfo> list = maintenanceInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);

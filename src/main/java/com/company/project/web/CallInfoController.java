@@ -26,7 +26,7 @@ public class CallInfoController {
     private CallInfoService callInfoService;
 
     @PostMapping("/getLatest")
-    public Result getLatest() {
+    public Result getLatest(@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<CallInfo> list = callInfoService.getLatest();
         return ResultGenerator.genSuccessResult(list);
     }
@@ -37,7 +37,7 @@ public class CallInfoController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(CallInfo.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -47,31 +47,31 @@ public class CallInfoController {
         return ResultGenerator.genSuccessResult(list);
     }
     @PostMapping("/add")
-    public Result add(CallInfo callInfo) {
+    public Result add(CallInfo callInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         callInfoService.save(callInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         callInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(CallInfo callInfo) {
+    public Result update(CallInfo callInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         callInfoService.update(callInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         CallInfo callInfo = callInfoService.findById(id);
         return ResultGenerator.genSuccessResult(callInfo);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<CallInfo> list = callInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);

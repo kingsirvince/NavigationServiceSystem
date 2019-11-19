@@ -26,7 +26,7 @@ public class NoticeInfoController {
     private NoticeInfoService noticeInfoService;
 
     @PostMapping("/getLatest")
-    public Result getLatest() {
+    public Result getLatest(@RequestParam(defaultValue = "requestId:0") String requestId) {
         List<NoticeInfo> list = noticeInfoService.getLatest();
         return ResultGenerator.genSuccessResult(list);
     }
@@ -37,7 +37,7 @@ public class NoticeInfoController {
      * @param value      可以不是唯一的（返回多个List）              value=梧桐作业区
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(NoticeInfo.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -47,31 +47,31 @@ public class NoticeInfoController {
         return ResultGenerator.genSuccessResult(list);
     }
     @PostMapping("/add")
-    public Result add(NoticeInfo noticeInfo) {
+    public Result add(NoticeInfo noticeInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         noticeInfoService.save(noticeInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         noticeInfoService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(NoticeInfo noticeInfo) {
+    public Result update(NoticeInfo noticeInfo,@RequestParam(defaultValue = "requestId:0") String requestId) {
         noticeInfoService.update(noticeInfo);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         NoticeInfo noticeInfo = noticeInfoService.findById(id);
         return ResultGenerator.genSuccessResult(noticeInfo);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<NoticeInfo> list = noticeInfoService.findAll();
         PageInfo pageInfo = new PageInfo(list);

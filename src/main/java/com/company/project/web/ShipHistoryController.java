@@ -26,31 +26,31 @@ public class ShipHistoryController {
     private ShipHistoryService shipHistoryService;
 
     @PostMapping("/add")
-    public Result add(ShipHistory shipHistory) {
+    public Result add(ShipHistory shipHistory,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipHistoryService.save(shipHistory);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipHistoryService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(ShipHistory shipHistory) {
+    public Result update(ShipHistory shipHistory,@RequestParam(defaultValue = "requestId:0") String requestId) {
         shipHistoryService.update(shipHistory);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
+    public Result detail(@RequestParam Integer id,@RequestParam(defaultValue = "requestId:0") String requestId) {
         ShipHistory shipHistory = shipHistoryService.findById(id);
         return ResultGenerator.genSuccessResult(shipHistory);
     }
 
     @PostMapping("/list")
-    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+    public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size,@RequestParam(defaultValue = "requestId:0") String requestId) {
         PageHelper.startPage(page, size);
         List<ShipHistory> list = shipHistoryService.findAll();
         PageInfo pageInfo = new PageInfo(list);
@@ -64,7 +64,7 @@ public class ShipHistoryController {
      * @param value      可以不是唯一的（返回多个List）
      */
     @PostMapping("/findByCondition")
-    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value) {
+    public Result findByCondition(@RequestParam String fieldName, @RequestParam Object value,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(ShipHistory.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -85,7 +85,7 @@ public class ShipHistoryController {
      */
     @PostMapping("/findByCondition2")
     public Result findByCondition2(@RequestParam String fieldName, @RequestParam Object value,
-                                   @RequestParam String fieldName1, @RequestParam Object value1) {
+                                   @RequestParam String fieldName1, @RequestParam Object value1,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(ShipHistory.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -108,7 +108,7 @@ public class ShipHistoryController {
      */
     @PostMapping("/findByConditionBetween")
     public Result findByConditionBetween(@RequestParam String fieldName, @RequestParam Object value,
-                                         @RequestParam String fieldName1, @RequestParam Object value1,@RequestParam Object value2) {
+                                         @RequestParam String fieldName1, @RequestParam Object value1,@RequestParam Object value2,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(ShipHistory.class);
         Example.Criteria criteria = condition.createCriteria();
@@ -126,7 +126,7 @@ public class ShipHistoryController {
      * @return          List
      */
     @PostMapping("/findByBetween")
-    public Result findByBetween(@RequestParam String fieldName, @RequestParam Object value1,@RequestParam Object value2) {
+    public Result findByBetween(@RequestParam String fieldName, @RequestParam Object value1,@RequestParam Object value2,@RequestParam(defaultValue = "requestId:0") String requestId) {
 
         Condition condition = new Condition(ShipHistory.class);
         Example.Criteria criteria = condition.createCriteria();
