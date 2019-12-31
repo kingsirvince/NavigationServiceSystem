@@ -2,19 +2,15 @@ package com.company.project.web;
 
 import com.company.project.core.Result;
 import com.company.project.core.ResultGenerator;
-import com.company.project.model.Coordinate;
 import com.company.project.model.ShipInfo;
 import com.company.project.service.ShipInfoService;
 import com.company.project.service.ShipUploadService;
-import com.company.project.util.ChannelDivisionIDUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import tk.mybatis.mapper.entity.Condition;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -107,7 +103,13 @@ public class ShipInfoController {
         return ResultGenerator.genSuccessResult();
     }*/
 
-    @PostMapping("/nearbyShipOld")
+    /**废弃：
+     * 后放弃航道划分的识别方式，采用计算距离
+     * @param longitude
+     * @param latitude
+     * @return
+     */
+/*    @PostMapping("/nearbyShipOld")
     public Result nearbyShip(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude){
         Coordinate coordinate =new Coordinate(longitude,latitude);
         String channelDivisionID = ChannelDivisionIDUtil.getChannelDivisionID(coordinate);
@@ -131,7 +133,7 @@ public class ShipInfoController {
 
         List<ShipInfo> list = shipInfoService.findByCondition(condition);
         return ResultGenerator.genSuccessResult(list);
-    }
+    }*/
 
 
 /*    @PostMapping("/nearbyShip")

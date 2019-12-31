@@ -1,6 +1,5 @@
 package com.company.project;
 
-import com.company.project.util.ChannelDivisionIDUtil;
 import com.company.project.util.SpringContextUtil;
 import com.company.project.util.WeatherUtil;
 import org.mybatis.spring.annotation.MapperScan;
@@ -28,7 +27,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
 //测试航道划分功能,读取excel，得到航道划分数组
 //        ChannelDivisionIDUtil channelDivisionIDUtil = new ChannelDivisionIDUtil();(已经改为静态方法，所以不用生成一个新对象）
-        ChannelDivisionIDUtil.readExcelInputArray();
+// 不在需要从excel读入航道划分，未使用航道划分，（jxl.jar excel读取jar包不能被打包进maven，要先加入本地maven仓库，在打包）
+//        ChannelDivisionIDUtil.readExcelInputArray();
 
         WeatherUtil weatherUtil =new WeatherUtil();
         weatherUtil.startWeather();

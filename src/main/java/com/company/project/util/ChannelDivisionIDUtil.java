@@ -1,26 +1,22 @@
 package com.company.project.util;
 
-import com.company.project.model.Coordinate;
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.math.BigDecimal;
-
+/**
+ * 航道划分方法，未使用，采用算距离方法，且excel读取 jxl.jar
+ * 包不是标准maven仓库jar包，所有废弃该功能
+ */
 @Component
 public class ChannelDivisionIDUtil {
 
 
-    static String[][] arrayCD;
+   /* static String[][] arrayCD;
 
     public static void readExcelInputArray() {
 
-        /*
+        *//*
         本地读取excel
-         */
+         *//*
         jxl.Workbook readwb = null;
         // List<String> list = new ArrayList<String>();
         try {
@@ -58,13 +54,13 @@ public class ChannelDivisionIDUtil {
 
     }
 
-    /**
+    *//**未使用废弃：
      * 计算经纬度，得到航道划分ID
      * ChannelDivision 简写CD，arrayChannelDivision简写arrayCD
      *
      * @param coordinate
      * @return channelDivisionID
-     */
+     *//*
     public static String getChannelDivisionID(Coordinate coordinate) {
 
         String channelDivisionID = "";
@@ -98,7 +94,11 @@ public class ChannelDivisionIDUtil {
         return channelDivisionID;
     }
 
-
+    *//**未使用废弃：
+     * 得到附近的航道划分
+     * @param channelDivisionID
+     * @return
+     *//*
     public static String[] getNearbyChannelDivisionID(String channelDivisionID) {
 
         String[] arrayNearbyCDID = new String[5];
@@ -173,5 +173,5 @@ public class ChannelDivisionIDUtil {
             }
 
         return arrayNearbyCDID;
-    }
+    }*/
 }

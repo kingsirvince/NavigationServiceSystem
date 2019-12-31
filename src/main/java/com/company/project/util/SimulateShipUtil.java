@@ -66,7 +66,7 @@ public class SimulateShipUtil {
         return speed;
     }
 
-    /**
+    /**废弃
      * 将经度从mysql返回的list中，提取到数组getLong中
      *
      * @return
@@ -89,7 +89,7 @@ public class SimulateShipUtil {
     }
 
 
-    /**
+    /**未使用，废弃
      * 算角度
      *
      * @param lat_a 纬度1
@@ -111,7 +111,7 @@ public class SimulateShipUtil {
 
     }
 
-    /**
+    /**未使用，废弃
      * 算速度
      */
     public double getSpeed(double lng_a, double lat_a, double lng_b, double lat_b) {
@@ -125,7 +125,7 @@ public class SimulateShipUtil {
         版权声明：本文为CSDN博主「月光日光」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。
         原文链接：https://blog.csdn.net/xiaobai091220106/article/details/50879414*/
 
-    /**
+    /**制作模拟船轨迹数据时要调用
      * 从航迹excel读取到数组
      *
      * @param filePath

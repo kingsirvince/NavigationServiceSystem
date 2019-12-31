@@ -1,3 +1,67 @@
+POST http://192.168.2.84:8080/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T023118.200.json
+
+###
+
+POST http://192.168.2.84:8080/data/weather/findByCity?requestId=requestId:10001&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T023110.200.json
+
+###
+
+POST http://192.168.2.84:8080/ship/monitor/findByBetween?requestId=requestId:10001&fieldName=datetime&value1=2019-11-20 14:15:00&value2=2019-11-20 14:16:50
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T021623.200.json
+
+###
+
+POST http://192.168.2.84:8080/ship/monitor/findByBetween?requestId=requestId:10001&fieldName=datetime&value1=2019-11-20 14:15:00&value2=2019-11-20 14:15:50
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T021519.200.json
+
+###
+
+POST http://192.168.2.84:8080/ship/monitor/findByBetween?requestId=requestId:10001&fieldName=datetime&value1=2019-11-20 11:05:00&value2=2019-11-20 11:07:00
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T020902.200.json
+
+###
+
+POST http://192.168.2.84:8080/ship/monitor/findByBetween?requestId=requestId:10001&fieldName=datetime&value1=2019-11-20 11:05:00&value2=2019-11-20 11:07:00
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T013958.200.json
+
+###
+
+POST http://localhost:8080/notice/info/getLatest?longitude=120.624949&latitude=30.716588&requestId=shipMmsi:444440000
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T110636.200.json
+
+###
+
+POST http://192.168.2.84:8080/ship/monitor/findSeveralByRequestId?requestId=requestId:10001&selectRequestId=shipMmsi:444440000&num=3
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2019-11-20T110537.200.json
+
+###
+
 POST http://192.168.2.84:8080/ship/monitor/findSeveralByRequestId?requestId=requestId:10001&selectRequestId=shipMmsi:444440000&num=3
 Accept: */*
 enctype: "multipart/form-data"
@@ -329,70 +393,6 @@ Accept: */*
 enctype: "multipart/form-data"
 
 <> 2019-11-19T101835.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T101410.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T101329.200.json
-
-###
-
-POST http://localhost:8080/data/weather/findByCity?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=requestId:10001&cityName=嘉兴
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T101004.200.json
-
-###
-
-POST http://localhost:8080/checkpoint/info/detail?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=requestId:1000121
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T100847.200.json
-
-###
-
-POST http://localhost:8080/checkpoint/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=requestId:1000121
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T100028.200.json
-
-###
-
-POST http://localhost:8080/bridge/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=requestId:1000121
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T095955.200.json
-
-###
-
-POST http://localhost:8080/bridge/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=requestId:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T095915.200.json
-
-###
-
-POST http://localhost:8080/bridge/info/list?field=Bridge_limit_height&row=Bridge_name&rowValue=太子塘桥&id=2&requestId=request:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T095858.200.json
 
 ###
 
