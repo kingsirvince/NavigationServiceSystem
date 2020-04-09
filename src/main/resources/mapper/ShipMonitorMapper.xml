@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.ShipMonitorMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.ShipMonitor">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="Type" jdbcType="VARCHAR" property="type" />
+    <result column="MonitorLog" jdbcType="VARCHAR" property="monitorLog" />
+    <result column="Datetime" jdbcType="TIMESTAMP" property="datetime" />
+    <result column="RequestID" jdbcType="VARCHAR" property="requestId" />
+  </resultMap>
+
+
+  <!--查询最新的num个-->
+  <select id="findSeveralMonitor" resultMap="BaseResultMap">
+  SELECT *
+  FROM
+  ship_monitor
+  ORDER BY
+  ID desc
+  limit #{num}
+</select>
+  <!--查询最新的num个,满足种类是typeName（条件 Type=typeName）-->
+  <select id="findSeveralByType" resultMap="BaseResultMap">
+ SELECT * FROM ship_monitor WHERE  Type = #{typeName}   ORDER BY
+  ID desc
+  limit #{num};
+</select>
+
+  <!--查询最新的num个，满足请求ID是requestId（条件 RequestID = #{requestId}）-->
+  <select id="findSeveralByRequestId" resultMap="BaseResultMap">
+ SELECT * FROM ship_monitor WHERE  RequestID = #{requestId}   ORDER BY
+  ID desc
+  limit #{num};
+</select>
+
+</mapper>
