@@ -1,3 +1,63 @@
+POST http://localhost:8080/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T013227.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/weather/?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T013216.404.html
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/weather/findByCity?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T112700.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T112645.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/weather/list?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T112624.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
+POST http://localhost:8080/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T112342.200.json
+
+###
+
+POST http://localhost/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
+Accept: */*
+enctype: "multipart/form-data"
+
+###
+
 POST http://192.168.2.84:8080/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
 Accept: */*
 enctype: "multipart/form-data"
@@ -329,70 +389,6 @@ Accept: */*
 enctype: "multipart/form-data"
 
 <> 2019-11-19T104619.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T104442.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T104429.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=requestId:10001&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T104415.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=requestId:10001&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T103859.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T103821.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T103742.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T103242.200.json
-
-###
-
-POST http://localhost:8080/ship/history/findByConditionBetween?id=2&requestId=shipMmsi:444445555&fieldName=shipMmsi&value=55555551&fieldName1=datetime&value1=2019-08-13 09:20:02&value2=2019-08-13 10:50:02
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T101835.200.json
 
 ###
 

@@ -127,7 +127,7 @@ public class SimulateShipUtil {
 
     /**制作模拟船轨迹数据时要调用
      * 从航迹excel读取到数组
-     *
+     * 制作数据采用；部署到服务器上可以不用；否则jxl的jar包是第三方的会报错
      * @param filePath
      * @return
      */

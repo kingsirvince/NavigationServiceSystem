@@ -10,7 +10,7 @@
     <packaging>jar</packaging>-->
     <groupId>com.cetc36.wangzhanpeng</groupId>
     <artifactId>InformationService</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>war</packaging>
 
     <properties>
@@ -234,7 +234,22 @@
                     </execution>
                 </executions>
             </plugin>
-
+<!--20200521 添加下面这段把${project.basedir}/src/lib 下的第三方jar包，打包到WEB-INF/lib/ ，有效-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                <resource>
+                    <directory>${project.basedir}/src/lib</directory>
+                    <targetPath>WEB-INF/lib/</targetPath>
+                    <includes>
+                        <include>**/*.jar</include>
+                    </includes>
+                </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
         </plugins>
 
     </build>

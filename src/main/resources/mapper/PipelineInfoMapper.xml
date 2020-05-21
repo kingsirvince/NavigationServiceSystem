@@ -66,7 +66,7 @@
     </select>
 
   <select id="getLimitHeight" resultMap="LimitHeightResultMap">
-    select ID, Pipeline_name ,Pipeline_ID,Pipeline_limit_height from Pipeline_info
+    select ID, Pipeline_name ,Pipeline_ID,Pipeline_limit_height from pipeline_info
 
     </select>
 </mapper>
