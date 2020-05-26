@@ -1,3 +1,43 @@
+POST http://36.26.4.82:9202/InformationService/pipeline/info/getLimitHeight?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T031420.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/pipeline/info/getLimitedHeight?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T031353.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/pipeline/info/getLimitedHeight?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T031346.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/pipeline/info/getLimitHeight?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T031340.200.json
+
+###
+
+POST http://36.26.4.82:9202/InformationService/data/weather/findByCity?requestId=requestId:10002&cityName=湖州
+Accept: */*
+enctype: "multipart/form-data"
+
+<> 2020-05-21T031252.200.json
+
+###
+
 POST http://localhost:8080/data/weather/findByCity?requestId=requestId:10002&cityName=嘉兴
 Accept: */*
 enctype: "multipart/form-data"
@@ -349,46 +389,6 @@ Accept: */*
 enctype: "multipart/form-data"
 
 <> 2019-11-19T110024.200.json
-
-###
-
-POST http://localhost:8080/dock/info/sortByDistance?longitude=120.624949&latitude=30.716588&requestId=requestId:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T105853.200.json
-
-###
-
-POST http://localhost:8080/dock/info/sortByDistance?longitude=120.624949&latitude=30.716588&requestId=requestId:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T105436.200.json
-
-###
-
-POST http://localhost:8080/dock/info/sortByDistance?longitude=120.624949&latitude=30.716588&requestId=requestId:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T105112.200.json
-
-###
-
-POST http://localhost:8080/dock/info/sortByDistance?longitude=120.624949&latitude=30.716588&requestId=requestId:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T105014.200.json
-
-###
-
-POST http://localhost:8080/dock/info/sortByDistance?longitude=120.624949&latitude=30.716588&requestId=requestId:10001
-Accept: */*
-enctype: "multipart/form-data"
-
-<> 2019-11-19T104619.200.json
 
 ###
 
